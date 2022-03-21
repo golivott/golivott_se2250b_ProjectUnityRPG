@@ -12,7 +12,6 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
 
-        animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
         // Calculating move direction
         moveDir = Vector2.zero;
         
@@ -23,7 +22,13 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             moveDir.x = 1;
         if (Input.GetKey(KeyCode.A))
-            moveDir.x = -1;   
+            moveDir.x = -1; 
+
+        animator.SetFloat("Horizontal", moveDir.x);
+        animator.SetFloat("Vertical",moveDir.y);
+        animator.SetFloat("Magnitude",moveDir.magnitude);
+
+
 
         // Moving Character
         gameObject.GetComponent<Rigidbody2D>().velocity = moveDir * speed * Time.fixedDeltaTime;
