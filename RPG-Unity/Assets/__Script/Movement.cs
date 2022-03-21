@@ -11,13 +11,13 @@ public class Movement : MonoBehaviour
         // Calculating move direction
         Vector2 moveDir = Vector2.zero;
         
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.T))
             moveDir.y = 1;
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.G))
             moveDir.y = -1;
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.F))
             moveDir.x = 1;
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.H))
             moveDir.x = -1;   
 
         // Moving Character
