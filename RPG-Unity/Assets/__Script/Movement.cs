@@ -6,9 +6,13 @@ public class Movement : MonoBehaviour
 {
     public float speed = 10;
     public Vector2 moveDir;
+    public Animator animator;
+    
+    
     void FixedUpdate()
     {
 
+        animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
         // Calculating move direction
         moveDir = Vector2.zero;
         
@@ -16,9 +20,9 @@ public class Movement : MonoBehaviour
             moveDir.y = 1;
         if (Input.GetKey(KeyCode.S))
             moveDir.y = -1;
-        if (Input.GetKey(KeyCode.A))
-            moveDir.x = 1;
         if (Input.GetKey(KeyCode.D))
+            moveDir.x = 1;
+        if (Input.GetKey(KeyCode.A))
             moveDir.x = -1;   
 
         // Moving Character
