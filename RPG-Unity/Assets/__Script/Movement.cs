@@ -31,6 +31,6 @@ public class Movement : MonoBehaviour
 
 
         // Moving Character
-        gameObject.GetComponent<Rigidbody2D>().velocity = moveDir * speed * Time.fixedDeltaTime;
+        gameObject.GetComponent<Rigidbody>().velocity = moveDir * speed * Time.fixedDeltaTime;
     }
 }
