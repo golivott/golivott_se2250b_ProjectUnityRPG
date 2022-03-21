@@ -5,11 +5,12 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float speed = 10;
+    public Vector2 moveDir;
     void FixedUpdate()
     {
 
         // Calculating move direction
-        Vector2 moveDir = Vector2.zero;
+        moveDir = Vector2.zero;
         
         if (Input.GetKey(KeyCode.W))
             moveDir.y = 1;
