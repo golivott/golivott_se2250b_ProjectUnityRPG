@@ -33,11 +33,7 @@ public class Attack : MonoBehaviour
     void Attack1()
     {
         // Show attack sprite
-        GameObject attackSprite = swipeAttack;
-        attackSprite.transform.position = attackPoint;
-        attackSprite.transform.rotation = Quaternion.EulerAngles(0,0,(float)Math.Tan(Convert.ToDouble(lastMoveDir.y/lastMoveDir.x)));
-        Instantiate(attackSprite);
-        Destroy(attackSprite,0.5f);
+        
 
         // Gets enemys hit by attack
         Collider2D[] enemyHits = Physics2D.OverlapCircleAll(attackPoint, attackRange, enemyLayers);

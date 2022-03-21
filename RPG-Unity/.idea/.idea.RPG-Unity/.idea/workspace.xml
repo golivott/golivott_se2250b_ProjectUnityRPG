@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d41e7edf-ae09-4530-9bea-748c6f20a28a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RPG-Unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RPG-Unity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Level1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/__Script/Attack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Script/Attack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" afterDir="false" />
@@ -73,6 +73,7 @@
       <workItem from="1647886281222" duration="1179000" />
       <workItem from="1647899152518" duration="108000" />
       <workItem from="1647900223660" duration="2475000" />
+      <workItem from="1647902892434" duration="356000" />
     </task>
     <servers />
   </component>
