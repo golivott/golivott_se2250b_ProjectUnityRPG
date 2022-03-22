@@ -9,16 +9,20 @@ public class Attack : MonoBehaviour
     public float attack1Range = 1f;
     public float attack2Range = 1f;
     public float attackDelay = 0.5f;
-    
-    private bool _isAttacking = false;
-    
+
     public LayerMask enemyLayers;
     public GameObject swipeAttack;
 
     [Header("Set Dynamically")]
     public Vector2 attack1Point;
     public Vector2 attack2Point;
-    public Vector2 lastMoveDir;    
+    public Vector2 lastMoveDir;
+    public bool canAttack = true;
+
+    private void Start()
+    {
+        Physics2D.queriesHitTriggers = true;
+    }
 
     void Update()
     {
@@ -26,24 +30,25 @@ public class Attack : MonoBehaviour
         if (GetComponent<Movement>().moveDir != Vector2.zero)
         {
             lastMoveDir = GetComponent<Movement>().moveDir;
-            attack1Point = GetComponent<Movement>().moveDir * attackDist + new Vector2(transform.position.x, transform.position.y);
-            attack2Point = GetComponent<Movement>().moveDir * attackDist*attack2Range/2 + new Vector2(transform.position.x, transform.position.y);
         }
+        attack1Point = lastMoveDir * attackDist + new Vector2(transform.position.x, transform.position.y);
+        attack2Point = lastMoveDir * attackDist*attack2Range/2 + new Vector2(transform.position.x, transform.position.y);
+        
 
-        if (Input.GetKey(KeyCode.LeftAlt))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
-            if (!_isAttacking)
+            if (canAttack)
             {
-                _isAttacking = true;
+                canAttack = false;
                 StartCoroutine(Attack1());
             }
         }
         
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Mouse1))
         {
-            if (!_isAttacking)
+            if (canAttack)
             {
-                _isAttacking = true;
+                canAttack = false;
                 StartCoroutine(Attack2());
             }
         }
@@ -63,12 +68,12 @@ public class Attack : MonoBehaviour
         // Damages enemies
         foreach (Collider2D enemy in enemyHits)
         {
-            print("hit: " + enemy);
+            print("hit: " + enemy.name);
         }
         
         yield return new WaitForSecondsRealtime(attackDelay);
 
-        _isAttacking = false;
+        canAttack = true;
     }
 
     IEnumerator Attack2()
@@ -86,12 +91,11 @@ public class Attack : MonoBehaviour
         // Damages enemies
         foreach (Collider2D enemy in enemyHits)
         {
-            print("hit: " + enemy);
+            print("hit: " + enemy.name);
         }
         
         yield return new WaitForSecondsRealtime(attackDelay);
 
-        _isAttacking = false;
+        canAttack = true;
     }
-    
 }
