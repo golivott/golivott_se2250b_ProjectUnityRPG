@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
         _movement = gameObject.GetComponent<Movement>();
         _enemy = GameObject.FindWithTag("Enemy").GetComponent<Enemy>();
         _iFrames = false;
+        _interaction = gameObject.GetComponent<Interaction>();
     }
     void Update()
     {
