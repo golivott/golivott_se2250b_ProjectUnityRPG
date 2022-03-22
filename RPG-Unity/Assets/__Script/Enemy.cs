@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour  //Enemy super class
         {
             if (distance > _radius)
             {
+                GetComponent<Collider2D>().isTrigger = false;
                 _moveEnemy = false;
                 Invoke("UnDetectedMovement", 1f);
             }
@@ -59,9 +60,8 @@ public class Enemy : MonoBehaviour  //Enemy super class
     public void UnDetectedMovement()
     {
         _moveEnemy = true;
-        GetComponent<Collider2D>().isTrigger = false;
         _rb.velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f,1f)) * _speed;
-        Invoke("Stop", 3f);
+        Invoke("Stop", 1f);
     }
 
     public void DetectedMovement()
