@@ -43,7 +43,6 @@ public class Player : MonoBehaviour
         _movement = gameObject.GetComponent<Movement>();
         _enemy = GameObject.FindWithTag("Enemy").GetComponent<Enemy>();
         _iFrames = false;
-
     }
     void Update()
     {
@@ -163,6 +162,12 @@ public class Player : MonoBehaviour
     {
         _canTakeDamage = true;
     }
+
+        public void SetCannotTakeDamage()
+    {
+        _canTakeDamage = false;
+    }
+
 
     public void EnableMovement()
     {
