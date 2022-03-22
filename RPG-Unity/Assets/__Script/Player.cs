@@ -6,7 +6,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int skillPoints;
-
     private float _health;
     private float _speed;
     private float _strength;
@@ -20,7 +19,12 @@ public class Player : MonoBehaviour
     private Movement _movement;
     private Enemy _enemy;
     private bool _iFrames;
-
+    
+    public float interactDistance = 1f;
+    public float interactRange = 1f;
+    public LayerMask interactLayer;
+    public Vector2 interactPoint;
+    public Vector2 lastMoveDir;  
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +47,16 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        if (GetComponent<Movement>().moveDir != Vector2.zero)
+        {
+            lastMoveDir = GetComponent<Movement>().moveDir;
+            interactPoint = GetComponent<Movement>().moveDir * interactDistance + new Vector2(transform.position.x, transform.position.y);
+        }
+
+        if (Input.GetKey(KeyCode.F))
+        {
+            Collider2D[] enemyHits = Physics2D.OverlapCircleAll(interactPoint, interactRange, interactLayer);
+        }
 
         if (_health == 0)
         {
