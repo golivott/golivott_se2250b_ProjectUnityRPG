@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour  //Enemy super class
             if (distance > _radius)
             {
                 _moveEnemy = false;
-                Invoke("UnDetectedMovement", 3f);
+                Invoke("UnDetectedMovement", 1f);
             }
             else
             {
@@ -79,6 +79,7 @@ public class Enemy : MonoBehaviour  //Enemy super class
     {
         _rb.velocity = Vector2.zero;
         _moveEnemy = true;
+        GetComponent<Collider2D>().isTrigger = false;
     }
 
     public Vector2 GetPlayerCoordinates()
