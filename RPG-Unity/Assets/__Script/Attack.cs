@@ -64,7 +64,6 @@ public class Attack : MonoBehaviour
         {
             // Display animation
             GameObject attack1Sprite = Instantiate(this.attack1Sprite);
-            ;
             attack1Sprite.transform.position = attack1Point;
             attack1Sprite.transform.rotation = Quaternion.EulerAngles(0, 0, Mathf.Atan2(lastMoveDir.y, lastMoveDir.x));
             Destroy(attack1Sprite, 0.1f);
@@ -90,7 +89,6 @@ public class Attack : MonoBehaviour
             attack2Sprite.transform.position = attack1Point;
             attack2Sprite.transform.rotation = Quaternion.EulerAngles(0, 0, Mathf.Atan2(lastMoveDir.y, lastMoveDir.x));
             attack2Sprite.GetComponent<Rigidbody2D>().velocity = lastMoveDir * 2 * attack2Range / 0.4f;
-            attack2Sprite.GetComponent<Collider2D>().isTrigger = true;
             attack2Sprite.GetComponent<ProjectileAttack>().SetDamage(attack2Damage);
             Destroy(attack2Sprite, 0.3f);
 
