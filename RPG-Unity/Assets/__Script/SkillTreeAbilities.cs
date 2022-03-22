@@ -8,28 +8,30 @@ public class SkillTreeAbilities : MonoBehaviour
     [Header("Sword Slash")]
     public bool unlockedSwordSlash = false;
     public float swordSlashDamage = 50f;
-    public float swordSlashDelay = 1f;
+    public float swordSlashDelay = 1;
     public GameObject swordSlashSprite;
+    private bool _canSwordSlash = true;
 
     [Header("Fire Stomp")] 
     public bool unlockedFireStomp = false;
     public float fireStompDamage = 100f;
     public float fireStompDelay = 1f;
     public GameObject fireStompSprite;
+    private bool _canFireStomp = true;
 
     private void Update()
     {
         // Sword Slash on Q
-        if (Input.GetKey(KeyCode.Q) && gameObject.GetComponent<Attack>().canAttack && unlockedSwordSlash)
+        if (Input.GetKey(KeyCode.Q) && _canSwordSlash && unlockedSwordSlash)
         {
-            gameObject.GetComponent<Attack>().canAttack = false;
+            _canSwordSlash = false;
             StartCoroutine(UseSwordSlash());
         }
         
         // Fire Stomp on E
-        if (Input.GetKey(KeyCode.E) && gameObject.GetComponent<Attack>().canAttack && unlockedFireStomp)
+        if (Input.GetKey(KeyCode.E) && _canFireStomp && unlockedFireStomp)
         {
-            gameObject.GetComponent<Attack>().canAttack = false;
+            _canFireStomp = false;
             StartCoroutine(UseFireStomp());
         }
     }
@@ -50,7 +52,7 @@ public class SkillTreeAbilities : MonoBehaviour
         // Wait delay before allowing another attack 
         yield return new WaitForSecondsRealtime(swordSlashDelay);
 
-        gameObject.GetComponent<Attack>().canAttack = true;
+        _canSwordSlash = true;
     }
 
     private IEnumerator UseFireStomp()
@@ -61,7 +63,7 @@ public class SkillTreeAbilities : MonoBehaviour
         fireStomp.GetComponent<ProjectileAttack>().SetGrowth(1.002f);
 
         // Set Damage
-        fireStomp.GetComponent<ProjectileAttack>().SetDamage(swordSlashDamage);
+        fireStomp.GetComponent<ProjectileAttack>().SetDamage(fireStompDamage);
         
         // Destroy after 0.5 sec
         Destroy(fireStomp, 1f);
@@ -69,7 +71,6 @@ public class SkillTreeAbilities : MonoBehaviour
         // Wait delay before allowing another attack 
         yield return new WaitForSecondsRealtime(fireStompDelay);
 
-        gameObject.GetComponent<Attack>().canAttack = true;
+        _canFireStomp = true;
     }
-    
 }
