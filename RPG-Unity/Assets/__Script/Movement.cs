@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     public Vector2 moveDir;
     public Animator animator;
     public bool disableMovement;
-
+    public Player _player;
     
     private float activeMoveSpeed;
     public float dashSpeed;
@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour
 
     void Start(){
         activeMoveSpeed = moveSpeed;
+         _player = gameObject.GetComponent<Player>();
     }
 
     void FixedUpdate()
@@ -52,6 +53,7 @@ public class Movement : MonoBehaviour
                 {
                     activeMoveSpeed = dashSpeed;
                     dashCounter = dashLength;
+                    _player.SetCannotTakeDamage();
                 }
             }
 
@@ -63,6 +65,7 @@ public class Movement : MonoBehaviour
                 {
                     activeMoveSpeed = moveSpeed;
                     dashCoolCounter = dashCooldown;
+                    _player.SetCanTakeDamage();
                 }
             }
 

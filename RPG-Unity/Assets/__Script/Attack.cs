@@ -30,7 +30,7 @@ public class Attack : MonoBehaviour
             attack2Point = GetComponent<Movement>().moveDir * attackDist*attack2Range/2 + new Vector2(transform.position.x, transform.position.y);
         }
 
-        if (Input.GetKey(KeyCode.LeftAlt))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             if (!_isAttacking)
             {
@@ -39,7 +39,7 @@ public class Attack : MonoBehaviour
             }
         }
         
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Mouse1))
         {
             if (!_isAttacking)
             {

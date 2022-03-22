@@ -150,6 +150,12 @@ public class Player : MonoBehaviour
         _canTakeDamage = true;
     }
 
+        public void SetCannotTakeDamage()
+    {
+        _canTakeDamage = false;
+    }
+
+
     public void EnableMovement()
     {
         _movement.disableMovement = false;
