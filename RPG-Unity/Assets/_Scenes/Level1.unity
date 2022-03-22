@@ -1848,8 +1848,10 @@ GameObject:
   - component: {fileID: 841082232}
   - component: {fileID: 841082231}
   - component: {fileID: 841082235}
+  - component: {fileID: 841082237}
   - component: {fileID: 841082236}
   - component: {fileID: 841082234}
+  - component: {fileID: 841082238}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1986,6 +1988,41 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &841082237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841082230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec67a80c3cf97944b25e2cfc42fdeee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDist: 1
+  attack1Range: 1
+  attack2Range: 2
+  attackDelay: 1
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  swipeAttack: {fileID: 8984951984321153945, guid: 6c190002c02f8cf4db5395af88400f3e, type: 3}
+  attack1Point: {x: 0, y: 0}
+  attack2Point: {x: 0, y: 0}
+  lastMoveDir: {x: 0, y: 0}
+--- !u!75 &841082238
+ConstantForce:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841082230}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0, z: 0}
+  m_RelativeForce: {x: 0, y: 0, z: 0}
+  m_Torque: {x: 0, y: 0, z: 0}
+  m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!1 &897042854
 GameObject:
   m_ObjectHideFlags: 0

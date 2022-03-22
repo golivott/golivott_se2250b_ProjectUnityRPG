@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ffc5de17b1546e54e9fdea5172c878e9
+guid: 5bd010a2202d6db49a78f017373f75e8
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -14,6 +14,18 @@ TextureImporter:
   - first:
       213: 8635401054184231541
     second: Swipe_3
+  - first:
+      213: 373003529703065607
+    second: Swipe_4
+  - first:
+      213: 2973498110846156383
+    second: Swipe_5
+  - first:
+      213: 2367252467095073781
+    second: Swipe_6
+  - first:
+      213: -1355684660635518606
+    second: Swipe_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +70,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -160,8 +172,8 @@ TextureImporter:
       name: Swipe_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 128
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -181,8 +193,8 @@ TextureImporter:
       name: Swipe_3
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 192
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -194,6 +206,90 @@ TextureImporter:
       bones: []
       spriteID: 5725fa7a18b17d770800000000000000
       internalID: 8635401054184231541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Swipe_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7080be7ebbc2d2500800000000000000
+      internalID: 373003529703065607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Swipe_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5eb74d07ccf34920800000000000000
+      internalID: 2973498110846156383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Swipe_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f37eda939b2ad020800000000000000
+      internalID: 2367252467095073781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Swipe_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 279bf5fdbf3af2de0800000000000000
+      internalID: -1355684660635518606
       vertices: []
       indices: 
       edges: []

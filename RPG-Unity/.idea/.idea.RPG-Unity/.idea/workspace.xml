@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d41e7edf-ae09-4530-9bea-748c6f20a28a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RPG-Unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RPG-Unity/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Images/Swipe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Images/Swipe.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Prefabs/Swipe.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Prefabs/Swipe.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Level1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/__Script/Attack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Script/Attack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" afterDir="false" />
@@ -18,6 +24,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/OneDrive - The University of Western Ontario/SCHOOL/YEAR2/SE2250B/golivott_Assignment1/Assets/Scripts/Player.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bc1d04d811fc4873ab7d8d9d4daddcc9568788/29/702d7daf/Math.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d3b66f0ad4e34a55b6ef91ab8487819313c000/83/9859571f/Gizmos.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/OneDrive - The University of Western Ontario/SCHOOL/YEAR2/SE2250B/golivott_Assignment2/Assets/__Scripts/Hero.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/OneDrive/Codes/UnityProjects/TopDownGameTesting/Assets/Movement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d3b66f0ad4e34a55b6ef91ab8487819313c000/e4/4ad4d664/Transform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d3b66f0ad4e34a55b6ef91ab8487819313c000/f3/8200f070/Object.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -74,6 +86,8 @@
       <workItem from="1647899152518" duration="108000" />
       <workItem from="1647900223660" duration="2475000" />
       <workItem from="1647902892434" duration="356000" />
+      <workItem from="1647903430543" duration="9854000" />
+      <workItem from="1647914039271" duration="38000" />
     </task>
     <servers />
   </component>
