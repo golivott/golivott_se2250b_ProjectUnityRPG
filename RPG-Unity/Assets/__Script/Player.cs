@@ -17,9 +17,9 @@ public class Player : MonoBehaviour
     private int _skillPoints;
     private bool _canTakeDamage;
     private Movement _movement;
-    private Enemy _enemy;
     private bool _iFrames;
     private Interaction _interaction;
+    private Player _player;
 
     public float interactDistance = 1f;
     public float interactRange = 1f;
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     public Vector2 lastMoveDir;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         skillPoints = 30;
         _health = 100f;
@@ -42,11 +42,11 @@ public class Player : MonoBehaviour
         _skillPoints = 0;
         _canTakeDamage = true;
         _movement = gameObject.GetComponent<Movement>();
-        _enemy = GameObject.FindWithTag("Enemy").GetComponent<Enemy>();
         _iFrames = false;
         _interaction = gameObject.GetComponent<Interaction>();
+        
     }
-    void Update()
+    public void Update()
     {
         if (GetComponent<Movement>().moveDir != Vector2.zero)
         {
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (_health == 0)
+        if (_health <= 0)
         {
             print("Game Over");
         }
@@ -75,18 +75,12 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            _movement.disableMovement = true;
-            gameObject.GetComponent<Rigidbody2D>().velocity = _enemy.VectorBetweenPlayerAndEnemy().normalized * 6f;
-            Invoke("EnableMovement", 1f);
-
-            if (_canTakeDamage)
-            {
-                _health = _health - 10f;
-                print(_health);
-                _canTakeDamage = false;
-                Invoke("SetCanTakeDamage", 2f);
-                StartCoroutine(Frames());
-            }
+            TakenDamage(10);
+        }
+        
+        else if (collision.gameObject.CompareTag("Bomb"))
+        {
+            TakenDamage(20);
         }
         else if (collision.gameObject.CompareTag("Attic"))
         {
@@ -102,9 +96,6 @@ public class Player : MonoBehaviour
         }
 
     }
-
-
-
     public float GetHealth()
     {
         return _health;
@@ -188,6 +179,23 @@ public class Player : MonoBehaviour
         _canTakeDamage = false;
     }
 
+        public void TakenDamage(int damage)
+        {
+            print(_health);
+            _movement.disableMovement = true;
+            gameObject.GetComponent<Rigidbody2D>().velocity = GameObject.FindWithTag("Enemy").GetComponent<Enemy>().VectorBetweenPlayerAndEnemy().normalized * 6f;
+            Invoke("EnableMovement", 1f);
+
+            if (_canTakeDamage)
+            {
+                _health = _health - damage;
+                
+                _canTakeDamage = false;
+                Invoke("SetCanTakeDamage", 2f);
+                StartCoroutine(Frames());
+            }
+        }
+
 
     public void EnableMovement()
     {
@@ -203,5 +211,6 @@ public class Player : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.1f);
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
+        
     }
 }
