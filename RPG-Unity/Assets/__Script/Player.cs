@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
 
     public IEnumerator Frames()
     {
-        for (int c = 0; c < 11; c++)
+        for (int c = 0; c < 7; c++)
         {
             yield return new WaitForSecondsRealtime(0.1f);
             gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
