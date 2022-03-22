@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour  //Enemy super class
     private int _money;
     private Rigidbody2D _rb;
     private bool _moveEnemy;
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,6 @@ public class Enemy : MonoBehaviour  //Enemy super class
     {
         float distance = Mathf.Sqrt(Mathf.Pow(GetPlayerCoordinates().x - GetEnemyCoordinates().x, 2) +
                                     Math.Pow(GetPlayerCoordinates().y - GetEnemyCoordinates().y, 2));
-        print(_moveEnemy);
         if (_moveEnemy)
         {
             if (distance > _radius)
@@ -56,12 +55,6 @@ public class Enemy : MonoBehaviour  //Enemy super class
             Invoke("KillEnemy", 5f);
         }
     }
-
-    public void OnTriggerEnter2D(Collider other)
-    {
-        //Subtract 10 health from player and grant 3 seconds of iFrames to the player
-    }
-
     public void UnDetectedMovement()
     {
         _moveEnemy = true;
