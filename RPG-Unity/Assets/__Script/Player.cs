@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour
     private int _level;
     private int _experience;
     private int _money;
-    public static int SkillPoints;
+    public static int SkillPoints = 0;
     private bool _canTakeDamage;
     private Movement _movement;
     private bool _iFrames;
@@ -37,7 +38,6 @@ public class Player : MonoBehaviour
         _level = 1;
         _experience = 0;
         _money = 0;
-        SkillPoints = 5;
         _canTakeDamage = true;
         _movement = gameObject.GetComponent<Movement>();
         _iFrames = false;
@@ -60,6 +60,11 @@ public class Player : MonoBehaviour
             {
                 _interaction.Interact(interactableObjects[0].gameObject);
             }
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            
         }
 
         if (_experience > 50)
