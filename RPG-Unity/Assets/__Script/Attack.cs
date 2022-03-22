@@ -10,16 +10,14 @@ public class Attack : MonoBehaviour
     public float attack2Range = 1f;
 
     public float attack1Damage = 50f;
-    public float attack2Damage = 50f;
+    public float attack2Damage = 25f;
 
     public float attackDelay = 0.5f;
 
     public LayerMask enemyLayers;
-    public GameObject attack1Sprite;
-    public GameObject attack2Sprite;
+    public GameObject swipeAttack;
 
-    [Header("Set Dynamically")] 
-    public Vector2 attack1Point;
+    [Header("Set Dynamically")] public Vector2 attack1Point;
     public Vector2 attack2Point;
     public Vector2 lastMoveDir;
     public bool canAttack = true;
@@ -63,7 +61,7 @@ public class Attack : MonoBehaviour
         IEnumerator Attack1()
         {
             // Display animation
-            GameObject attack1Sprite = Instantiate(this.attack1Sprite);
+            GameObject attack1Sprite = Instantiate(swipeAttack);
             ;
             attack1Sprite.transform.position = attack1Point;
             attack1Sprite.transform.rotation = Quaternion.EulerAngles(0, 0, Mathf.Atan2(lastMoveDir.y, lastMoveDir.x));
@@ -75,7 +73,6 @@ public class Attack : MonoBehaviour
             // Damages enemies
             foreach (Collider2D enemy in enemyHits)
             {
-                print("hit: " + enemy.name);
                 enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
             }
 
@@ -87,12 +84,31 @@ public class Attack : MonoBehaviour
         IEnumerator Attack2()
         {
             // Display animation
-            GameObject attack2Sprite = Instantiate(this.attack2Sprite);
-            attack2Sprite.transform.position = attack2Point;
+            GameObject attack2Sprite = Instantiate(swipeAttack);
+            attack2Sprite.transform.position = attack1Point;
             attack2Sprite.transform.rotation = Quaternion.EulerAngles(0, 0, Mathf.Atan2(lastMoveDir.y, lastMoveDir.x));
+<<<<<<< Updated upstream
+            attack2Sprite.AddComponent<Rigidbody>().velocity = lastMoveDir * 2 * attack2Range / 0.4f;
+            Destroy(attack2Sprite, 0.2f);
+
+            // Gets enemys hit by attack
+            Collider2D[] enemyHits = Physics2D.OverlapBoxAll(attack2Point, new Vector2(2 * attack2Range, 1),
+                Mathf.Atan2(lastMoveDir.y, lastMoveDir.x), enemyLayers);
+
+            // Damages enemies
+            foreach (Collider2D enemy in enemyHits)
+            {
+                print("hit: " + enemy.name);
+            }
+=======
+            
+            // Sets velocity
             attack2Sprite.GetComponent<Rigidbody2D>().velocity = lastMoveDir * 2 * attack2Range / 0.4f;
+            
+            // Sets Damage of projectile attack
             attack2Sprite.GetComponent<ProjectileAttack>().SetDamage(attack2Damage);
             Destroy(attack2Sprite,0.3f);
+>>>>>>> Stashed changes
 
             yield return new WaitForSecondsRealtime(attackDelay);
 

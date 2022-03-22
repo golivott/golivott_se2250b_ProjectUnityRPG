@@ -7,6 +7,7 @@ public class ProjectileAttack : MonoBehaviour
 {
     private List<Collider2D> _colliders;
     private float damage = 50f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,6 @@ public class ProjectileAttack : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        print("hit: " + col.gameObject.name);
         if (col.gameObject.tag.Equals("Enemy"))
         {
             col.gameObject.GetComponent<Enemy>().TakeDamage(damage);
