@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float moveSpeed = 10;
+    private float moveSpeed = 350;
     public Vector2 moveDir;
-    public Animator animator;    
+    public Animator animator;
 
+    
+    private float activeMoveSpeed;
+    public float dashSpeed;
+
+    public float dashLength = 0.2f, dashCooldown = 1f;
+
+    private float dashCounter;
+    private float dashCoolCounter;
+
+    void Start(){
+        activeMoveSpeed = moveSpeed;
+    }
     
     void FixedUpdate()
     {
@@ -30,7 +42,28 @@ public class Movement : MonoBehaviour
 
 
 
+
+        
+        if(Input.GetKey(KeyCode.Space)){
+            if(dashCoolCounter<=0 && dashCounter <=0){
+                activeMoveSpeed = dashSpeed;
+                dashCounter = dashLength;
+            }
+        }
+
+        if(dashCounter > 0){
+            dashCounter -= Time.fixedDeltaTime;
+
+            if(dashCounter<=0){
+                activeMoveSpeed = moveSpeed;
+                dashCoolCounter = dashCooldown;
+            }
+        }
+        if(dashCoolCounter >0){
+            dashCoolCounter -= Time.fixedDeltaTime;
+        }
+        
         // Moving Character
-        gameObject.GetComponent<Rigidbody>().velocity = moveDir * moveSpeed * Time.fixedDeltaTime;
+        gameObject.GetComponent<Rigidbody>().velocity = moveDir * activeMoveSpeed * Time.fixedDeltaTime;
     }
 }
