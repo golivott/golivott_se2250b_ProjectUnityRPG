@@ -36,7 +36,6 @@ public class ProjectileAttack : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("Enemy"))
         {
-            print("HIT ");
             col.gameObject.GetComponent<Enemy>().TakeDamage(_damage);
         }
     }
