@@ -3532,6 +3532,7 @@ MonoBehaviour:
   moveDir: {x: 0, y: 0}
   animator: {fileID: 841082235}
   disableMovement: 0
+  _player: {fileID: 0}
   dashSpeed: 700
   dashLength: 0.2
   dashCooldown: 1
@@ -3682,14 +3683,18 @@ MonoBehaviour:
   attackDist: 1
   attack1Range: 1
   attack2Range: 2
+  attack1Damage: 50
+  attack2Damage: 50
   attackDelay: 1
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
-  swipeAttack: {fileID: 8984951984321153945, guid: 6c190002c02f8cf4db5395af88400f3e, type: 3}
+  attack1Sprite: {fileID: 8984951984321153945, guid: 6c190002c02f8cf4db5395af88400f3e, type: 3}
+  attack2Sprite: {fileID: 695806990849631022, guid: 8eac5dc8f37698c4b995f6857bb07f85, type: 3}
   attack1Point: {x: 0, y: 0}
   attack2Point: {x: 0, y: 0}
   lastMoveDir: {x: 0, y: 0}
+  canAttack: 1
 --- !u!114 &841082238
 MonoBehaviour:
   m_ObjectHideFlags: 0
