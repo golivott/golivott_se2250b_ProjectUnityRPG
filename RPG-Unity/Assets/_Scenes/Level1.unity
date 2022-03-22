@@ -4041,7 +4041,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 4334783836991956000, guid: 1e35c517a8faf9e44a04ec800c7f0da7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4208,11 +4208,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlockedSwordSlash: 0
   swordSlashDamage: 50
-  swordSlashDelay: 1
+  swordSlashDelay: 5
   swordSlashSprite: {fileID: 4343842830354189182, guid: 2727cc55c729b044082803ab7e937aeb, type: 3}
   unlockedFireStomp: 0
-  fireStompDamage: 99
-  fireStompDelay: 1
+  fireStompDamage: 90
+  fireStompDelay: 3
   fireStompSprite: {fileID: 6730847098272287020, guid: 7bb744c999c3bf4429a6e781aeda028a, type: 3}
 --- !u!1 &869795112
 GameObject:
