@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public int skillPoints;
+    
     private float _health;
     private float _speed;
     private float _strength;
@@ -12,10 +14,11 @@ public class Player : MonoBehaviour
     private int _level;
     private int _experience;
     private int _money;
-    
+
     // Start is called before the first frame update
     void Start()
     {
+        skillPoints = 30;
         _health = 100f;
         _speed = 10f;
         _strength = 10f;

@@ -6,23 +6,32 @@
   <component name="ChangeListManager">
     <list default="true" id="d41e7edf-ae09-4530-9bea-748c6f20a28a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RPG-Unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RPG-Unity/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/Assets/_Images/Swipe.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Images/Swipe.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Prefabs/Swipe.prefab" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Prefabs/Swipe.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Level1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/__Script/Attack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Script/Attack.cs" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Assets/__Script/Player Sprite Mirror.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/__Script/Player Sprite Mirror.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/__Script/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Script/Player.cs" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< Updated upstream
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/OneDrive - The University of Western Ontario/SCHOOL/YEAR2/SE2250B/golivott_Assignment1/Assets/Scripts/Player.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bc1d04d811fc4873ab7d8d9d4daddcc9568788/29/702d7daf/Math.cs" root0="SKIP_HIGHLIGHTING" />
@@ -31,6 +40,15 @@
     <setting file="file://$USER_HOME$/OneDrive/Codes/UnityProjects/TopDownGameTesting/Assets/Movement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d3b66f0ad4e34a55b6ef91ab8487819313c000/e4/4ad4d664/Transform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d3b66f0ad4e34a55b6ef91ab8487819313c000/f3/8200f070/Object.cs" root0="SKIP_HIGHLIGHTING" />
+=======
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+>>>>>>> Stashed changes
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -49,6 +67,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="rider.run.widget.enabled.cache" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -86,8 +105,13 @@
       <workItem from="1647899152518" duration="108000" />
       <workItem from="1647900223660" duration="2475000" />
       <workItem from="1647902892434" duration="356000" />
+<<<<<<< Updated upstream
       <workItem from="1647903430543" duration="9854000" />
       <workItem from="1647914039271" duration="38000" />
+=======
+      <workItem from="1647910816894" duration="4728000" />
+      <workItem from="1647926415235" duration="26111000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
