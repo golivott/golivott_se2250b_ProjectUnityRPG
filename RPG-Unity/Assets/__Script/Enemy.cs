@@ -49,10 +49,10 @@ public class Enemy : MonoBehaviour  //Enemy super class
             }
         }
 
-        if (_health == 0)
+        if (_health <= 0)
         {
             //Play death animation then despawn enemy after 5 seconds
-            Invoke("KillEnemy", 5f);
+            KillEnemy();
         }
     }
     public void UnDetectedMovement()
@@ -101,5 +101,11 @@ public class Enemy : MonoBehaviour  //Enemy super class
         Destroy(gameObject);
         
         //Add experience to player and add money
+        
+    }
+
+    public void TakeDamage(float damage)
+    {
+        _health -= damage;
     }
 }

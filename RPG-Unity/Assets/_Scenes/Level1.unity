@@ -3605,7 +3605,7 @@ MonoBehaviour:
   attackDelay: 1
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   swipeAttack: {fileID: 8984951984321153945, guid: 6c190002c02f8cf4db5395af88400f3e, type: 3}
   attack1Point: {x: 0, y: 0}
   attack2Point: {x: 0, y: 0}
@@ -21899,6 +21899,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2965159235483570171, guid: c5428d75dc030884cbb803e27cce0fb7, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965159235483570171, guid: c5428d75dc030884cbb803e27cce0fb7, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965159235483570171, guid: c5428d75dc030884cbb803e27cce0fb7, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2965159235483570172, guid: c5428d75dc030884cbb803e27cce0fb7, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -21910,6 +21922,10 @@ PrefabInstance:
     - target: {fileID: 2965159235483570175, guid: c5428d75dc030884cbb803e27cce0fb7, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965159235483570175, guid: c5428d75dc030884cbb803e27cce0fb7, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5428d75dc030884cbb803e27cce0fb7, type: 3}
