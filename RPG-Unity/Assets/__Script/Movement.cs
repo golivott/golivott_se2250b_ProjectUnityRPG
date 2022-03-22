@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float speed = 10;
+    public float moveSpeed = 10;
     public Vector2 moveDir;
-    public Animator animator;
-    
+    public Animator animator;    
+
     
     void FixedUpdate()
     {
 
         // Calculating move direction
         moveDir = Vector2.zero;
-        
+
         if (Input.GetKey(KeyCode.W))
             moveDir.y = 1;
         if (Input.GetKey(KeyCode.S))
@@ -31,6 +31,6 @@ public class Movement : MonoBehaviour
 
 
         // Moving Character
-        gameObject.GetComponent<Rigidbody>().velocity = moveDir * speed * Time.fixedDeltaTime;
+        gameObject.GetComponent<Rigidbody>().velocity = moveDir * moveSpeed * Time.fixedDeltaTime;
     }
 }
