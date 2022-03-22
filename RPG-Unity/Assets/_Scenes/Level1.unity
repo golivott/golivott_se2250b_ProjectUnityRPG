@@ -3686,9 +3686,10 @@ MonoBehaviour:
   attack1Damage: 50
   attack2Damage: 50
   attackDelay: 1
+  attack2Delay: 1
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   attack1Sprite: {fileID: 8984951984321153945, guid: 6c190002c02f8cf4db5395af88400f3e, type: 3}
   attack2Sprite: {fileID: 695806990849631022, guid: 8eac5dc8f37698c4b995f6857bb07f85, type: 3}
   attack1Point: {x: 0, y: 0}
@@ -16386,7 +16387,7 @@ GameObject:
   - component: {fileID: 1206601811}
   - component: {fileID: 1206601810}
   - component: {fileID: 1206601809}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Enemy
   m_Icon: {fileID: 0}
