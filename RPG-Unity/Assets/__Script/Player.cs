@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public int skillPoints;
+
     private float _health;
     private float _speed;
     private float _strength;
@@ -18,11 +20,12 @@ public class Player : MonoBehaviour
     private Movement _movement;
     private Enemy _enemy;
     private bool _iFrames;
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
+        skillPoints = 30;
         _health = 100f;
         _speed = 10f;
         _strength = 10f;
@@ -40,7 +43,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        
+
         if (_health == 0)
         {
             print("Game Over");
@@ -52,10 +55,10 @@ public class Player : MonoBehaviour
         _movement.disableMovement = true;
         gameObject.GetComponent<Rigidbody2D>().velocity = _enemy.VectorBetweenPlayerAndEnemy().normalized * 6f;
         Invoke("EnableMovement",1f);
-        
+
         if (_canTakeDamage)
         {
-            
+
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 _health = _health - 10f;
@@ -67,8 +70,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    
-    
+
+
     public float GetHealth()
     {
         return _health;
@@ -92,7 +95,7 @@ public class Player : MonoBehaviour
     public int GetLevel()
     {
         return _level;
-    } 
+    }
     public int GetExperience()
     {
         return _experience;
