@@ -19,12 +19,13 @@ public class Player : MonoBehaviour
     private Movement _movement;
     private Enemy _enemy;
     private bool _iFrames;
-    
+    private Interaction _interaction;
+
     public float interactDistance = 1f;
     public float interactRange = 1f;
     public LayerMask interactLayer;
     public Vector2 interactPoint;
-    public Vector2 lastMoveDir;  
+    public Vector2 lastMoveDir;
 
     // Start is called before the first frame update
     void Start()
@@ -54,8 +55,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.F))
         {
-            Collider2D[] enemyHits = Physics2D.OverlapCircleAll(interactPoint, interactRange, interactLayer);
+            Physics2D.queriesHitTriggers = true;
+            Collider2D[] interactableObjects = Physics2D.OverlapCircleAll(interactPoint, interactRange, interactLayer);
+            if (interactableObjects.Length != 0)
+            {
+                _interaction.Interact(interactableObjects[0].gameObject);
+            }
         }
+
 
         if (_health == 0)
         {
@@ -65,14 +72,13 @@ public class Player : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        _movement.disableMovement = true;
-        gameObject.GetComponent<Rigidbody2D>().velocity = _enemy.VectorBetweenPlayerAndEnemy().normalized * 6f;
-        Invoke("EnableMovement",1f);
-
-        if (_canTakeDamage)
+        if(collision.gameObject.CompareTag("Enemy"))
         {
+            _movement.disableMovement = true;
+            gameObject.GetComponent<Rigidbody2D>().velocity = _enemy.VectorBetweenPlayerAndEnemy().normalized * 6f;
+            Invoke("EnableMovement", 1f);
 
-            if (collision.gameObject.CompareTag("Enemy"))
+            if (_canTakeDamage)
             {
                 _health = _health - 10f;
                 print(_health);
@@ -81,6 +87,19 @@ public class Player : MonoBehaviour
                 StartCoroutine(Frames());
             }
         }
+        else if (collision.gameObject.CompareTag("Attic"))
+        {
+            gameObject.transform.position = new Vector3(22, -5, 0);
+        }
+        else if (collision.gameObject.CompareTag("Downstairs"))
+        {
+            gameObject.transform.position = new Vector3(-6.5f, -4.5f, 0);
+        }
+        else if (collision.gameObject.CompareTag("UpStairs"))
+        {
+            gameObject.transform.position = new Vector3(-19, -5, 0);
+        }
+
     }
 
 

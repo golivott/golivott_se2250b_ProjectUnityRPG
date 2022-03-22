@@ -6,11 +6,16 @@ TagManager:
   tags:
   - Enemy
   - Skill Points
+  - Chest
+  - BasementDoor
+  - Attic
+  - Downstairs
+  - UpStairs
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Interactable
   - Water
   - UI
   - Enemy

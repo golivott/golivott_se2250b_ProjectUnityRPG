@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour  //Enemy super class
     // Update is called once per frame
     void Update()
     {
+        
         float distance = Mathf.Sqrt(Mathf.Pow(GetPlayerCoordinates().x - GetEnemyCoordinates().x, 2) +
                                     Math.Pow(GetPlayerCoordinates().y - GetEnemyCoordinates().y, 2));
         if (_moveEnemy)
