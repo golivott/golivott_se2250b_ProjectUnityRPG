@@ -10,7 +10,7 @@ public class Attack : MonoBehaviour
     public float attack2Range = 1f;
 
     public float attack1Damage = 50f;
-    public float attack2Damage = 50f;
+    public float attack2Damage = 25f;
 
     public float attackDelay = 0.5f;
 
@@ -73,7 +73,6 @@ public class Attack : MonoBehaviour
             // Damages enemies
             foreach (Collider2D enemy in enemyHits)
             {
-                print("hit: " + enemy.name);
                 enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
             }
 
@@ -88,6 +87,7 @@ public class Attack : MonoBehaviour
             GameObject attack2Sprite = Instantiate(swipeAttack);
             attack2Sprite.transform.position = attack1Point;
             attack2Sprite.transform.rotation = Quaternion.EulerAngles(0, 0, Mathf.Atan2(lastMoveDir.y, lastMoveDir.x));
+<<<<<<< Updated upstream
             attack2Sprite.AddComponent<Rigidbody>().velocity = lastMoveDir * 2 * attack2Range / 0.4f;
             Destroy(attack2Sprite, 0.2f);
 
@@ -100,6 +100,15 @@ public class Attack : MonoBehaviour
             {
                 print("hit: " + enemy.name);
             }
+=======
+            
+            // Sets velocity
+            attack2Sprite.GetComponent<Rigidbody2D>().velocity = lastMoveDir * 2 * attack2Range / 0.4f;
+            
+            // Sets Damage of projectile attack
+            attack2Sprite.GetComponent<ProjectileAttack>().SetDamage(attack2Damage);
+            Destroy(attack2Sprite,0.3f);
+>>>>>>> Stashed changes
 
             yield return new WaitForSecondsRealtime(attackDelay);
 
