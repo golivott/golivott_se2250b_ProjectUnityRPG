@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int skillPoints;
     private float _health;
     private float _speed;
     private float _strength;
@@ -14,7 +13,7 @@ public class Player : MonoBehaviour
     private int _level;
     private int _experience;
     private int _money;
-    private int _skillPoints;
+    public static int SkillPoints;
     private bool _canTakeDamage;
     private Movement _movement;
     private bool _iFrames;
@@ -30,16 +29,15 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        skillPoints = 30;
         _health = 100f;
         _speed = 10f;
         _strength = 10f;
         _stamina = 100f;
         _resistance = 10f;
-        _level = 0;
+        _level = 1;
         _experience = 0;
         _money = 0;
-        _skillPoints = 0;
+        SkillPoints = 5;
         _canTakeDamage = true;
         _movement = gameObject.GetComponent<Movement>();
         _iFrames = false;
@@ -62,6 +60,14 @@ public class Player : MonoBehaviour
             {
                 _interaction.Interact(interactableObjects[0].gameObject);
             }
+        }
+
+        if (_experience > 50)
+        {
+            _level++;
+            _experience = 0;
+            SkillPoints = SkillPoints + 3;
+            print("Leveled up!");
         }
 
 
@@ -128,9 +134,9 @@ public class Player : MonoBehaviour
     {
         return _money;
     }
-    public int GetSkillPoints()
+    public static int GetSkillPoints()
     {
-        return _skillPoints;
+        return SkillPoints;
     }
     public void AddHealth(float health)
     {
@@ -164,9 +170,9 @@ public class Player : MonoBehaviour
     {
         _money = _money + money;
     }
-    public void AddSkillPoints(int skillPoints)
+    public static void AddSkillPoints(int skillPoints)
     {
-        _skillPoints = _skillPoints + skillPoints;
+        SkillPoints = SkillPoints + skillPoints;
     }
 
     public void SetCanTakeDamage()
