@@ -42,10 +42,7 @@ public class Movement : MonoBehaviour
             animator.SetFloat("Vertical", moveDir.y);
             animator.SetFloat("Magnitude", moveDir.magnitude);
 
-
-
-
-
+            
             if (Input.GetKey(KeyCode.Space))
             {
                 if (dashCoolCounter <= 0 && dashCounter <= 0)
