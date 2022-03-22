@@ -6,15 +6,18 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public float attackDist = 1f;
+    
+    [Header("Attack 1")]
     public float attack1Range = 1f;
-    public float attack2Range = 1f;
-
     public float attack1Damage = 50f;
-    public float attack2Damage = 25f;
-
     public float attackDelay = 0.5f;
-    public float attack2Delay = 1f;
 
+    [Header("Attack 2")]
+    public float attack2Range = 1f;
+    public float attack2Damage = 25f;
+    public float attack2Delay = 1f;
+    public float attack2Speed = 1f;
+    
     public LayerMask enemyLayers;
     public GameObject attack1Sprite;
     public GameObject attack2Sprite;
@@ -88,7 +91,7 @@ public class Attack : MonoBehaviour
             GameObject attack2Sprite = Instantiate(this.attack2Sprite);
             attack2Sprite.transform.position = attack1Point;
             attack2Sprite.transform.rotation = Quaternion.EulerAngles(0, 0, Mathf.Atan2(lastMoveDir.y, lastMoveDir.x));
-            attack2Sprite.GetComponent<Rigidbody2D>().velocity = lastMoveDir * 2 * attack2Range / 0.4f;
+            attack2Sprite.GetComponent<Rigidbody2D>().velocity = lastMoveDir * attack2Speed * attack2Range / 0.4f * Time.deltaTime;
             attack2Sprite.GetComponent<ProjectileAttack>().SetDamage(attack2Damage);
             Destroy(attack2Sprite, 0.3f);
 

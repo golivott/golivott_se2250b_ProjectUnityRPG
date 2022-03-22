@@ -3683,11 +3683,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDist: 1
   attack1Range: 1
-  attack2Range: 2
   attack1Damage: 50
+<<<<<<< Updated upstream
   attack2Damage: 25
+=======
+>>>>>>> Stashed changes
   attackDelay: 1
+  attack2Range: 2
+  attack2Damage: 50
   attack2Delay: 1
+  attack2Speed: 2000
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -3745,9 +3750,17 @@ MonoBehaviour:
   swordSlashDamage: 50
   swordSlashDelay: 1
   swordSlashSprite: {fileID: 4343842830354189182, guid: 2727cc55c729b044082803ab7e937aeb, type: 3}
+<<<<<<< Updated upstream
   unlockedFireStomp: 1
   fireStompDamage: 110
   fireStompDelay: 1
+=======
+  swordSpinRate: 20
+  unlockedFireStomp: 0
+  fireStompDamage: 90
+  fireStompDelay: 3
+  fireStopGrowth: 1.03
+>>>>>>> Stashed changes
   fireStompSprite: {fileID: 6730847098272287020, guid: 7bb744c999c3bf4429a6e781aeda028a, type: 3}
 --- !u!1 &869795112
 GameObject:

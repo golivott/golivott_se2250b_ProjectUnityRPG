@@ -10,11 +10,17 @@ public class SkillTreeAbilities : MonoBehaviour
     public float swordSlashDamage = 50f;
     public float swordSlashDelay = 1f;
     public GameObject swordSlashSprite;
+<<<<<<< Updated upstream
+=======
+    public float swordSpinRate = 1f;
+    private bool _canSwordSlash = true;
+>>>>>>> Stashed changes
 
     [Header("Fire Stomp")] 
     public bool unlockedFireStomp = false;
     public float fireStompDamage = 100f;
     public float fireStompDelay = 1f;
+    public float fireStopGrowth = 1f;
     public GameObject fireStompSprite;
 
     private void Update()
@@ -39,7 +45,7 @@ public class SkillTreeAbilities : MonoBehaviour
         // Display animation
         GameObject swordSlash = Instantiate(swordSlashSprite);
         swordSlash.transform.position = transform.position;
-        swordSlash.GetComponent<ProjectileAttack>().SetSpin(1f);
+        swordSlash.GetComponent<ProjectileAttack>().SetSpin(swordSpinRate);
         swordSlash.GetComponent<ProjectileAttack>().IsFollowPlayer();
         
         // Set Damage
@@ -58,7 +64,7 @@ public class SkillTreeAbilities : MonoBehaviour
         // Display animation
         GameObject fireStomp = Instantiate(fireStompSprite);
         fireStomp.transform.position = transform.position;
-        fireStomp.GetComponent<ProjectileAttack>().SetGrowth(1.002f);
+        fireStomp.GetComponent<ProjectileAttack>().SetGrowth(fireStopGrowth);
 
         // Set Damage
         fireStomp.GetComponent<ProjectileAttack>().SetDamage(swordSlashDamage);
