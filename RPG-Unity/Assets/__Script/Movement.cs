@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     private float moveSpeed = 350;
     public Vector2 moveDir;
     public Animator animator;
+    public bool disableMovement;
 
     
     private float activeMoveSpeed;
@@ -20,50 +21,58 @@ public class Movement : MonoBehaviour
     void Start(){
         activeMoveSpeed = moveSpeed;
     }
-    
+
     void FixedUpdate()
     {
+        if (!disableMovement)
+        {
+            // Calculating move direction
+            moveDir = Vector2.zero;
 
-        // Calculating move direction
-        moveDir = Vector2.zero;
+            if (Input.GetKey(KeyCode.W))
+                moveDir.y = 1;
+            if (Input.GetKey(KeyCode.S))
+                moveDir.y = -1;
+            if (Input.GetKey(KeyCode.D))
+                moveDir.x = 1;
+            if (Input.GetKey(KeyCode.A))
+                moveDir.x = -1;
 
-        if (Input.GetKey(KeyCode.W))
-            moveDir.y = 1;
-        if (Input.GetKey(KeyCode.S))
-            moveDir.y = -1;
-        if (Input.GetKey(KeyCode.D))
-            moveDir.x = 1;
-        if (Input.GetKey(KeyCode.A))
-            moveDir.x = -1; 
-
-        animator.SetFloat("Horizontal", moveDir.x);
-        animator.SetFloat("Vertical",moveDir.y);
-        animator.SetFloat("Magnitude",moveDir.magnitude);
+            animator.SetFloat("Horizontal", moveDir.x);
+            animator.SetFloat("Vertical", moveDir.y);
+            animator.SetFloat("Magnitude", moveDir.magnitude);
 
 
 
 
-        
-        if(Input.GetKey(KeyCode.Space)){
-            if(dashCoolCounter<=0 && dashCounter <=0){
-                activeMoveSpeed = dashSpeed;
-                dashCounter = dashLength;
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                if (dashCoolCounter <= 0 && dashCounter <= 0)
+                {
+                    activeMoveSpeed = dashSpeed;
+                    dashCounter = dashLength;
+                }
             }
-        }
 
-        if(dashCounter > 0){
-            dashCounter -= Time.fixedDeltaTime;
+            if (dashCounter > 0)
+            {
+                dashCounter -= Time.fixedDeltaTime;
 
-            if(dashCounter<=0){
-                activeMoveSpeed = moveSpeed;
-                dashCoolCounter = dashCooldown;
+                if (dashCounter <= 0)
+                {
+                    activeMoveSpeed = moveSpeed;
+                    dashCoolCounter = dashCooldown;
+                }
             }
+
+            if (dashCoolCounter > 0)
+            {
+                dashCoolCounter -= Time.fixedDeltaTime;
+            }
+
+            // Moving Character
+            gameObject.GetComponent<Rigidbody>().velocity = moveDir * activeMoveSpeed * Time.fixedDeltaTime;
         }
-        if(dashCoolCounter >0){
-            dashCoolCounter -= Time.fixedDeltaTime;
-        }
-        
-        // Moving Character
-        gameObject.GetComponent<Rigidbody>().velocity = moveDir * activeMoveSpeed * Time.fixedDeltaTime;
     }
 }
