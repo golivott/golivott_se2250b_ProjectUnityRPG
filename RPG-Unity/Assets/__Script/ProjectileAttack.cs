@@ -17,7 +17,7 @@ public class ProjectileAttack : MonoBehaviour
         _colliders = new List<Collider2D>(); 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         transform.Rotate(0,0,_spin);
 

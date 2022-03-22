@@ -20,7 +20,7 @@ public class Movement : MonoBehaviour
 
     void Start(){
         activeMoveSpeed = moveSpeed;
-         _player = gameObject.GetComponent<Player>();
+        _player = gameObject.GetComponent<Player>();
     }
 
     void FixedUpdate()
@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
             }
 
             // Moving Character
-            gameObject.GetComponent<Rigidbody2D>().velocity = moveDir * activeMoveSpeed * Time.fixedDeltaTime;
+            gameObject.GetComponent<Rigidbody2D>().velocity = moveDir.normalized * activeMoveSpeed * Time.fixedDeltaTime;
         }
     }
 }
