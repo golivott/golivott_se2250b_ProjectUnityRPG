@@ -92,7 +92,7 @@ public class Attack : MonoBehaviour
             attack2Sprite.GetComponent<Rigidbody2D>().velocity = lastMoveDir * 2 * attack2Range / 0.4f;
             attack2Sprite.GetComponent<Collider2D>().isTrigger = true;
             attack2Sprite.GetComponent<ProjectileAttack>().SetDamage(attack2Damage);
-            Destroy(attack2Sprite, 0.2f);
+            Destroy(attack2Sprite, 0.3f);
 
             yield return new WaitForSecondsRealtime(attack2Delay);
 
