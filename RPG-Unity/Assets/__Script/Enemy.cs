@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour  //Enemy super class
         _experience = 10f;
         _enemyName = "Default Enemy";
         _money = 10;
-        _rb = gameObject.AddComponent<Rigidbody2D>();
+        _rb = gameObject.GetComponent<Rigidbody2D>();
         _rb.gravityScale = 0f;
         _moveEnemy = true;
     }
@@ -58,12 +58,14 @@ public class Enemy : MonoBehaviour  //Enemy super class
     public void UnDetectedMovement()
     {
         _moveEnemy = true;
+        GetComponent<Collider2D>().isTrigger = false;
         _rb.velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f,1f)) * _speed;
         Invoke("Stop", 3f);
     }
 
     public void DetectedMovement()
     {
+        GetComponent<Collider2D>().isTrigger = true;
         _rb.velocity = VectorBetweenPlayerAndEnemy().normalized * _speed;
     }
     
