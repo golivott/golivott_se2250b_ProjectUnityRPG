@@ -62,11 +62,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            
-        }
-
         if (_experience > 50)
         {
             _level++;

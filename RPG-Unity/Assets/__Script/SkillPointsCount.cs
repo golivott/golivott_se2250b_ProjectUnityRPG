@@ -19,10 +19,6 @@ public class SkillPointsCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Level1", LoadSceneMode.Additive);
-        }
         skillPointsText.text = "Skill Points: " + Player.SkillPoints;
     }
 }
