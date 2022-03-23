@@ -6,19 +6,21 @@ using UnityEngine.UI;
 public class AblitiesCD : MonoBehaviour
 {
 
+    //Dash information
     [Header("Dash")]
     public Image dashImage;
     public float cooldownOne = 1;
     bool isCooldownOne = false;
     public KeyCode Dash;
 
+    //Firestomp information
     [Header("FireStomp")]
     public Image fireStompImage;
     public float cooldownTwo = 3;
     bool isCooldownTwo = false;
     public KeyCode FireStomp;
-
-
+    
+    //SwordSlash information
     [Header("SwordSlash")]
     public Image swordSlashImage;
     public float cooldownThree = 5;
@@ -26,7 +28,7 @@ public class AblitiesCD : MonoBehaviour
     public KeyCode swordSlash;
 
 
-    // Start is called before the first frame update
+    // Allows the abilities to have no grey zone (not on cooldown at start)
     void Start()
     {
         dashImage.fillAmount = 0;
@@ -34,7 +36,7 @@ public class AblitiesCD : MonoBehaviour
         swordSlashImage.fillAmount = 0;
     }
 
-    // Update is called once per frame
+    // Update to continously check if abilities are activated
     void Update()
     {
         AbilityDash();
@@ -42,6 +44,8 @@ public class AblitiesCD : MonoBehaviour
         AbilitySwordslash();
     }
 
+
+    //If space is pressed, puts ability on cooldown until cooldown is done (timer effect)
     void AbilityDash(){
         if(Input.GetKey(Dash) && isCooldownOne == false){
             isCooldownOne = true;
@@ -55,8 +59,9 @@ public class AblitiesCD : MonoBehaviour
                 isCooldownOne=false;
             }
         }
-    }
-
+    }       
+    
+    //If E is pressed, puts ability on cooldown until cooldown is done (timer effect)
     void AbilityFirestomp(){
         if(Input.GetKey(FireStomp) && isCooldownTwo == false){
             isCooldownTwo = true;
@@ -73,7 +78,7 @@ public class AblitiesCD : MonoBehaviour
     }
 
 
-
+    //If Q, puts ability on cooldown until cooldown is done (timer effect)
     void AbilitySwordslash(){
         if(Input.GetKey(swordSlash) && isCooldownThree == false){
             isCooldownThree = true;

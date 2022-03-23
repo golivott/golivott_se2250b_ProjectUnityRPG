@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
         {
             _level++;
             _experience = _experience - 25;
-            _skillPoints+=7;
+            _skillPoints+=10;
         }
 
         if (_health <= 0)   //if the players health reaches 0, the game restarts
