@@ -4,22 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SkillPointsCount : MonoBehaviour
+public class SkillPointsCount : MonoBehaviour   //script used to update the skill points value in the skilltree scene
 {
     private Text skillPointsText;
-    public SkillTree skillPointsCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        Player.SkillPoints = 10;
         skillPointsText = GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKey(KeyCode.Escape))  
         {
             SceneManager.LoadScene("Level1", LoadSceneMode.Additive);
         }
