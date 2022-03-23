@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ghost : Enemy  //A ghost is very similar to the generic enemy besides a few different stats
+public class Ghost : Enemy  //A ghost is the same as a generic enemy besides it having a few different stats
 {
     public override void Start()
     {
