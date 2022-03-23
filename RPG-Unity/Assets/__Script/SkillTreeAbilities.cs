@@ -23,7 +23,7 @@ public class SkillTreeAbilities : MonoBehaviour
     public GameObject fireStompSprite;
     private bool _canFireStomp = true;
     
-    private void Update()
+    private void Update() //Update refreshes every frame
     {
         // Sword Slash on Q
         if (Input.GetKey(KeyCode.Q) && _canSwordSlash && unlockedSwordSlash)

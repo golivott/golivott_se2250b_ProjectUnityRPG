@@ -8,127 +8,122 @@ using UnityEngine.UI;
 
 public class SkillTree : MonoBehaviour
 {
-    public Button button;
-    public int id;
-    public static bool[] bought = {false, false, false, false, false, false, false, false, false, false, false};
-    public int skillPoints;
-    public Text SkillPointsText;
-    public GameObject insufficientFunds;
-    public GameObject insufficientSkills;
+    public Button button; //UI Button for upgrade
+    public int id; //id for each skill
+    public static bool[] bought = {false, false, false, false, false, false, false, false, false, false, false}; //sets all skills to not bought
+    public int skillPoints; //skillPoints int
+    public Text SkillPointsText; //Text for skillPoints 
+    public GameObject insufficientFunds; //InsufficientFund prefab
+    public GameObject insufficientSkills; //InsufficientSkill prefab
     public GameObject playerr;
 
-    public void Start()
+    public void Start() //Start method
     {
-        for (int i = 0; i < button.transform.childCount; i++)
+        for (int i = 0; i < button.transform.childCount; i++) //iterates through all children of the button
         {
-            button.transform.GetChild(i).gameObject.SetActive(false);
+            button.transform.GetChild(i).gameObject.SetActive(false); //hides children
         }
 
-        SkillPointsText = GetComponent<Text>();
-        playerr = GameObject.Find("Player");
+        SkillPointsText = GetComponent<Text>(); //gets Text component
+        playerr = GameObject.Find("Player"); //finds player
     }
 
-    public void Update(){
-        skillPoints = GameObject.FindWithTag("Player").GetComponent<Player>().GetSkillPoints();
+    public void Update(){ //Update method
+        skillPoints = GameObject.FindWithTag("Player").GetComponent<Player>().GetSkillPoints(); //gets skillPoints from player GameObject
     }
 
-    public void buySword()
+    public void buySword() //buys sword
     {
-        if (skillPoints >= 1)
+        if (skillPoints >= 1) //if player has sufficient skill points, then continue
         {
             //add sword to player
-            button.interactable = false;
-            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-1);
-            bought[id] = true;
+            button.interactable = false; //no longer allows user to interact with button
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-1); //decreases player skillPoints by 1
+            bought[id] = true; //bought turns to true
         }
-        else if(skillPoints < 1)
+        else if(skillPoints < 1) //if player has insufficient skill points, then continue
         {
-            Invoke("InsufficientFunds", 0.5f);
+            Invoke("InsufficientFunds", 0.5f); //displays insufficientFunds message
         }
     }
     
-    public void buyCooldown()
+    public void buyCooldown() //buys cooldown
     {
-        if (skillPoints >= 1 && bought[0])
+        if (skillPoints >= 1 && bought[0]) //if player has sufficient skill points, then continue
         {
-            //add sword to player
-            button.interactable = false;
-            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-1);
-            bought[id] = true;
+            button.interactable = false; //no longer allows user to interact with button
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-1); //decreases player skillPoints by 1
+            bought[id] = true; //bought turns to true
         }
-        else if(skillPoints < 1 && bought[0])
+        else if(skillPoints < 1 && bought[0]) //if not enough skill points but sufficient skills
         {
-            Invoke("InsufficientFunds", 0.5f);
+            Invoke("InsufficientFunds", 0.5f); //displays insufficientFund
         }
-        else if (skillPoints >= 1 && !bought[0])
+        else if (skillPoints >= 1 && !bought[0]) //if not enough skill points or skills
         {
-            Invoke("InsufficientSkills",0.5f);
+            Invoke("InsufficientSkills",0.5f); //prints insufficientSkills method
         }
     }
     
-    public void buyRegen()
+    public void buyRegen() //buys regen
     {
-        if (skillPoints >= 1 && bought[0])
+        if (skillPoints >= 1 && bought[0]) //if player has sufficient skill points
         {
-            //add sword to player
-            button.interactable = false;
-            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-1);
-            bought[id] = true;
+            button.interactable = false; //no longer allows user to interact with button
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-1);  //decreases player skillPoints by 1
+            bought[id] = true; //bought turns to true
         }
-        else if(skillPoints < 1 && bought[0])
+        else if(skillPoints < 1 && bought[0]) //if not enough skill points but sufficient skills
         {
-            Invoke("InsufficientFunds", 0.5f);
+            Invoke("InsufficientFunds", 0.5f); //displays insufficientFund
         }
-        else if (skillPoints >= 1 && !bought[0])
+        else if (skillPoints >= 1 && !bought[0])  //if not enough skill points or skills
         {
-            Invoke("InsufficientSkills",0.5f);
+            Invoke("InsufficientSkills",0.5f); //prints insufficientSkills method
         }
     }
     
-    public void buyFireStomp()
+    public void buyFireStomp() //buys fireStomp
     {
         if (skillPoints >= 1 && bought[1])
         {
-            //add sword to player
-            button.interactable = false;
-            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-1);
-            bought[id] = true;
-            playerr.GetComponent<SkillTreeAbilities>().unlockedFireStomp = true;
+            button.interactable = false; //if player has sufficient skill points
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-1); //decreases player skillPoints by 1
+            bought[id] = true; //bought turns to true
+            playerr.GetComponent<SkillTreeAbilities>().unlockedFireStomp = true; //unlocks fireStomp
         }
-        else if(skillPoints < 2 && bought[1])
+        else if(skillPoints < 2 && bought[1]) //if not enough skill points but sufficient skills
         {
-            Invoke("InsufficientFunds", 0.5f);
+            Invoke("InsufficientFunds", 0.5f); //displays insufficientFund
         }
-        else if (skillPoints >= 2 && !bought[1])
+        else if (skillPoints >= 2 && !bought[1]) //if not enough skill points or skills
         {
-            Invoke("InsufficientSkills",0.5f);
+            Invoke("InsufficientSkills",0.5f);  //prints insufficientSkills method
         }
     }
     
-    public void buyAttack()
+    public void buyAttack() //buys attackUpgrade
     {
-        if (skillPoints >= 3 && bought[2])
+        if (skillPoints >= 3 && bought[2]) //if player has sufficient skill points
         {
-            //add sword to player
-            button.interactable = false;
-            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-3);
-            bought[id] = true;
+            button.interactable = false; //decreases player skillPoints by 1
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-3); //decreases player skillPoints by 1
+            bought[id] = true; //bought turns to true
         }
-        else if(skillPoints < 3 && bought[2])
+        else if(skillPoints < 3 && bought[2]) //if not enough skill points but sufficient skills
         {
-            Invoke("InsufficientFunds", 0.5f);
-        }
-        else if (skillPoints >= 3 && !bought[2])
+            Invoke("InsufficientFunds", 0.5f); //displays insufficientFund
+        } 
+        else if (skillPoints >= 3 && !bought[2]) //if not enough skill points or skills
         {
-            Invoke("InsufficientSkills",0.5f);
+            Invoke("InsufficientSkills",0.5f); //prints insufficientSkills method
         }
     }
 
-    public void buyDash()
+    public void buyDash() //buys dash
     {
-        if (skillPoints >= 2 && bought[1])
+        if (skillPoints >= 2 && bought[1]) //if player has sufficient skill points, then does same as above method
         {
-            //add sword to player
             button.interactable = false;
             GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-2);
             bought[id] = true;
@@ -145,13 +140,13 @@ public class SkillTree : MonoBehaviour
     
     public void buySlash()
     {
-        if (skillPoints >= 3 && bought[4])
+        if (skillPoints >= 3 && bought[4]) //if player has sufficient skill points, then does same as above method
         {
             //add sword to player
             button.interactable = false;
             GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-3);
             bought[id] = true;
-            playerr.GetComponent<SkillTreeAbilities>().unlockedSwordSlash = true;
+            playerr.GetComponent<SkillTreeAbilities>().unlockedSwordSlash = true; //swordSlash unlocks
         }
         else if(skillPoints < 3 && bought[4])
         {
@@ -165,7 +160,7 @@ public class SkillTree : MonoBehaviour
 
     public void buySpeed()
     {
-        if (skillPoints >= 2 && bought[6])
+        if (skillPoints >= 2 && bought[6]) //if player has sufficient skill points, then does same as above method
         {
             //add sword to player
             button.interactable = false;
@@ -184,7 +179,7 @@ public class SkillTree : MonoBehaviour
     
     public void buyCoin()
     {
-        if (skillPoints >= 3 && bought[7])
+        if (skillPoints >= 3 && bought[7]) //if player has sufficient skill points, then does same as above method
         {
             //add sword to player
             button.interactable = false;
@@ -203,7 +198,7 @@ public class SkillTree : MonoBehaviour
 
     public void buyShield1()
     {
-        if (skillPoints >= 2 && bought[6])
+        if (skillPoints >= 2 && bought[6]) //if player has sufficient skill points, then does same as above method
         {
             //add sword to player
             button.interactable = false;
@@ -222,7 +217,7 @@ public class SkillTree : MonoBehaviour
     
     public void buyShield2()
     {
-        if (skillPoints >= 3 && bought[9])
+        if (skillPoints >= 3 && bought[9]) //if player has sufficient skill points, then does same as above method
         {
             //add sword to player
             button.interactable = false;
@@ -241,13 +236,13 @@ public class SkillTree : MonoBehaviour
 
     public void onHoverButton()
     {
-        for (int i = 0; i < button.transform.childCount; i++)
+        for (int i = 0; i < button.transform.childCount; i++) //when mouse is hovering over button, info about skill appears
         {
             button.transform.GetChild(i).gameObject.SetActive(true);
         }
     }
 
-    public void offHoverButton()
+    public void offHoverButton() //when mouse is not hovering over button, info about skill disappears
     {
         for (int i = 0; i < button.transform.childCount; i++)
         {
