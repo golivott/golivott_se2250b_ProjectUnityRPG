@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class SkillTreeAbilities : MonoBehaviour
 {
+    // Variables for Sword Slash ability
     [Header("Sword Slash")]
     public bool unlockedSwordSlash = false;
     public float swordSlashDamage = 50f;
     public float swordSlashDelay = 1;
     public GameObject swordSlashSprite;
-
     public float swordSpinRate = 1f;
     private bool _canSwordSlash = true;
 
+    // Variable for fire stomp ability
     [Header("Fire Stomp")]
     public bool unlockedFireStomp = false;
     public float fireStompDamage = 100f;
@@ -21,7 +22,7 @@ public class SkillTreeAbilities : MonoBehaviour
     public float fireStopGrowth = 1f;
     public GameObject fireStompSprite;
     private bool _canFireStomp = true;
-
+    
     private void Update()
     {
         // Sword Slash on Q
@@ -39,6 +40,7 @@ public class SkillTreeAbilities : MonoBehaviour
         }
     }
 
+    // Sword Slash
     private IEnumerator UseSwordSlash()
     {
         // Display animation
@@ -49,12 +51,12 @@ public class SkillTreeAbilities : MonoBehaviour
 
         // Set Damage
         swordSlash.GetComponent<ProjectileAttack>().SetDamage(swordSlashDamage);
+        
         // Destroy after 0.5 sec
         Destroy(swordSlash, 0.5f);
 
         // Wait delay before allowing another attack
         yield return new WaitForSecondsRealtime(swordSlashDelay);
-
         _canSwordSlash = true;
     }
 
