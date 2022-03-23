@@ -71,12 +71,11 @@ public class Player : MonoBehaviour
             }
         }
         
-        if (_experience >= 50)   //if the players XP reaches a value greater than or equal to 50 they level up and experience is reset to 0
+        if (_experience >= 25 * _level)   //if the players XP reaches a value greater than or equal to 50 they level up and experience is reset to 0
         {
-            print("Working");
             _level++;
-            _experience = _experience - 50;
-            _skillPoints+=3;
+            _experience = _experience - 25;
+            _skillPoints+=7;
         }
 
         if (_health <= 0)   //if the players health reaches 0, the game restarts
