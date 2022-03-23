@@ -6,25 +6,25 @@ using UnityEngine;
 
 public class SkillTreeMenu : MonoBehaviour
 {
-    public GameObject skillTreeUI;
-    private bool _isActive = false;
+    public GameObject skillTreeUI; //Skilltree UI
 
     private void Start()
     {
-        skillTreeUI.SetActive(false);
+        skillTreeUI.SetActive(false); //Disables overlay
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Escape) && !_isActive)
+        if (Input.GetKeyDown(KeyCode.Escape)) //Turns on overlay
         {
             skillTreeUI.SetActive(true);
+
         }
-        else
-        {
+        if(Input.GetKeyDown(KeyCode.Backspace)){ //Turns off overlay
             skillTreeUI.SetActive(false);
         }
+
     }
 }

@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    //all appropriate attributes for a player
     private float _health;
     private float _speed;
     private float _strength;
@@ -14,7 +16,7 @@ public class Player : MonoBehaviour
     private int _level;
     private int _experience;
     private int _money;
-    public static int SkillPoints = 0;
+    private int _skillPoints;
     private bool _canTakeDamage;
     private Movement _movement;
     private bool _iFrames;
@@ -26,10 +28,12 @@ public class Player : MonoBehaviour
     public LayerMask interactLayer;
     public Vector2 interactPoint;
     public Vector2 lastMoveDir;
+    
 
     // Start is called before the first frame update
-    public void Start()
+    public void Start()     //assigns attributes a value for a generic player
     {
+        _skillPoints = 0;
         _health = 100f;
         _speed = 10f;
         _strength = 10f;
@@ -46,62 +50,70 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
-        if (GetComponent<Movement>().moveDir != Vector2.zero)
+        GameObject.Find("Health").GetComponent<Text>().text = "Health: " + _health;
+        GameObject.Find("Level").GetComponent<Text>().text = "Level: " + _level;
+        GameObject.Find("Experience").GetComponent<Text>().text = "Exp: " + _experience;
+        
+        
+        if (GetComponent<Movement>().moveDir != Vector2.zero)   //if statement that creates an interact range for the player
         {
             lastMoveDir = GetComponent<Movement>().moveDir;
             interactPoint = GetComponent<Movement>().moveDir * interactDistance + new Vector2(transform.position.x, transform.position.y);
         }
 
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKey(KeyCode.F))    //if the player clicks F, they can interact with objects that are interactable
         {
             Physics2D.queriesHitTriggers = true;
-            Collider2D[] interactableObjects = Physics2D.OverlapCircleAll(interactPoint, interactRange, interactLayer);
-            if (interactableObjects.Length != 0)
+            Collider2D[] interactableObjects = Physics2D.OverlapCircleAll(interactPoint, interactRange, interactLayer);     //gets all colliders with layers that are interactable
+            if (interactableObjects.Length != 0)    //if an interacatable object was found call the interact method with that gameObject passed in
             {
                 _interaction.Interact(interactableObjects[0].gameObject);
             }
         }
-
-        if (_experience > 50)
+        
+        if (_experience >= 50)   //if the players XP reaches a value greater than or equal to 50 they level up and experience is reset to 0
         {
+            print("Working");
             _level++;
-            _experience = 0;
-            SkillPoints = SkillPoints + 3;
-            print("Leveled up!");
+            _experience = _experience - 50;
+            _skillPoints+=3;
         }
 
-
-        if (_health <= 0)
+        if (_health <= 0)   //if the players health reaches 0, the game restarts
         {
-            print("Game Over");
+            SceneManager.LoadScene("Level1");
         }
+
+
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if(collision.gameObject.CompareTag("Enemy"))    //if the player collides with an enemy they take 10 damage
         {
             TakenDamage(10);
         }
         
-        else if (collision.gameObject.CompareTag("Bomb"))
+        else if (collision.gameObject.CompareTag("Bomb"))   //if the player collides with a bomb they take 20 damage
         {
             TakenDamage(20);
         }
-        else if (collision.gameObject.CompareTag("Attic"))
+        else if (collision.gameObject.CompareTag("Attic"))  //if a player collides with the stairs they get teleported to the attic
         {
             gameObject.transform.position = new Vector3(22, -5, 0);
         }
-        else if (collision.gameObject.CompareTag("Downstairs"))
+        else if (collision.gameObject.CompareTag("Downstairs")) //if a player collides with the stairs in the attic they get teleported to the mainfloor
         {
             gameObject.transform.position = new Vector3(-6.5f, -4.5f, 0);
         }
-        else if (collision.gameObject.CompareTag("UpStairs"))
+        else if (collision.gameObject.CompareTag("UpStairs"))   //if the player collides with the basement stairs they get teleported to the mainfloor
         {
             gameObject.transform.position = new Vector3(-19, -5, 0);
         }
 
     }
+    
+    //Getters and Adders for each attribute in the player class
     public float GetHealth()
     {
         return _health;
@@ -134,9 +146,9 @@ public class Player : MonoBehaviour
     {
         return _money;
     }
-    public static int GetSkillPoints()
+    public int GetSkillPoints()
     {
-        return SkillPoints;
+        return _skillPoints;
     }
     public void AddHealth(float health)
     {
@@ -170,45 +182,44 @@ public class Player : MonoBehaviour
     {
         _money = _money + money;
     }
-    public static void AddSkillPoints(int skillPoints)
+    public void AddSkillPoints(int skillPoints)
     {
-        SkillPoints = SkillPoints + skillPoints;
+        _skillPoints = _skillPoints + skillPoints;
     }
 
-    public void SetCanTakeDamage()
+    public void SetCanTakeDamage()  //method used for invincibilty frames
     {
         _canTakeDamage = true;
     }
 
-        public void SetCannotTakeDamage()
+        public void SetCannotTakeDamage()   //method used for invincibilty frames
     {
         _canTakeDamage = false;
     }
 
-        public void TakenDamage(int damage)
+        public void TakenDamage(int damage) //method used to calculate the player takes from an enemy
         {
-            print(_health);
-            _movement.disableMovement = true;
-            gameObject.GetComponent<Rigidbody2D>().velocity = GameObject.FindWithTag("Enemy").GetComponent<Enemy>().VectorBetweenPlayerAndEnemy().normalized * 6f;
-            Invoke("EnableMovement", 1f);
+            _movement.disableMovement = true;   //when the player gets hit there movement gets disabled for a short while since they take knockback
+            gameObject.GetComponent<Rigidbody2D>().velocity = GameObject.FindWithTag("Enemy").GetComponent<Enemy>().VectorBetweenPlayerAndEnemy().normalized * 6f;  //makes player take knockback in direction they get hit
+            Invoke("EnableMovement", 1f);   //After one second, the knockback is over and the player can move
 
-            if (_canTakeDamage)
+            if (_canTakeDamage)     //if the player doesn't have IFrames they can take damage
             {
-                _health = _health - damage;
+                _health = _health - damage; //subtract the damage from health
                 
-                _canTakeDamage = false;
-                Invoke("SetCanTakeDamage", 2f);
-                StartCoroutine(Frames());
+                _canTakeDamage = false; //give player iframes
+                Invoke("SetCanTakeDamage", 2f); //After two seconds the player can take damage again
+                StartCoroutine(Frames());   //ques Iframes
             }
         }
 
 
-    public void EnableMovement()
+    public void EnableMovement()    //enables player movement
     {
         _movement.disableMovement = false;
     }
 
-    public IEnumerator Frames()
+    public IEnumerator Frames() //repeatly changes the game objects color to simulate iframex
     {
         for (int c = 0; c < 7; c++)
         {

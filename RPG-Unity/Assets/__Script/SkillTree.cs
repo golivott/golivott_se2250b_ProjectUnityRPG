@@ -11,10 +11,11 @@ public class SkillTree : MonoBehaviour
     public Button button;
     public int id;
     public static bool[] bought = {false, false, false, false, false, false, false, false, false, false, false};
-    public static int skillPoints = 10;
+    public int skillPoints;
     public Text SkillPointsText;
     public GameObject insufficientFunds;
     public GameObject insufficientSkills;
+    public GameObject playerr;
 
     public void Start()
     {
@@ -24,6 +25,11 @@ public class SkillTree : MonoBehaviour
         }
 
         SkillPointsText = GetComponent<Text>();
+        playerr = GameObject.Find("Player");
+    }
+
+    public void Update(){
+        skillPoints = GameObject.FindWithTag("Player").GetComponent<Player>().GetSkillPoints();
     }
 
     public void buySword()
@@ -32,8 +38,7 @@ public class SkillTree : MonoBehaviour
         {
             //add sword to player
             button.interactable = false;
-            
-            skillPoints--;
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-1);
             bought[id] = true;
         }
         else if(skillPoints < 1)
@@ -48,7 +53,7 @@ public class SkillTree : MonoBehaviour
         {
             //add sword to player
             button.interactable = false;
-            skillPoints--;
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-1);
             bought[id] = true;
         }
         else if(skillPoints < 1 && bought[0])
@@ -67,7 +72,7 @@ public class SkillTree : MonoBehaviour
         {
             //add sword to player
             button.interactable = false;
-            skillPoints--;
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-1);
             bought[id] = true;
         }
         else if(skillPoints < 1 && bought[0])
@@ -82,12 +87,13 @@ public class SkillTree : MonoBehaviour
     
     public void buyFireStomp()
     {
-        if (skillPoints >= 2 && bought[1])
+        if (skillPoints >= 1 && bought[1])
         {
             //add sword to player
             button.interactable = false;
-            skillPoints -= 2;
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-1);
             bought[id] = true;
+            playerr.GetComponent<SkillTreeAbilities>().unlockedFireStomp = true;
         }
         else if(skillPoints < 2 && bought[1])
         {
@@ -105,7 +111,7 @@ public class SkillTree : MonoBehaviour
         {
             //add sword to player
             button.interactable = false;
-            skillPoints -= 3;
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-3);
             bought[id] = true;
         }
         else if(skillPoints < 3 && bought[2])
@@ -124,7 +130,7 @@ public class SkillTree : MonoBehaviour
         {
             //add sword to player
             button.interactable = false;
-            skillPoints -= 2;
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-2);
             bought[id] = true;
         }
         else if(skillPoints < 2 && bought[1])
@@ -143,8 +149,9 @@ public class SkillTree : MonoBehaviour
         {
             //add sword to player
             button.interactable = false;
-            skillPoints -= 3;
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-3);
             bought[id] = true;
+            playerr.GetComponent<SkillTreeAbilities>().unlockedSwordSlash = true;
         }
         else if(skillPoints < 3 && bought[4])
         {
@@ -162,7 +169,7 @@ public class SkillTree : MonoBehaviour
         {
             //add sword to player
             button.interactable = false;
-            skillPoints -= 2;
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-2);
             bought[id] = true;
         }
         else if(skillPoints < 2 && bought[6])
@@ -181,7 +188,7 @@ public class SkillTree : MonoBehaviour
         {
             //add sword to player
             button.interactable = false;
-            skillPoints -= 3;
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-3);
             bought[id] = true;
         }
         else if(skillPoints < 3 && bought[7])
@@ -200,7 +207,7 @@ public class SkillTree : MonoBehaviour
         {
             //add sword to player
             button.interactable = false;
-            skillPoints -= 2;
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-2);
             bought[id] = true;
         }
         else if(skillPoints < 2 && bought[6])
@@ -219,7 +226,7 @@ public class SkillTree : MonoBehaviour
         {
             //add sword to player
             button.interactable = false;
-            skillPoints -= 3;
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-3);
             bought[id] = true;
         }
         else if(skillPoints < 3 && bought[9])
@@ -260,9 +267,4 @@ public class SkillTree : MonoBehaviour
         Destroy(clone1,3);
     }
 
-    public static int SkillPoints
-    {
-        get => skillPoints;
-        set => skillPoints = value;
-    }
 }

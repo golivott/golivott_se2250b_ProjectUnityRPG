@@ -12,13 +12,12 @@ public class SkillPointsCount : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player.SkillPoints = 10;
         skillPointsText = GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        skillPointsText.text = "Skill Points: " + Player.SkillPoints;
+        skillPointsText.text = "Skill Points: " + GameObject.FindWithTag("Player").GetComponent<Player>().GetSkillPoints();
     }
 }
