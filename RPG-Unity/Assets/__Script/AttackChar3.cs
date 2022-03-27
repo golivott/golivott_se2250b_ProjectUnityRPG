@@ -1,25 +1,24 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour
+public class AttackChar3 : MonoBehaviour
 {
     // Properties for the 2 basic attacks
     public float attackDist = 1f;
     
     // Properties for attack 1
     [Header("Attack 1")]
-    public float attack1Range = 1f;
+    public float attack1Range = 2f;
     public float attack1Damage = 50f;
-    public float attackDelay = 1f;
+    public float attack1Delay = 1f;
 
     // Properties for attack 2
     [Header("Attack 2")]
     public float attack2Range = 2f;
     public float attack2Damage = 50f;
     public float attack2Delay = 1f;
-    public float attack2Speed = 2000f;
+    public float attack2Knockback = 1f;
     
     public LayerMask enemyLayers;
     public GameObject attack1Sprite;
@@ -41,9 +40,9 @@ public class Attack : MonoBehaviour
     void FixedUpdate()
     {
         // Updating attack point
-        if (GetComponent<Player>().moveDir != Vector2.zero)
+        if (GetComponent<Movement>().moveDir != Vector2.zero)
         {
-            lastMoveDir = GetComponent<Player>().moveDir;
+            lastMoveDir = GetComponent<Movement>().moveDir;
         }
         attack1Point = lastMoveDir * attackDist + new Vector2(transform.position.x, transform.position.y);
         attack2Point = lastMoveDir * attackDist * attack2Range / 2 +
@@ -88,26 +87,30 @@ public class Attack : MonoBehaviour
             enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
         }
 
-        // attack cooldown
-        yield return new WaitForSecondsRealtime(attackDelay);
+        // Attack cooldown
+        yield return new WaitForSecondsRealtime(attack1Delay);
         canAttack = true;
     }
-    
-    // Attack 2
+
     IEnumerator Attack2()
     {
         // Display animation
         GameObject attack2Sprite = Instantiate(this.attack2Sprite);
-        attack2Sprite.transform.position = attack1Point;
+        attack2Sprite.transform.position = attack2Point;
         attack2Sprite.transform.rotation = Quaternion.EulerAngles(0, 0, Mathf.Atan2(lastMoveDir.y, lastMoveDir.x));
-            
-        // Setting proporties of attack
-        attack2Sprite.GetComponent<Rigidbody2D>().velocity = lastMoveDir * attack2Speed * attack2Range / 0.4f * Time.fixedDeltaTime;
-        attack2Sprite.GetComponent<ProjectileAttack>().SetDamage(attack2Damage);
-            
-        // Destroying attack
-        Destroy(attack2Sprite, 0.3f);
-        
+        Destroy(attack2Sprite, 0.1f);
+
+        // Gets enemys hit by attack
+        Collider2D[] enemyHits = Physics2D.OverlapCircleAll(attack2Point, attack2Range, enemyLayers);
+
+        // Damages enemies
+        foreach (Collider2D enemy in enemyHits)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(attack2Damage);
+            enemy.transform.position += new Vector3(lastMoveDir.x, lastMoveDir.y, 0).normalized * attack2Knockback;
+        }
+
+        // Attack cooldown
         yield return new WaitForSecondsRealtime(attack2Delay);
         canAttack = true;
     }
