@@ -2706,6 +2706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasKey: 0
+  hasMap: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -4517,10 +4518,10 @@ GameObject:
   - component: {fileID: 841082232}
   - component: {fileID: 841082231}
   - component: {fileID: 841082235}
-  - component: {fileID: 841082237}
   - component: {fileID: 841082238}
   - component: {fileID: 841082236}
   - component: {fileID: 841082234}
+  - component: {fileID: 841082237}
   - component: {fileID: 841082239}
   - component: {fileID: 841082240}
   m_Layer: 0
@@ -4690,22 +4691,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 841082230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bec67a80c3cf97944b25e2cfc42fdeee, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e6f6e9690d7ad8408ae393721043c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackDist: 1
-  attack1Range: 1
+  attack1Range: 2
   attack1Damage: 50
-  attackDelay: 1
+  attack1Delay: 1
   attack2Range: 2
   attack2Damage: 50
   attack2Delay: 1
-  attack2Speed: 2000
+  attack2Knockback: 3
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
-  attack1Sprite: {fileID: 8984951984321153945, guid: 6c190002c02f8cf4db5395af88400f3e, type: 3}
-  attack2Sprite: {fileID: 695806990849631022, guid: 8eac5dc8f37698c4b995f6857bb07f85, type: 3}
+  attack1Sprite: {fileID: 7970175380036243973, guid: 4d3bf35d2f43a984bb472147773a6865, type: 3}
+  attack2Sprite: {fileID: 4780124267736640053, guid: 9c94666dcf29ebd4cb63f756165efb0f, type: 3}
   attack1Point: {x: 0, y: 0}
   attack2Point: {x: 0, y: 0}
   lastMoveDir: {x: 0, y: 0}
