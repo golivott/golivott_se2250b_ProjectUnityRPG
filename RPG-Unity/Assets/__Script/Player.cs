@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     public Vector2 lastMoveDir;
     public UIHealthBar healthBar;
     public ExperienceBar expBar;
+    public Image levelTwoIcon;
     
 
     // Start is called before the first frame update
@@ -51,12 +52,13 @@ public class Player : MonoBehaviour
         healthBar.SetMaxHealth(_health);
         expBar.SetMaxExperience(25);
         expBar.ResetExperience();
+        levelTwoIcon.enabled = false;
         
     }
     public void Update()
     {
         GameObject.Find("Health").GetComponent<Text>().text = "Health: " + _health;
-        GameObject.Find("Level").GetComponent<Text>().text = "Level: " + _level;
+        GameObject.Find("Level").GetComponent<Text>().text = "Player Level: " + _level;
         GameObject.Find("Experience").GetComponent<Text>().text = "Exp: " + _experience;
         expBar.SetExperience(_experience);
     
