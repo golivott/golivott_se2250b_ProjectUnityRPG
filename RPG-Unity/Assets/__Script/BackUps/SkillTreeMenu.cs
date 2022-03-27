@@ -25,6 +25,5 @@ public class SkillTreeMenu : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Backspace)){ //Turns off overlay
             skillTreeUI.SetActive(false);
         }
-
     }
 }

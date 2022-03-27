@@ -41,9 +41,9 @@ public class Attack : MonoBehaviour
     void Update()
     {
         // Updating attack point
-        if (GetComponent<Movement>().moveDir != Vector2.zero)
+        if (GetComponent<Player>().moveDir != Vector2.zero)
         {
-            lastMoveDir = GetComponent<Movement>().moveDir;
+            lastMoveDir = GetComponent<Player>().moveDir;
         }
         attack1Point = lastMoveDir * attackDist + new Vector2(transform.position.x, transform.position.y);
         attack2Point = lastMoveDir * attackDist * attack2Range / 2 +

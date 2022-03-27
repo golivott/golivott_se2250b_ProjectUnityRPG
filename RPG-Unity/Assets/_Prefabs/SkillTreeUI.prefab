@@ -362,9 +362,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1729621811008310414}
   id: 6
+  skillPoints: 0
   SkillPointsText: {fileID: 0}
   insufficientFunds: {fileID: 6216601000547157242, guid: 9e3c0685d3d9c1e4ab85476270da8084, type: 3}
   insufficientSkills: {fileID: 2140048171885749785, guid: 8595011d0e5004e40bc59ac9715f1885, type: 3}
+  playerr: {fileID: 0}
 --- !u!114 &1729621811008310414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,9 +752,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1729621811147229394}
   id: 2
+  skillPoints: 0
   SkillPointsText: {fileID: 0}
   insufficientFunds: {fileID: 6216601000547157242, guid: 9e3c0685d3d9c1e4ab85476270da8084, type: 3}
   insufficientSkills: {fileID: 2140048171885749785, guid: 8595011d0e5004e40bc59ac9715f1885, type: 3}
+  playerr: {fileID: 0}
 --- !u!114 &1729621811147229388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1026,9 +1030,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1729621811170306371}
   id: 0
+  skillPoints: 0
   SkillPointsText: {fileID: 0}
   insufficientFunds: {fileID: 6216601000547157242, guid: 9e3c0685d3d9c1e4ab85476270da8084, type: 3}
   insufficientSkills: {fileID: 2140048171885749785, guid: 8595011d0e5004e40bc59ac9715f1885, type: 3}
+  playerr: {fileID: 0}
 --- !u!114 &1729621811170306371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1682,9 +1688,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1729621811362726173}
   id: 3
+  skillPoints: 0
   SkillPointsText: {fileID: 0}
   insufficientFunds: {fileID: 6216601000547157242, guid: 9e3c0685d3d9c1e4ab85476270da8084, type: 3}
   insufficientSkills: {fileID: 2140048171885749785, guid: 8595011d0e5004e40bc59ac9715f1885, type: 3}
+  playerr: {fileID: 0}
 --- !u!114 &1729621811362726175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1882,7 +1890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1729621811545051697
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2204,9 +2212,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1729621811593256242}
   id: 1
+  skillPoints: 0
   SkillPointsText: {fileID: 0}
   insufficientFunds: {fileID: 6216601000547157242, guid: 9e3c0685d3d9c1e4ab85476270da8084, type: 3}
   insufficientSkills: {fileID: 2140048171885749785, guid: 8595011d0e5004e40bc59ac9715f1885, type: 3}
+  playerr: {fileID: 0}
 --- !u!114 &1729621811593256242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2679,9 +2689,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1729621811928197558}
   id: 4
+  skillPoints: 0
   SkillPointsText: {fileID: 0}
   insufficientFunds: {fileID: 6216601000547157242, guid: 9e3c0685d3d9c1e4ab85476270da8084, type: 3}
   insufficientSkills: {fileID: 2140048171885749785, guid: 8595011d0e5004e40bc59ac9715f1885, type: 3}
+  playerr: {fileID: 0}
 --- !u!114 &1729621811928197552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3279,9 +3291,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1729621812202569088}
   id: 5
+  skillPoints: 0
   SkillPointsText: {fileID: 0}
   insufficientFunds: {fileID: 6216601000547157242, guid: 9e3c0685d3d9c1e4ab85476270da8084, type: 3}
   insufficientSkills: {fileID: 2140048171885749785, guid: 8595011d0e5004e40bc59ac9715f1885, type: 3}
+  playerr: {fileID: 0}
 --- !u!114 &1729621812202569090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3477,9 +3491,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1729621812256234747}
   id: 9
+  skillPoints: 0
   SkillPointsText: {fileID: 0}
   insufficientFunds: {fileID: 6216601000547157242, guid: 9e3c0685d3d9c1e4ab85476270da8084, type: 3}
   insufficientSkills: {fileID: 2140048171885749785, guid: 8595011d0e5004e40bc59ac9715f1885, type: 3}
+  playerr: {fileID: 0}
 --- !u!114 &1729621812256234741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4170,9 +4186,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1729621812603706367}
   id: 7
+  skillPoints: 0
   SkillPointsText: {fileID: 0}
   insufficientFunds: {fileID: 6216601000547157242, guid: 9e3c0685d3d9c1e4ab85476270da8084, type: 3}
   insufficientSkills: {fileID: 2140048171885749785, guid: 8595011d0e5004e40bc59ac9715f1885, type: 3}
+  playerr: {fileID: 0}
 --- !u!114 &1729621812603706361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4770,9 +4788,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1729621812729545753}
   id: 10
+  skillPoints: 0
   SkillPointsText: {fileID: 0}
   insufficientFunds: {fileID: 6216601000547157242, guid: 9e3c0685d3d9c1e4ab85476270da8084, type: 3}
   insufficientSkills: {fileID: 2140048171885749785, guid: 8595011d0e5004e40bc59ac9715f1885, type: 3}
+  playerr: {fileID: 0}
 --- !u!114 &1729621812729545755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4968,9 +4988,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1729621812799729534}
   id: 8
+  skillPoints: 0
   SkillPointsText: {fileID: 0}
   insufficientFunds: {fileID: 6216601000547157242, guid: 9e3c0685d3d9c1e4ab85476270da8084, type: 3}
   insufficientSkills: {fileID: 2140048171885749785, guid: 8595011d0e5004e40bc59ac9715f1885, type: 3}
+  playerr: {fileID: 0}
 --- !u!114 &1729621812799729528
 MonoBehaviour:
   m_ObjectHideFlags: 0
