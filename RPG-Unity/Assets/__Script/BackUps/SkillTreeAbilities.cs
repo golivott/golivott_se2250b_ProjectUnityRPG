@@ -12,6 +12,7 @@ public class SkillTreeAbilities : MonoBehaviour
     public float swordSlashDelay = 1;
     public GameObject swordSlashSprite;
     public float swordSpinRate = 1f;
+    
     private bool _canSwordSlash = true;
 
     // Variable for fire stomp ability
@@ -21,6 +22,7 @@ public class SkillTreeAbilities : MonoBehaviour
     public float fireStompDelay = 1f;
     public float fireStopGrowth = 1f;
     public GameObject fireStompSprite;
+    
     private bool _canFireStomp = true;
     
     private void Update()

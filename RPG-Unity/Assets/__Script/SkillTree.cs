@@ -93,7 +93,7 @@ public class SkillTree : MonoBehaviour
             button.interactable = false;
             GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-1);
             bought[id] = true;
-            playerr.GetComponent<SkillTreeAbilities>().unlockedFireStomp = true;
+            playerr.GetComponent<Player>().unlockAbilityTwo = true;
         }
         else if(skillPoints < 2 && bought[1])
         {
@@ -151,7 +151,7 @@ public class SkillTree : MonoBehaviour
             button.interactable = false;
             GameObject.FindWithTag("Player").GetComponent<Player>().AddSkillPoints(-3);
             bought[id] = true;
-            playerr.GetComponent<SkillTreeAbilities>().unlockedSwordSlash = true;
+            playerr.GetComponent<PlayerOne>().unlockAbilityOne = true;
         }
         else if(skillPoints < 3 && bought[4])
         {

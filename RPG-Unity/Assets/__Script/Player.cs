@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Principal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,25 +18,44 @@ public class Player : MonoBehaviour
     private int _experience;
     private int _money;
     private int _skillPoints;
+    
     private bool _canTakeDamage;
-    private Movement _movement;
     private bool _iFrames;
     private Interaction _interaction;
-    private Player _player;
 
+    [Header("Interactions")]
     public float interactDistance = 1f;
     public float interactRange = 1f;
     public LayerMask interactLayer;
     public Vector2 interactPoint;
+    
+    [Header("Movement Settings")]
     public Vector2 lastMoveDir;
+    public Vector2 moveDir;
+    public Animator animator;
+    public bool disableMovement;
+    public float dashSpeed;
+    public float dashLength = 0.2f; 
+    public float dashCooldown = 1f;
+
+    [Header("Manage Abilities")] 
+    public bool unlockAbilityOne = false;
+    public bool unlockAbilityTwo = false;
+    
+    [Header("SkillTree UI")]
+    public GameObject skillTreeUI; //Skilltree UI
+    
+    private float _activeMoveSpeed;
+    private float _dashCounter;
+    private float _dashCoolCounter;
     
 
     // Start is called before the first frame update
-    public void Start()     //assigns attributes a value for a generic player
+    public virtual void Start()     //assigns attributes a value for a generic player
     {
         _skillPoints = 0;
         _health = 100f;
-        _speed = 10f;
+        _speed = 350f;
         _strength = 10f;
         _stamina = 100f;
         _resistance = 10f;
@@ -43,22 +63,23 @@ public class Player : MonoBehaviour
         _experience = 0;
         _money = 0;
         _canTakeDamage = true;
-        _movement = gameObject.GetComponent<Movement>();
         _iFrames = false;
         _interaction = gameObject.GetComponent<Interaction>();
+        _activeMoveSpeed = _speed;
+        skillTreeUI.SetActive(false);
         
     }
-    public void Update()
+    public virtual void Update()
     {
         GameObject.Find("Health").GetComponent<Text>().text = "Health: " + _health;
         GameObject.Find("Level").GetComponent<Text>().text = "Level: " + _level;
         GameObject.Find("Experience").GetComponent<Text>().text = "Exp: " + _experience;
         
         
-        if (GetComponent<Movement>().moveDir != Vector2.zero)   //if statement that creates an interact range for the player
+        if (moveDir != Vector2.zero)   //if statement that creates an interact range for the player
         {
-            lastMoveDir = GetComponent<Movement>().moveDir;
-            interactPoint = GetComponent<Movement>().moveDir * interactDistance + new Vector2(transform.position.x, transform.position.y);
+            lastMoveDir = moveDir;
+            interactPoint = moveDir * interactDistance + new Vector2(transform.position.x, transform.position.y);
         }
 
         if (Input.GetKey(KeyCode.F))    //if the player clicks F, they can interact with objects that are interactable
@@ -82,8 +103,68 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("Level1");
         }
+        
+        if (Input.GetKeyDown(KeyCode.Escape)) //Turns on overlay
+        {
+            skillTreeUI.SetActive(true);
+        }
+        if(Input.GetKeyDown(KeyCode.Backspace)){ //Turns off overlay
+            skillTreeUI.SetActive(false);
+        }
+    }
+
+    public virtual void FixedUpdate()   //method for player movement and dash movement
+    {
+        if (!disableMovement)
+        {
+            // Calculating move direction
+            moveDir = Vector2.zero;
+
+            if (Input.GetKey(KeyCode.W))
+                moveDir.y = 1;
+            if (Input.GetKey(KeyCode.S))
+                moveDir.y = -1;
+            if (Input.GetKey(KeyCode.D))
+                moveDir.x = 1;
+            if (Input.GetKey(KeyCode.A))
+                moveDir.x = -1;
+
+            animator.SetFloat("Horizontal", moveDir.x);
+            animator.SetFloat("Vertical", moveDir.y);
+            animator.SetFloat("Magnitude", moveDir.magnitude);
 
 
+            if (Input.GetKey(KeyCode.Space))
+            {
+                if (_dashCoolCounter <= 0 && _dashCounter <= 0)
+                {
+                    _activeMoveSpeed = dashSpeed;
+                    _dashCounter = dashLength;
+                    SetCannotTakeDamage();
+                }
+            }
+
+            if (_dashCounter > 0)
+            {
+                _dashCounter -= Time.fixedDeltaTime;
+
+                if (_dashCounter <= 0)
+                {
+                    _activeMoveSpeed = _speed;
+                    _dashCoolCounter = dashCooldown;
+                    SetCanTakeDamage();
+                }
+            }
+
+            if (_dashCoolCounter > 0)
+            {
+                _dashCoolCounter -= Time.fixedDeltaTime;
+            }
+
+            // Moving Character
+            gameObject.GetComponent<Rigidbody2D>().velocity =
+                moveDir.normalized * _activeMoveSpeed * Time.fixedDeltaTime;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -198,7 +279,7 @@ public class Player : MonoBehaviour
 
         public void TakenDamage(int damage) //method used to calculate the player takes from an enemy
         {
-            _movement.disableMovement = true;   //when the player gets hit there movement gets disabled for a short while since they take knockback
+            disableMovement = true;   //when the player gets hit there movement gets disabled for a short while since they take knockback
             gameObject.GetComponent<Rigidbody2D>().velocity = GameObject.FindWithTag("Enemy").GetComponent<Enemy>().VectorBetweenPlayerAndEnemy().normalized * 6f;  //makes player take knockback in direction they get hit
             Invoke("EnableMovement", 1f);   //After one second, the knockback is over and the player can move
 
@@ -215,7 +296,7 @@ public class Player : MonoBehaviour
 
     public void EnableMovement()    //enables player movement
     {
-        _movement.disableMovement = false;
+        disableMovement = false;
     }
 
     public IEnumerator Frames() //repeatly changes the game objects color to simulate iframex

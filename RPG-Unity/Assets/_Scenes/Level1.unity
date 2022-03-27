@@ -2677,7 +2677,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
-  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2706,6 +2705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasKey: 0
+  hasMap: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2765,19 +2765,6 @@ Transform:
   m_Father: {fileID: 841082233}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f155ad6a1c9559343b265c2acc41a7b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillTreeUI: {fileID: 578808259}
 --- !u!1 &578808259 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1729621811545051693, guid: 3aa1f1dda30127a4badf7369d6040383, type: 3}
@@ -4515,14 +4502,11 @@ GameObject:
   m_Component:
   - component: {fileID: 841082233}
   - component: {fileID: 841082232}
-  - component: {fileID: 841082231}
   - component: {fileID: 841082235}
-  - component: {fileID: 841082237}
-  - component: {fileID: 841082238}
   - component: {fileID: 841082236}
   - component: {fileID: 841082234}
   - component: {fileID: 841082239}
-  - component: {fileID: 841082240}
+  - component: {fileID: 841082231}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4539,16 +4523,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 841082230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46906bc0e4f22614ca15e61c6730023e, type: 3}
+  m_Script: {fileID: 11500000, guid: 265c04da777050043bf9b47aa49acab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactDistance: 1
+  interactRange: 1
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  interactPoint: {x: 0, y: 0}
+  lastMoveDir: {x: 0, y: 0}
   moveDir: {x: 0, y: 0}
   animator: {fileID: 841082235}
   disableMovement: 0
-  _player: {fileID: 0}
   dashSpeed: 700
   dashLength: 0.2
   dashCooldown: 1
+  unlockAbilityOne: 0
+  unlockAbilityTwo: 0
+  skillTreeUI: {fileID: 578808259}
+  attackDist: 1
+  attack1Range: 1
+  attack1Damage: 50
+  attackDelay: 1
+  attack2Range: 2
+  attack2Damage: 50
+  attack2Delay: 1
+  attack2Speed: 150
+  swordSlashDamage: 50
+  swordSlashDelay: 5
+  swordSlashSprite: {fileID: 4343842830354189182, guid: 2727cc55c729b044082803ab7e937aeb, type: 3}
+  swordSpinRate: 20
+  fireStompDamage: 100
+  fireStompDelay: 3
+  fireStopGrowth: 1.03
+  fireStompSprite: {fileID: 6730847098272287020, guid: 7bb744c999c3bf4429a6e781aeda028a, type: 3}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  attack1Sprite: {fileID: 8984951984321153945, guid: 6c190002c02f8cf4db5395af88400f3e, type: 3}
+  attack2Sprite: {fileID: 695806990849631022, guid: 8eac5dc8f37698c4b995f6857bb07f85, type: 3}
+  attack1Point: {x: 0, y: 0}
+  attack2Point: {x: 0, y: 0}
+  canAttack: 1
 --- !u!212 &841082232
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4681,54 +4698,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9375, y: 1.4375}
   m_EdgeRadius: 0
---- !u!114 &841082237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841082230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bec67a80c3cf97944b25e2cfc42fdeee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDist: 1
-  attack1Range: 1
-  attack1Damage: 50
-  attackDelay: 1
-  attack2Range: 2
-  attack2Damage: 50
-  attack2Delay: 1
-  attack2Speed: 2000
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  attack1Sprite: {fileID: 8984951984321153945, guid: 6c190002c02f8cf4db5395af88400f3e, type: 3}
-  attack2Sprite: {fileID: 695806990849631022, guid: 8eac5dc8f37698c4b995f6857bb07f85, type: 3}
-  attack1Point: {x: 0, y: 0}
-  attack2Point: {x: 0, y: 0}
-  lastMoveDir: {x: 0, y: 0}
-  canAttack: 1
---- !u!114 &841082238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841082230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e42026e411c21a419dd0d4f28acfdfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactDistance: 1
-  interactRange: 1
-  interactLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  interactPoint: {x: 0, y: 0}
-  lastMoveDir: {x: 0, y: 0}
 --- !u!114 &841082239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4741,28 +4710,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66649739188fff949a200a3fc5cc0724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &841082240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841082230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8209b6a6b6c092e47b1ec4d28a2e67f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unlockedSwordSlash: 0
-  swordSlashDamage: 50
-  swordSlashDelay: 5
-  swordSlashSprite: {fileID: 4343842830354189182, guid: 2727cc55c729b044082803ab7e937aeb, type: 3}
-  swordSpinRate: 20
-  unlockedFireStomp: 0
-  fireStompDamage: 90
-  fireStompDelay: 3
-  fireStopGrowth: 1.03
-  fireStompSprite: {fileID: 6730847098272287020, guid: 7bb744c999c3bf4429a6e781aeda028a, type: 3}
 --- !u!1 &869795112
 GameObject:
   m_ObjectHideFlags: 0
