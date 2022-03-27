@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     public LayerMask interactLayer;
     public Vector2 interactPoint;
     public Vector2 lastMoveDir;
+    public UIHealthBar healthBar;
+    public ExperienceBar expBar;
     
 
     // Start is called before the first frame update
@@ -46,6 +48,9 @@ public class Player : MonoBehaviour
         _movement = gameObject.GetComponent<Movement>();
         _iFrames = false;
         _interaction = gameObject.GetComponent<Interaction>();
+        healthBar.SetMaxHealth(_health);
+        expBar.SetMaxExperience(25);
+        expBar.ResetExperience();
         
     }
     public void Update()
@@ -53,6 +58,9 @@ public class Player : MonoBehaviour
         GameObject.Find("Health").GetComponent<Text>().text = "Health: " + _health;
         GameObject.Find("Level").GetComponent<Text>().text = "Level: " + _level;
         GameObject.Find("Experience").GetComponent<Text>().text = "Exp: " + _experience;
+        expBar.SetExperience(_experience);
+    
+
         
         
         if (GetComponent<Movement>().moveDir != Vector2.zero)   //if statement that creates an interact range for the player
@@ -76,6 +84,7 @@ public class Player : MonoBehaviour
             _level++;
             _experience = _experience - 25;
             _skillPoints+=10;
+            expBar.SetMaxExperience(_level*25);
         }
 
         if (_health <= 0)   //if the players health reaches 0, the game restarts
@@ -91,11 +100,13 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))    //if the player collides with an enemy they take 10 damage
         {
             TakenDamage(10);
+            healthBar.SetHealth(_health);
         }
         
         else if (collision.gameObject.CompareTag("Bomb"))   //if the player collides with a bomb they take 20 damage
         {
             TakenDamage(20);
+            healthBar.SetHealth(_health);
         }
         else if (collision.gameObject.CompareTag("Attic"))  //if a player collides with the stairs they get teleported to the attic
         {
