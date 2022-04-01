@@ -25,7 +25,7 @@ public class SkillTree : MonoBehaviour
         }
 
         SkillPointsText = GetComponent<Text>(); //gets Text component
-        playerr = GameObject.Find("Player"); //finds player
+        playerr = GameObject.FindWithTag("Player"); //finds player
     }
 
     public void Update(){ //Update method

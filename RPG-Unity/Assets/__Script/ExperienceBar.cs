@@ -17,8 +17,5 @@ public class ExperienceBar : MonoBehaviour
 
     public void SetExperience(float exp){
         sliderr.value = exp; // sets experience equal to parameter passed through
-        print("Experience changed");
     }
-    
-
 }

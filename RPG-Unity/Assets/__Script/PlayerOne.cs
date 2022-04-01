@@ -54,6 +54,12 @@ public class PlayerOne : Player
         // Enemys are triggers so need to be able to interact with them
         Physics2D.queriesHitTriggers = true;
     }
+
+    public override void Update()
+    {
+        base.Update();
+    }
+
     public override void FixedUpdate()
     {
         base.FixedUpdate();

@@ -84,10 +84,7 @@ public class Player : MonoBehaviour
         GameObject.Find("Level").GetComponent<Text>().text = "Player Level: " + _level;
         GameObject.Find("Experience").GetComponent<Text>().text = "Exp: " + _experience;
         expBar.SetExperience(_experience);
-
-
-
-
+        
         if (moveDir != Vector2.zero)   //if statement that creates an interact range for the player
         {
             lastMoveDir = moveDir;
@@ -116,10 +113,10 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("Level1");
         }
-
+        
         if (Input.GetKeyDown(KeyCode.Escape)) //Turns on overlay
         {
-            skillTreeUI.SetActive(true);
+            skillTreeUI.SetActive(!skillTreeUI.activeSelf);
         }
         if(Input.GetKeyDown(KeyCode.Backspace)){ //Turns off overlay
             skillTreeUI.SetActive(false);

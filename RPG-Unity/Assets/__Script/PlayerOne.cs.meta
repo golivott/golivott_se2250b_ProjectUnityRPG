@@ -3,7 +3,16 @@ guid: 265c04da777050043bf9b47aa49acab5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - healthBar: {instanceID: 0}
+  - expBar: {instanceID: 0}
+  - levelTwoIcon: {instanceID: 0}
+  - animator: {instanceID: 0}
+  - skillTreeUI: {instanceID: 0}
+  - swordSlashSprite: {fileID: 4343842830354189182, guid: 2727cc55c729b044082803ab7e937aeb, type: 3}
+  - fireStompSprite: {fileID: 6730847098272287020, guid: 7bb744c999c3bf4429a6e781aeda028a, type: 3}
+  - attack1Sprite: {fileID: 8984951984321153945, guid: 6c190002c02f8cf4db5395af88400f3e, type: 3}
+  - attack2Sprite: {fileID: 695806990849631022, guid: 8eac5dc8f37698c4b995f6857bb07f85, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
