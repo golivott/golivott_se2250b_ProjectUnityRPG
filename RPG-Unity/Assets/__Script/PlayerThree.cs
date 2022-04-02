@@ -20,6 +20,25 @@ public class PlayerThree : Player
     public float attack2Delay = 1f;
     public float attack2Knockback = 1f;
     
+    // Rage Ability
+    [Header("Rage")] 
+    public float duration = 5f;
+    public float cooldown = 8f;
+    public float maxStrengthBuff = 50f; // 50 strength is 100% damage increase
+    public float maxResistanceDebuff = 0.5f; // multiplier is added to damage taken (0.5 here is 1.5*damage)
+    
+    private bool _canRage = true;
+    
+    // Axe throw ability
+    [Header("Axe Throw")] 
+    public float axeSpeed = 1f;
+    public float axeSpin = 20f;
+    public float axeDamage = 1f;
+    public float axeCooldown = 1f;
+    public GameObject axeSprite;
+
+    private bool _canAxeThrow = true;
+    
     public LayerMask enemyLayers;
     public GameObject attack1Sprite;
     public GameObject attack2Sprite;
@@ -68,10 +87,22 @@ public class PlayerThree : Player
                 StartCoroutine(Attack2());
             }
         }
+        
+        // Rage on Q
+        if (Input.GetKey(KeyCode.Q) && _canRage && unlockAbilityOne)
+        {
+            StartCoroutine(UseRage());
+        }
+        
+        // Axe throw on E
+        if (Input.GetKey(KeyCode.E) && _canAxeThrow && unlockAbilityTwo)
+        {
+            StartCoroutine(UseAxeThrow());
+        }
     }
     
     // Attack 1
-    IEnumerator Attack1()
+    private IEnumerator Attack1()
     {
         // Display animation
         GameObject attack1Sprite = Instantiate(this.attack1Sprite);
@@ -85,7 +116,7 @@ public class PlayerThree : Player
         // Damages enemies
         foreach (Collider2D enemy in enemyHits)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attack1Damage * GetDamageMultiplier());
+            enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
         }
 
         // Attack cooldown
@@ -93,7 +124,7 @@ public class PlayerThree : Player
         canAttack = true;
     }
 
-    IEnumerator Attack2()
+    private IEnumerator Attack2()
     {
         // Display animation
         GameObject attack2Sprite = Instantiate(this.attack2Sprite);
@@ -107,12 +138,59 @@ public class PlayerThree : Player
         // Damages enemies
         foreach (Collider2D enemy in enemyHits)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attack2Damage * GetDamageMultiplier());
+            enemy.GetComponent<Enemy>().TakeDamage(attack2Damage);
             enemy.transform.position += new Vector3(lastMoveDir.x, lastMoveDir.y, 0).normalized * attack2Knockback;
         }
 
         // Attack cooldown
         yield return new WaitForSecondsRealtime(attack2Delay);
         canAttack = true;
+    }
+
+    private IEnumerator UseRage()
+    {
+        _canRage = false;
+        // Activate Rage
+        // Calculate player properties
+        GetComponent<SpriteRenderer>().color = new Color(1, 0.2f, 0.2f);
+        float strengthBuff = GetHealth() / 100f * maxStrengthBuff; // %health * max buff
+        float resistanceDebuff = maxResistanceDebuff - GetHealth() / 100f * maxResistanceDebuff;// max debuff - %health * max debuff
+        
+        // Applying changes
+        AddStrength(strengthBuff);
+        AddDmgTakenMultiplier(resistanceDebuff);
+        
+        yield return new WaitForSecondsRealtime(duration);
+        
+        // Deactivate Rage
+        GetComponent<SpriteRenderer>().color = new Color(1, 1f, 1f);
+        
+        // Remove changes
+        AddStrength(-strengthBuff);
+        AddDmgTakenMultiplier(-resistanceDebuff);
+
+        yield return new WaitForSecondsRealtime(cooldown - duration);
+        _canRage = true;
+    }
+
+    private IEnumerator UseAxeThrow()
+    {
+        _canAxeThrow = false;
+        // Display animation
+        GameObject axe = Instantiate(axeSprite);
+        axe.transform.position = transform.position;
+        axe.GetComponent<Rigidbody2D>().velocity = axeSpeed * lastMoveDir.normalized * Time.fixedDeltaTime;
+        axe.GetComponent<ProjectileAttack>().SetSpin(axeSpin);
+
+        // Set Damage
+        axe.GetComponent<ProjectileAttack>().SetDamage(axeDamage);
+
+        // Destroy after 0.5 sec
+        Destroy(axe, 1f);
+
+        // Wait delay before allowing another attack
+        yield return new WaitForSecondsRealtime(axeCooldown);
+
+        _canAxeThrow = true;
     }
 }

@@ -4998,8 +4998,8 @@ MonoBehaviour:
   dashSpeed: 700
   dashLength: 0.2
   dashCooldown: 1
-  unlockAbilityOne: 0
-  unlockAbilityTwo: 0
+  unlockAbilityOne: 1
+  unlockAbilityTwo: 1
   skillTreeUI: {fileID: 6311839913645345293}
   attackDist: 1
   attack1Range: 2
@@ -5009,6 +5009,15 @@ MonoBehaviour:
   attack2Damage: 50
   attack2Delay: 1
   attack2Knockback: 1
+  duration: 5
+  cooldown: 8
+  maxStrengthBuff: 50
+  maxResistanceDebuff: 0.5
+  axeSpeed: 750
+  axeSpin: 20
+  axeDamage: 50
+  axeCooldown: 1
+  axeSprite: {fileID: 3108932438361955457, guid: fd5e1e278cf804d4db7785c86fcf6a69, type: 3}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64

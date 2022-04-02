@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour  //Generic enemy class
 
     public void TakeDamage(float damage)    //method used to make the enemy take damage when a player attacks
     {
-        _health -= damage;
+        _health -= damage * (GameObject.FindWithTag("Player").GetComponent<Player>().GetStrength() * 2 / 100f + 1);
     }
 
     //Appropriate getters and setters

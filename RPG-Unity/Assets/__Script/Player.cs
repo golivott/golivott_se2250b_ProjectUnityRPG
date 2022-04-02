@@ -12,12 +12,11 @@ public class Player : MonoBehaviour
     private float _health;
     private float _speed;
     private float _strength;
-    private float _resistance;
+    private float _dmgTakenMultiplier;
     private int _level;
     private int _experience;
     private int _money;
     private int _skillPoints;
-    private float _damageMultiplier;
 
     private bool _canTakeDamage;
     private bool _iFrames;
@@ -61,8 +60,8 @@ public class Player : MonoBehaviour
         _skillPoints = 0;
         _health = 100f;
         _speed = 350f;
-        _strength = 10f;
-        _resistance = 2f;
+        _strength = 1f;
+        _dmgTakenMultiplier = 1f;
         _level = 1;
         _experience = 0;
         _money = 0;
@@ -75,12 +74,9 @@ public class Player : MonoBehaviour
         expBar.SetMaxExperience(25);
         expBar.ResetExperience();
         levelTwoIcon.enabled = false;
-        _damageMultiplier = 1;
-
     }
     public virtual void Update()
     {
-        _damageMultiplier = ((_strength * 2) / 100f) + 1;
         GameObject.Find("Health").GetComponent<Text>().text = "Health: " + _health;
         GameObject.Find("Level").GetComponent<Text>().text = "Player Level: " + _level;
         GameObject.Find("Experience").GetComponent<Text>().text = "Exp: " + _experience;
@@ -177,8 +173,8 @@ public class Player : MonoBehaviour
                 moveDir.normalized * _activeMoveSpeed * Time.fixedDeltaTime;
         }
     }
-
-    public void OnTriggerEnter2D(Collider2D collision)
+    
+    public void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Enemy"))    //if the player collides with an enemy they take 10 damage
         {
@@ -221,7 +217,7 @@ public class Player : MonoBehaviour
     }
     public float GetResistance()
     {
-        return _resistance;
+        return _dmgTakenMultiplier;
     }
     public int GetLevel()
     {
@@ -240,10 +236,6 @@ public class Player : MonoBehaviour
         return _skillPoints;
     }
     
-    public float GetDamageMultiplier()
-    {
-        return _damageMultiplier;
-    }
     public void AddHealth(float health)
     {
         _health = _health + health;
@@ -256,9 +248,9 @@ public class Player : MonoBehaviour
     {
         _strength = _strength + strength;
     }
-    public void AddResistance(float resistance)
+    public void AddDmgTakenMultiplier(float dmgTakenMultiplier)
     {
-        _resistance = _resistance + resistance;
+        _dmgTakenMultiplier = _dmgTakenMultiplier + dmgTakenMultiplier;
     }
     public void AddLevel(int level)
     {
@@ -295,7 +287,7 @@ public class Player : MonoBehaviour
 
             if (_canTakeDamage)     //if the player doesn't have IFrames they can take damage
             {
-                _health = _health - (damage * (1/_resistance)); //subtract the damage from health
+                _health -= damage * _dmgTakenMultiplier; //subtract the damage from health
 
                 _canTakeDamage = false; //give player iframes
                 Invoke("SetCanTakeDamage", 2f); //After two seconds the player can take damage again

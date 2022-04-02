@@ -111,7 +111,7 @@ public class PlayerOne : Player
         // Damages enemies
         foreach (Collider2D enemy in enemyHits)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attack1Damage * GetDamageMultiplier());
+            enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
         }
 
         // attack cooldown
@@ -129,7 +129,7 @@ public class PlayerOne : Player
             
         // Setting proporties of attack
         attack2Sprite.GetComponent<Rigidbody2D>().velocity = lastMoveDir.normalized * attack2Speed * Time.fixedDeltaTime;
-        attack2Sprite.GetComponent<ProjectileAttack>().SetDamage(attack2Damage * GetDamageMultiplier());
+        attack2Sprite.GetComponent<ProjectileAttack>().SetDamage(attack2Damage);
             
         // Destroying attack
         Destroy(attack2Sprite, 0.3f);
@@ -147,7 +147,7 @@ public class PlayerOne : Player
         swordSlash.GetComponent<ProjectileAttack>().IsFollowPlayer();
 
         // Set Damage
-        swordSlash.GetComponent<ProjectileAttack>().SetDamage(swordSlashDamage * GetDamageMultiplier());
+        swordSlash.GetComponent<ProjectileAttack>().SetDamage(swordSlashDamage);
         
         // Destroy after 0.5 sec
         Destroy(swordSlash, 0.5f);
@@ -165,7 +165,7 @@ public class PlayerOne : Player
         fireStomp.GetComponent<ProjectileAttack>().SetGrowth(fireStompGrowth);
 
         // Set Damage
-        fireStomp.GetComponent<ProjectileAttack>().SetDamage(fireStompDamage * GetDamageMultiplier());
+        fireStomp.GetComponent<ProjectileAttack>().SetDamage(fireStompDamage);
 
         // Destroy after 0.5 sec
         Destroy(fireStomp, 1f);
