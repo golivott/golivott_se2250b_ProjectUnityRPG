@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,23 @@ public class PlayerTwo : Player
     public float attack2Damage = 25f;
     public float attack2Delay = 2f;
     public float attack2Speed = 750f;
+    
+    // Invisibility
+    [Header("Invisibility")]
+    public float invisDuration = 3;
+    public float invisCooldown = 5;
+    
+    private bool _canInvisibility = true;
+    
+    // Explosive Arrow
+    [Header("Explosive Arrow")]
+    public float initArrowSpeed = 750f;
+    public float explosiveCooldown = 5;
+    public float explosiveDamage = 200f;
+    public GameObject explosionSprite;
+
+    private bool _canExplosiveArrow = true;
+    
     
     public LayerMask enemyLayers;
     public GameObject arrowSprite;
@@ -54,9 +72,22 @@ public class PlayerTwo : Player
                 StartCoroutine(Attack2());
             }
         }
+        
+        // Invisibility on Q
+        if (Input.GetKey(KeyCode.Q) && _canInvisibility && unlockAbilityOne)
+        {
+            StartCoroutine(UseInvisability());
+        }
+        
+        // Explosive Arrow on E
+        if (Input.GetKey(KeyCode.E) && _canExplosiveArrow && unlockAbilityTwo)
+        {
+            StartCoroutine(UseExplosiveArrow());
+        }
+        
     }
     
-    IEnumerator Attack1()
+    private IEnumerator Attack1()
     {
         // Display animation
         GameObject arrowSprite = Instantiate(this.arrowSprite);
@@ -74,7 +105,7 @@ public class PlayerTwo : Player
         canAttack = true;
     }
 
-    IEnumerator Attack2()
+    private IEnumerator Attack2()
     {
         // Spawn Bottom Arrow
         GameObject arrowSprite1 = Instantiate(arrowSprite);
@@ -120,5 +151,65 @@ public class PlayerTwo : Player
         
         yield return new WaitForSecondsRealtime(attack2Delay);
         canAttack = true;
+    }
+
+    private IEnumerator UseInvisability()
+    {
+        // cant attack while invisible
+        _canInvisibility = false;
+        canAttack = false;
+        _canExplosiveArrow = false;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        // Make player invisible
+        GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.4f);
+        // Forces all enemies to do undetected movement
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>().doUndetectedMove = true;
+        }
+        yield return new WaitForSecondsRealtime(invisDuration);
+        
+        // Make player visible again
+        GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+        // disables forcing of enemy undetected movement
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>().doUndetectedMove = false;
+        }
+        
+        // Can attack now
+        canAttack = true;
+        _canExplosiveArrow = true;
+        
+        yield return new WaitForSecondsRealtime(invisCooldown - invisDuration);
+        
+        _canInvisibility = true;
+    }
+
+    private IEnumerator UseExplosiveArrow()
+    {
+        _canExplosiveArrow = false;
+        
+        // Fire initial arrow
+        GameObject arrowSprite = Instantiate(this.arrowSprite);
+        arrowSprite.transform.position = attackPoint;
+        arrowSprite.transform.rotation = Quaternion.EulerAngles(0, 0, Mathf.Atan2(lastMoveDir.y, lastMoveDir.x));
+        
+        // Setting properties of arrow attack
+        arrowSprite.GetComponent<Rigidbody2D>().velocity = initArrowSpeed * lastMoveDir.normalized * Time.fixedDeltaTime;
+        arrowSprite.GetComponent<ProjectileAttack>().setDestroyOnHit(true);
+        arrowSprite.GetComponent<ProjectileAttack>().SetDamage(0f);
+
+        // Setting on death spawn the explosion
+        explosionSprite.GetComponent<ProjectileAttack>().damage = explosiveDamage;
+        arrowSprite.GetComponent<ProjectileAttack>().SetSpawnOnDeath(explosionSprite);
+        
+        // Killing arrow if no collision within 1 second
+        Destroy(arrowSprite, 1f);
+
+        yield return new WaitForSecondsRealtime(explosiveCooldown);
+
+        _canExplosiveArrow = true;
     }
 }

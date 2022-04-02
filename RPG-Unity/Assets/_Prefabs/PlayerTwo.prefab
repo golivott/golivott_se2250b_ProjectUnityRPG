@@ -4444,6 +4444,12 @@ MonoBehaviour:
   attack2Damage: 25
   attack2Delay: 2
   attack2Speed: 750
+  invisDuration: 3
+  invisCooldown: 5
+  initArrowSpeed: 750
+  explosiveCooldown: 5
+  explosiveDamage: 200
+  explosionSprite: {fileID: 1085081284940261944, guid: 2aaa9fafdd24b164a8baf8c446dece21, type: 3}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64

@@ -30,7 +30,7 @@ public class PlayerOne : Player
     [Header("Fire Stomp")]
     public float fireStompDamage = 100f;
     public float fireStompDelay = 1f;
-    public float fireStopGrowth = 1f;
+    public float fireStompGrowth = 1f;
     public GameObject fireStompSprite;
     private bool _canFireStomp = true;
     
@@ -162,7 +162,7 @@ public class PlayerOne : Player
         // Display animation
         GameObject fireStomp = Instantiate(fireStompSprite);
         fireStomp.transform.position = transform.position;
-        fireStomp.GetComponent<ProjectileAttack>().SetGrowth(fireStopGrowth);
+        fireStomp.GetComponent<ProjectileAttack>().SetGrowth(fireStompGrowth);
 
         // Set Damage
         fireStomp.GetComponent<ProjectileAttack>().SetDamage(fireStompDamage * GetDamageMultiplier());
