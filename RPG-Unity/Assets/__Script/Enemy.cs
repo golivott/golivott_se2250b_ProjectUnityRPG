@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json.Serialization;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Math = UnityEngine.Mathf;
@@ -16,6 +17,7 @@ public class Enemy : MonoBehaviour  //Generic enemy class
     private string _enemyName;
     private int _money;
     private bool _moveEnemy;
+    public bool doUndetectedMove = false;
 
 
     // Start is called before the first frame update
@@ -37,7 +39,7 @@ public class Enemy : MonoBehaviour  //Generic enemy class
     {
         if (_moveEnemy)     //if the enemy can move
         {
-            if (DistancedBetweenPlayerAndEnemy() > _radius)     //if the player isn't within the enemies radius the passive movement gets called
+            if (DistancedBetweenPlayerAndEnemy() > _radius || doUndetectedMove)     //if the player isn't within the enemies radius the passive movement gets called
             {
                 GetComponent<Collider2D>().isTrigger = false;
                 _moveEnemy = false;
