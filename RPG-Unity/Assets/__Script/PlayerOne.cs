@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class PlayerOne : Player
 {
-     // Properties for the 2 basic attacks
-     
+    // Properties for the 2 basic attacks
     // Properties for attack 1
     [Header("Attack 1")]
     public float attackDist = 1f;
     public float attack1Range = 1f;
     public float attack1Damage = 50f;
-    public float attackDelay = 0.5f;
+    public float attack1Delay = 0.5f;
 
     // Properties for attack 2
     [Header("Attack 2")]
-    public float attack2Range = 1f;
     public float attack2Damage = 25f;
     public float attack2Delay = 1f;
     public float attack2Speed = 1f;
@@ -26,7 +24,6 @@ public class PlayerOne : Player
     public float swordSlashDelay = 1;
     public GameObject swordSlashSprite;
     public float swordSpinRate = 1f;
-    
     private bool _canSwordSlash = true;
 
     // Variable for fire stomp ability
@@ -35,7 +32,6 @@ public class PlayerOne : Player
     public float fireStompDelay = 1f;
     public float fireStopGrowth = 1f;
     public GameObject fireStompSprite;
-    
     private bool _canFireStomp = true;
     
     public LayerMask enemyLayers;
@@ -45,7 +41,6 @@ public class PlayerOne : Player
     // Variables set by the script
     [Header("Set Dynamically")] 
     public Vector2 attack1Point;
-    public Vector2 attack2Point;
     public bool canAttack = true;
 
     public override void Start()
@@ -53,11 +48,6 @@ public class PlayerOne : Player
         base.Start();
         // Enemys are triggers so need to be able to interact with them
         Physics2D.queriesHitTriggers = true;
-    }
-
-    public override void Update()
-    {
-        base.Update();
     }
 
     public override void FixedUpdate()
@@ -69,9 +59,6 @@ public class PlayerOne : Player
             lastMoveDir = moveDir;
         }
         attack1Point = lastMoveDir * attackDist + new Vector2(transform.position.x, transform.position.y);
-        attack2Point = lastMoveDir * attackDist * attack2Range / 2 +
-                       new Vector2(transform.position.x, transform.position.y);
-
 
         // Listening for attack 1
         if (Input.GetKey(KeyCode.Mouse0))
@@ -93,6 +80,7 @@ public class PlayerOne : Player
             }
         }
         
+        // Sword Slash on Q
         if (Input.GetKey(KeyCode.Q) && _canSwordSlash && unlockAbilityOne)
         {
             _canSwordSlash = false;
@@ -126,7 +114,7 @@ public class PlayerOne : Player
         }
 
         // attack cooldown
-        yield return new WaitForSecondsRealtime(attackDelay);
+        yield return new WaitForSecondsRealtime(attack1Delay);
         canAttack = true;
     }
 
@@ -139,7 +127,7 @@ public class PlayerOne : Player
         attack2Sprite.transform.rotation = Quaternion.EulerAngles(0, 0, Mathf.Atan2(lastMoveDir.y, lastMoveDir.x));
             
         // Setting proporties of attack
-        attack2Sprite.GetComponent<Rigidbody2D>().velocity = lastMoveDir.normalized * attack2Speed * attack2Range / 0.4f * Time.fixedDeltaTime;
+        attack2Sprite.GetComponent<Rigidbody2D>().velocity = lastMoveDir.normalized * attack2Speed * Time.fixedDeltaTime;
         attack2Sprite.GetComponent<ProjectileAttack>().SetDamage(attack2Damage);
             
         // Destroying attack
