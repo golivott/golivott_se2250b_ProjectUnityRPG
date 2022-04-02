@@ -3435,7 +3435,7 @@ MonoBehaviour:
   swordSpinRate: 20
   fireStompDamage: 100
   fireStompDelay: 3
-  fireStopGrowth: 1.03
+  fireStompGrowth: 1.03
   fireStompSprite: {fileID: 6730847098272287020, guid: 7bb744c999c3bf4429a6e781aeda028a, type: 3}
   enemyLayers:
     serializedVersion: 2
