@@ -85,7 +85,7 @@ public class PlayerThree : Player
         // Damages enemies
         foreach (Collider2D enemy in enemyHits)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
+            enemy.GetComponent<Enemy>().TakeDamage(attack1Damage * GetDamageMultiplier());
         }
 
         // Attack cooldown
@@ -107,7 +107,7 @@ public class PlayerThree : Player
         // Damages enemies
         foreach (Collider2D enemy in enemyHits)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attack2Damage);
+            enemy.GetComponent<Enemy>().TakeDamage(attack2Damage * GetDamageMultiplier());
             enemy.transform.position += new Vector3(lastMoveDir.x, lastMoveDir.y, 0).normalized * attack2Knockback;
         }
 

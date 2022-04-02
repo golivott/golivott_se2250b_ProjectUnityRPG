@@ -12,12 +12,12 @@ public class Player : MonoBehaviour
     private float _health;
     private float _speed;
     private float _strength;
-    private float _stamina;
     private float _resistance;
     private int _level;
     private int _experience;
     private int _money;
     private int _skillPoints;
+    private float _damageMultiplier;
 
     private bool _canTakeDamage;
     private bool _iFrames;
@@ -62,8 +62,7 @@ public class Player : MonoBehaviour
         _health = 100f;
         _speed = 350f;
         _strength = 10f;
-        _stamina = 100f;
-        _resistance = 10f;
+        _resistance = 2f;
         _level = 1;
         _experience = 0;
         _money = 0;
@@ -76,10 +75,12 @@ public class Player : MonoBehaviour
         expBar.SetMaxExperience(25);
         expBar.ResetExperience();
         levelTwoIcon.enabled = false;
+        _damageMultiplier = 1;
 
     }
     public virtual void Update()
     {
+        _damageMultiplier = ((_strength * 2) / 100f) + 1;
         GameObject.Find("Health").GetComponent<Text>().text = "Health: " + _health;
         GameObject.Find("Level").GetComponent<Text>().text = "Player Level: " + _level;
         GameObject.Find("Experience").GetComponent<Text>().text = "Exp: " + _experience;
@@ -218,10 +219,6 @@ public class Player : MonoBehaviour
     {
         return _strength;
     }
-    public float GetStamina()
-    {
-        return _stamina;
-    }
     public float GetResistance()
     {
         return _resistance;
@@ -242,6 +239,11 @@ public class Player : MonoBehaviour
     {
         return _skillPoints;
     }
+    
+    public float GetDamageMultiplier()
+    {
+        return _damageMultiplier;
+    }
     public void AddHealth(float health)
     {
         _health = _health + health;
@@ -253,10 +255,6 @@ public class Player : MonoBehaviour
     public void AddStrength(float strength)
     {
         _strength = _strength + strength;
-    }
-    public void AddStamina(float stamina)
-    {
-        _stamina = _stamina + stamina;
     }
     public void AddResistance(float resistance)
     {
@@ -284,12 +282,12 @@ public class Player : MonoBehaviour
         _canTakeDamage = true;
     }
 
-        public void SetCannotTakeDamage()   //method used for invincibilty frames
+    public void SetCannotTakeDamage()   //method used for invincibilty frames
     {
         _canTakeDamage = false;
     }
-
-        public void TakenDamage(int damage) //method used to calculate the player takes from an enemy
+    
+    public void TakenDamage(int damage) //method used to calculate the player takes from an enemy
         {
             disableMovement = true;   //when the player gets hit there movement gets disabled for a short while since they take knockback
             gameObject.GetComponent<Rigidbody2D>().velocity = GameObject.FindWithTag("Enemy").GetComponent<Enemy>().VectorBetweenPlayerAndEnemy().normalized * 6f;  //makes player take knockback in direction they get hit
@@ -297,7 +295,7 @@ public class Player : MonoBehaviour
 
             if (_canTakeDamage)     //if the player doesn't have IFrames they can take damage
             {
-                _health = _health - damage; //subtract the damage from health
+                _health = _health - (damage * (1/_resistance)); //subtract the damage from health
 
                 _canTakeDamage = false; //give player iframes
                 Invoke("SetCanTakeDamage", 2f); //After two seconds the player can take damage again

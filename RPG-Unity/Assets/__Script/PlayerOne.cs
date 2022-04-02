@@ -52,6 +52,7 @@ public class PlayerOne : Player
 
     public override void FixedUpdate()
     {
+        
         base.FixedUpdate();
         // Updating attack point
         if (moveDir != Vector2.zero)
@@ -110,7 +111,7 @@ public class PlayerOne : Player
         // Damages enemies
         foreach (Collider2D enemy in enemyHits)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
+            enemy.GetComponent<Enemy>().TakeDamage(attack1Damage * GetDamageMultiplier());
         }
 
         // attack cooldown
@@ -128,7 +129,7 @@ public class PlayerOne : Player
             
         // Setting proporties of attack
         attack2Sprite.GetComponent<Rigidbody2D>().velocity = lastMoveDir.normalized * attack2Speed * Time.fixedDeltaTime;
-        attack2Sprite.GetComponent<ProjectileAttack>().SetDamage(attack2Damage);
+        attack2Sprite.GetComponent<ProjectileAttack>().SetDamage(attack2Damage * GetDamageMultiplier());
             
         // Destroying attack
         Destroy(attack2Sprite, 0.3f);
@@ -146,7 +147,7 @@ public class PlayerOne : Player
         swordSlash.GetComponent<ProjectileAttack>().IsFollowPlayer();
 
         // Set Damage
-        swordSlash.GetComponent<ProjectileAttack>().SetDamage(swordSlashDamage);
+        swordSlash.GetComponent<ProjectileAttack>().SetDamage(swordSlashDamage * GetDamageMultiplier());
         
         // Destroy after 0.5 sec
         Destroy(swordSlash, 0.5f);
@@ -164,7 +165,7 @@ public class PlayerOne : Player
         fireStomp.GetComponent<ProjectileAttack>().SetGrowth(fireStopGrowth);
 
         // Set Damage
-        fireStomp.GetComponent<ProjectileAttack>().SetDamage(fireStompDamage);
+        fireStomp.GetComponent<ProjectileAttack>().SetDamage(fireStompDamage * GetDamageMultiplier());
 
         // Destroy after 0.5 sec
         Destroy(fireStomp, 1f);

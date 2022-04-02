@@ -65,7 +65,7 @@ public class PlayerTwo : Player
             
         // Setting proporties of attack
         arrowSprite.GetComponent<Rigidbody2D>().velocity = attack1Speed * lastMoveDir.normalized * Time.fixedDeltaTime;
-        arrowSprite.GetComponent<ProjectileAttack>().SetDamage(attack1Damage);
+        arrowSprite.GetComponent<ProjectileAttack>().SetDamage(attack1Damage * GetDamageMultiplier());
         
         // Destroying attack
         Destroy(arrowSprite, 1f);
@@ -86,7 +86,7 @@ public class PlayerTwo : Player
             lastMoveDir.x * Mathf.Cos(23 * Mathf.PI / 12) - lastMoveDir.y * Mathf.Sin(23 * Mathf.PI / 12),
             lastMoveDir.x * Mathf.Sin(23 * Mathf.PI / 12) + lastMoveDir.y * Mathf.Cos(23 * Mathf.PI / 12));
         arrowSprite1.GetComponent<Rigidbody2D>().velocity = attack2Speed * arrow1Vector.normalized * Time.fixedDeltaTime;
-        arrowSprite1.GetComponent<ProjectileAttack>().SetDamage(attack2Damage);
+        arrowSprite1.GetComponent<ProjectileAttack>().SetDamage(attack2Damage * GetDamageMultiplier());
 
         yield return new WaitForSecondsRealtime(0.1f);
         
@@ -97,7 +97,7 @@ public class PlayerTwo : Player
         
         // Middle Arrow Properties
         arrowSprite2.GetComponent<Rigidbody2D>().velocity = attack2Speed * lastMoveDir.normalized * Time.fixedDeltaTime;
-        arrowSprite2.GetComponent<ProjectileAttack>().SetDamage(attack2Damage);
+        arrowSprite2.GetComponent<ProjectileAttack>().SetDamage(attack2Damage * GetDamageMultiplier());
         
         yield return new WaitForSecondsRealtime(0.1f);
         
@@ -111,7 +111,7 @@ public class PlayerTwo : Player
             lastMoveDir.x * Mathf.Cos(Mathf.PI / 12) - lastMoveDir.y * Mathf.Sin(Mathf.PI / 12),
             lastMoveDir.x * Mathf.Sin(Mathf.PI / 12) + lastMoveDir.y * Mathf.Cos(Mathf.PI / 12));
         arrowSprite3.GetComponent<Rigidbody2D>().velocity = attack2Speed * arrow3Vector.normalized * Time.fixedDeltaTime;
-        arrowSprite3.GetComponent<ProjectileAttack>().SetDamage(attack2Damage);
+        arrowSprite3.GetComponent<ProjectileAttack>().SetDamage(attack2Damage * GetDamageMultiplier());
         
         // Destroying attack
         Destroy(arrowSprite1, 1f);
