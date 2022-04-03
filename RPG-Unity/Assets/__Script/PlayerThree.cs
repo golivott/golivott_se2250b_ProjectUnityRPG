@@ -155,10 +155,13 @@ public class PlayerThree : Player
         GetComponent<SpriteRenderer>().color = new Color(1, 0.2f, 0.2f);
         float strengthBuff = GetHealth() / 100f * maxStrengthBuff; // %health * max buff
         float resistanceDebuff = maxResistanceDebuff - GetHealth() / 100f * maxResistanceDebuff;// max debuff - %health * max debuff
+        float speedBuff = GetSpeed();
         
         // Applying changes
         AddStrength(strengthBuff);
         AddDmgTakenMultiplier(resistanceDebuff);
+        AddSpeed(speedBuff);
+        SetSpeed(GetSpeed());
         
         yield return new WaitForSecondsRealtime(duration);
         
@@ -168,6 +171,9 @@ public class PlayerThree : Player
         // Remove changes
         AddStrength(-strengthBuff);
         AddDmgTakenMultiplier(-resistanceDebuff);
+        AddSpeed(-speedBuff);
+        SetSpeed(GetSpeed());
+        
 
         yield return new WaitForSecondsRealtime(cooldown - duration);
         _canRage = true;

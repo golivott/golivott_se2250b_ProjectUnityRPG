@@ -107,16 +107,15 @@ public class Player : MonoBehaviour
 
         if (_health <= 0)   //if the players health reaches 0, the game restarts
         {
-            SceneManager.LoadScene("Level1");
+            Destroy(GameObject.FindWithTag("Player"));
+            SceneManager.LoadSceneAsync("StartingMenu");
         }
         
-        if (Input.GetKeyDown(KeyCode.Escape)) //Turns on overlay
+        if (Input.GetKeyDown(KeyCode.Escape)) //Toggles overlay
         {
             skillTreeUI.SetActive(!skillTreeUI.activeSelf);
         }
-        if(Input.GetKeyDown(KeyCode.Backspace)){ //Turns off overlay
-            skillTreeUI.SetActive(false);
-        }
+        
     }
 
     public virtual void FixedUpdate()   //method for player movement and dash movement
@@ -208,7 +207,7 @@ public class Player : MonoBehaviour
     }
     public float GetSpeed()
     {
-        return _speed;
+        return _activeMoveSpeed;
     }
     public float GetStrength()
     {
@@ -241,7 +240,7 @@ public class Player : MonoBehaviour
     }
     public void AddSpeed(float speed)
     {
-        _speed = _speed + speed;
+        _activeMoveSpeed = _activeMoveSpeed + speed;
     }
     public void AddStrength(float strength)
     {
@@ -277,6 +276,13 @@ public class Player : MonoBehaviour
     {
         _canTakeDamage = false;
     }
+
+    public void SetSpeed(float speed)
+    {
+        _speed = speed;
+    }
+    
+    
     
     public void TakenDamage(int damage) //method used to calculate the player takes from an enemy
         {

@@ -28,7 +28,6 @@ public class StartingMenu : MonoBehaviour
 
     public void OnClick()
     {
-        print("Clicked");
         var player = Instantiate(playerPrefab, new Vector3(-16, -5, 0), Quaternion.identity);
         DontDestroyOnLoad(player);
         SceneManager.LoadScene("Level1");
