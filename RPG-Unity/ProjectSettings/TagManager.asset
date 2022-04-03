@@ -12,6 +12,8 @@ TagManager:
   - Downstairs
   - UpStairs
   - Bomb
+  - Map
+  - Outside
   layers:
   - Default
   - TransparentFX

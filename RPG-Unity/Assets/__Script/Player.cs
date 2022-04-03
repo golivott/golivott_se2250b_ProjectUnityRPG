@@ -92,8 +92,7 @@ public class Player : MonoBehaviour
         {
             Physics2D.queriesHitTriggers = true;
             Collider2D[] interactableObjects = Physics2D.OverlapCircleAll(interactPoint, interactRange, interactLayer);     //gets all colliders with layers that are interactable
-            if (interactableObjects.Length != 0)    //if an interacatable object was found call the interact method with that gameObject passed in
-            {
+            if (interactableObjects.Length != 0){    //if an interacatable object was found call the interact method with that gameObject passed in
                 _interaction.Interact(interactableObjects[0].gameObject);
             }
         }
