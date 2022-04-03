@@ -49,6 +49,9 @@ public class Player : MonoBehaviour
 
     [Header("SkillTree UI")]
     public GameObject skillTreeUI; //Skilltree UI
+    
+    [Header("Shop UI")]
+    public GameObject shopUI; //shop UI
 
     private float _activeMoveSpeed;
     private float _dashCounter;
@@ -62,7 +65,7 @@ public class Player : MonoBehaviour
         _dmgTakenMultiplier = 1f;
         _level = 1;
         _experience = 0;
-        _money = 0;
+        _money = 5000;
         _canTakeDamage = true;
         _iFrames = false;
         _interaction = gameObject.GetComponent<Interaction>();
@@ -112,6 +115,11 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) //Toggles overlay
         {
             skillTreeUI.SetActive(!skillTreeUI.activeSelf);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.P)) //Toggles overlay
+        {
+            shopUI.SetActive(!shopUI.activeSelf);
         }
         
         
