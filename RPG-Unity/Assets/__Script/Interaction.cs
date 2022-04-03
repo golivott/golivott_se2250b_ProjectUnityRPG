@@ -6,8 +6,13 @@ using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour //class used to manage interactions
 {
-    private bool _hasKey;
-    private bool _hasMap;
+    [Header("Level 1 Interactions")]
+    public bool hasKey;
+    public bool hasMap;
+
+    [Header("Level 2 Interactions")] 
+    public bool flippedLever;
+    
     private Player _player;
 
     // Start is called before the first frame update
@@ -20,7 +25,7 @@ public class Interaction : MonoBehaviour //class used to manage interactions
     {
         if (gameObject.CompareTag("Chest"))
         {
-            _hasKey = true;
+            hasKey = true;
             GameObject.Find("Text").GetComponent<Text>().text = "You found a key! Maybe it opens a door...";
             GameObject.Find("Text").GetComponent<Text>().color = new Color(1, 1, 1, 1);
             Invoke("RemoveText", 3f);
@@ -29,7 +34,7 @@ public class Interaction : MonoBehaviour //class used to manage interactions
 
         if (gameObject.CompareTag("BasementDoor"))
         {
-            if (_hasKey)
+            if (hasKey)
             {
                 _player.transform.position = new Vector3(-54, 1.5f, 0);
                
@@ -44,7 +49,7 @@ public class Interaction : MonoBehaviour //class used to manage interactions
 
         if (gameObject.CompareTag("Map"))
         {
-            _hasMap = true;
+            hasMap = true;
             GameObject.Find("Text").GetComponent<Text>().text = "You found the map! Its time to venture out into the forest";
             GameObject.Find("Text").GetComponent<Text>().color = new Color(1, 1, 1, 1);
             Invoke("RemoveText", 3f);
@@ -52,7 +57,7 @@ public class Interaction : MonoBehaviour //class used to manage interactions
 
         if (gameObject.CompareTag("Outside"))
         {
-            if (_hasMap)
+            if (hasMap)
             {
                 DontDestroyOnLoad(GameObject.FindWithTag("Player"));
                 SceneManager.LoadScene("Level2");

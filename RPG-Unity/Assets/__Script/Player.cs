@@ -5,6 +5,7 @@ using System.Security.Principal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Scene = UnityEditor.SearchService.Scene;
 
 public class Player : MonoBehaviour
 {
@@ -52,9 +53,6 @@ public class Player : MonoBehaviour
     private float _activeMoveSpeed;
     private float _dashCounter;
     private float _dashCoolCounter;
-
-
-    // Start is called before the first frame update
     public virtual void Start()     //assigns attributes a value for a generic player
     {
         _skillPoints = 0;
@@ -105,16 +103,18 @@ public class Player : MonoBehaviour
             expBar.SetMaxExperience(_level*25);
         }
 
-        if (_health <= 0)   //if the players health reaches 0, the game restarts
+        if (_health <=  0)   //if the players health reaches 0, the game restarts to the current level the user is on
         {
-            Destroy(GameObject.FindWithTag("Player"));
-            SceneManager.LoadSceneAsync("StartingMenu");
+            Destroy(gameObject);
+            SceneManager.LoadScene("StartingMenu");
         }
         
         if (Input.GetKeyDown(KeyCode.Escape)) //Toggles overlay
         {
             skillTreeUI.SetActive(!skillTreeUI.activeSelf);
         }
+        
+        
         
     }
 
@@ -306,7 +306,7 @@ public class Player : MonoBehaviour
         disableMovement = false;
     }
 
-    public IEnumerator Frames() //repeatly changes the game objects color to simulate iframex
+    public IEnumerator Frames() //repeatly changes the game objects color to simulate iframes
     {
         for (int c = 0; c < 7; c++)
         {
