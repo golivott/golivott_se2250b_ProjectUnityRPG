@@ -22,7 +22,7 @@ public class PlayerTwo : Player
     [Header("Explosive Arrow")]
     public float initArrowSpeed = 750f;
     public GameObject explosionSprite;
-
+    
     private bool _canExplosiveArrow = true;
     
     
@@ -171,7 +171,10 @@ public class PlayerTwo : Player
         // Forces all enemies to do undetected movement
         foreach (GameObject enemy in enemies)
         {
-            enemy.GetComponent<Enemy>().doUndetectedMove = true;
+            if (enemy != null)
+            {
+                enemy.GetComponent<Enemy>().doUndetectedMove = true;
+            }
         }
         yield return new WaitForSecondsRealtime(invisDuration);
         
@@ -181,7 +184,10 @@ public class PlayerTwo : Player
         // disables forcing of enemy undetected movement
         foreach (GameObject enemy in enemies)
         {
-            enemy.GetComponent<Enemy>().doUndetectedMove = false;
+            if (enemy != null)
+            {
+                enemy.GetComponent<Enemy>().doUndetectedMove = false;
+            }
         }
         
         // Can attack now
@@ -208,7 +214,7 @@ public class PlayerTwo : Player
         arrowSprite.GetComponent<ProjectileAttack>().SetDamage(0f);
 
         // Setting on death spawn the explosion
-        explosionSprite.GetComponent<ProjectileAttack>().damage = ability2Delay;
+        explosionSprite.GetComponent<ProjectileAttack>().damage = ability2Damage;
         arrowSprite.GetComponent<ProjectileAttack>().SetSpawnOnDeath(explosionSprite);
         
         // Killing arrow if no collision within 1 second

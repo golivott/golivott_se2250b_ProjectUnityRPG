@@ -9858,13 +9858,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f168a22bf7fef7449762d0476c16fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInvisable: 0
   attack1Damage: 25
   attack1Delay: 1
   attack2Damage: 25
   attack2Delay: 2
   ability1Damage: 25
   ability1Delay: 1
-  ability2Damage: 25
+  ability2Damage: 200
   ability2Delay: 1
   interactDistance: 1
   interactRange: 1

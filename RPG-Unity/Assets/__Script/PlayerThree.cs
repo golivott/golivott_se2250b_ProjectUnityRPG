@@ -192,7 +192,7 @@ public class PlayerThree : Player
         axe.GetComponent<ProjectileAttack>().SetSpin(axeSpin);
 
         // Set Damage
-        axe.GetComponent<ProjectileAttack>().SetDamage(ability2Delay);
+        axe.GetComponent<ProjectileAttack>().SetDamage(ability2Damage);
 
         // Destroy after 0.5 sec
         Destroy(axe, 1f);

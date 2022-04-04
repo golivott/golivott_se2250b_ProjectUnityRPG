@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
     private int _skillPoints;
 
     private bool _canTakeDamage;
-    private bool _iFrames;
     private Interaction _interaction;
 
     public bool isInvisable = false;
@@ -90,7 +89,6 @@ public class Player : MonoBehaviour
         _experience = 0;
         _money = 5000;
         _canTakeDamage = true;
-        _iFrames = false;
         _interaction = gameObject.GetComponent<Interaction>();
         _activeMoveSpeed = _speed;
         skillTreeUI.SetActive(false);
@@ -154,9 +152,6 @@ public class Player : MonoBehaviour
         {
             shopUI.SetActive(!shopUI.activeSelf);
         }
-        
-        
-        
     }
 
     public virtual void FixedUpdate()   //method for player movement and dash movement
@@ -419,7 +414,10 @@ public class Player : MonoBehaviour
         // Forces all enemies to do undetected movement
         foreach (GameObject enemy in enemies)
         {
-            enemy.GetComponent<Enemy>().doUndetectedMove = true;
+            if (enemy != null)
+            {
+                enemy.GetComponent<Enemy>().doUndetectedMove = true;
+            }
         }
 
         yield return new WaitForSecondsRealtime(30);
@@ -430,7 +428,10 @@ public class Player : MonoBehaviour
         // disables forcing of enemy undetected movement
         foreach (GameObject enemy in enemies)
         {
-            enemy.GetComponent<Enemy>().doUndetectedMove = false;
+            if (enemy != null)
+            {
+                enemy.GetComponent<Enemy>().doUndetectedMove = false;
+            }
         }
     }
     public void SetCanBeInvisible()
