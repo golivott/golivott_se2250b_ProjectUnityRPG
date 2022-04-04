@@ -167,6 +167,7 @@ public class PlayerTwo : Player
 
         // Make player invisible
         GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.4f);
+        isInvisable = true;
         // Forces all enemies to do undetected movement
         foreach (GameObject enemy in enemies)
         {
@@ -176,6 +177,7 @@ public class PlayerTwo : Player
         
         // Make player visible again
         GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+        isInvisable = false;
         // disables forcing of enemy undetected movement
         foreach (GameObject enemy in enemies)
         {

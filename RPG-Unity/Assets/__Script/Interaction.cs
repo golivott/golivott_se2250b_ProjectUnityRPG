@@ -60,6 +60,10 @@ public class Interaction : MonoBehaviour //class used to manage interactions
             if (hasMap)
             {
                 DontDestroyOnLoad(GameObject.FindWithTag("Player"));
+                GameObject.FindWithTag("MainCamera").GetComponent<Camera>().backgroundColor =
+                    new Color(113f / 255f, 170f / 255f, 52f / 255f);
+                GameObject.Find("LevelOneIcon").GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                GameObject.Find("LevelTwoIcon").GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 SceneManager.LoadScene("Level2");
             }
             else

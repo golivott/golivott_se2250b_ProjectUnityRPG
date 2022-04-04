@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     private bool _iFrames;
     private Interaction _interaction;
 
+    public bool isInvisable = false;
+
     [Header("Attack 1")]
     public float attack1Damage = 50f;
     public float attack1Delay = 0.5f;
@@ -95,7 +97,7 @@ public class Player : MonoBehaviour
         healthBar.SetMaxHealth(_health);
         expBar.SetMaxExperience(25);
         expBar.ResetExperience();
-        levelTwoIcon.enabled = false;
+        levelTwoIcon.color = new Color(1,1,1,0);
         attack1Damage = 50;
         attack1Delay = 0.5f;
         attack2Damage = 25;
@@ -210,7 +212,12 @@ public class Player : MonoBehaviour
                 moveDir.normalized * _activeMoveSpeed * Time.fixedDeltaTime;
         }
     }
-    
+
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        OnTriggerStay2D(collision.collider);
+    }
+
     public void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Enemy"))    //if the player collides with an enemy they take 10 damage
@@ -375,10 +382,19 @@ public class Player : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.1f);
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
-        
+
         if (Shop.HasNecklace && (_health <= Mathf.RoundToInt(100 * 0.1f)) && _canBeInvisible)
         {
             StartCoroutine(UseInvisability());
+        }
+        
+        if (isInvisable)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
     }
     public void Regeneration()
@@ -398,6 +414,8 @@ public class Player : MonoBehaviour
 
         // Make player invisible
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.4f);
+        isInvisable = true;
+        
         // Forces all enemies to do undetected movement
         foreach (GameObject enemy in enemies)
         {
@@ -408,6 +426,7 @@ public class Player : MonoBehaviour
 
         // Make player visible again
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+        isInvisable = false;
         // disables forcing of enemy undetected movement
         foreach (GameObject enemy in enemies)
         {
