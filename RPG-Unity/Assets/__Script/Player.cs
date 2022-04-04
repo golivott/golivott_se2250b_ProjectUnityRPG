@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Principal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -32,15 +33,15 @@ public class Player : MonoBehaviour
     [Header("Attack 2")]
     public float attack2Damage = 25f;
     public float attack2Delay = 1f;
-    
+
     [Header("Ability 1")]
     public float ability1Damage = 25f;
     public float ability1Delay = 1f;
-    
+
     [Header("Ability 2")]
     public float ability2Damage = 25f;
     public float ability2Delay = 1f;
-    
+
     [Header("Interactions")]
     public float interactDistance = 1f;
     public float interactRange = 1f;
@@ -67,9 +68,15 @@ public class Player : MonoBehaviour
 
     [Header("SkillTree UI")]
     public GameObject skillTreeUI; //Skilltree UI
-    
+
     [Header("Shop UI")]
     public GameObject shopUI; //shop UI
+
+    [Header("Item Images")]
+    public Texture healthPotion;
+    public Texture speedPotion;
+    public Texture strengthPotion;
+    public Texture resistancePotion;
 
     private float _activeMoveSpeed;
     private float _dashCounter;
@@ -77,7 +84,22 @@ public class Player : MonoBehaviour
 
     private bool _canRegen = true;
     private bool _canBeInvisible = true;
-    
+
+    public Dictionary<string, int> inventory;
+
+    public int differentItems;
+    public List<string> itemList;
+
+    private bool _isInvetoryOpen;
+    private int _lastItemIndex;
+
+    private bool _canDash;
+
+    private bool _canUseHealthPotion;
+    private bool _canUseSpeedPotion;
+    private bool _canUseStrengthPotion;
+    private bool _canUseResistancePotion;
+
     public virtual void Start()     //assigns attributes a value for a generic player
     {
         _skillPoints = 0;
@@ -100,6 +122,13 @@ public class Player : MonoBehaviour
         attack1Delay = 0.5f;
         attack2Damage = 25;
         attack2Delay = 1f;
+        inventory = new Dictionary<string, int>();
+        itemList = new List<string>();
+        _canDash = true;
+        _canUseHealthPotion = true;
+        _canUseSpeedPotion = true;
+        _canUseStrengthPotion = true;
+        _canUseResistancePotion = true;
     }
     public virtual void Update()
     {
@@ -113,7 +142,7 @@ public class Player : MonoBehaviour
         GameObject.Find("Level").GetComponent<Text>().text = "Player Level: " + _level;
         GameObject.Find("Experience").GetComponent<Text>().text = "Exp: " + _experience;
         expBar.SetExperience(_experience);
-        
+
         if (moveDir != Vector2.zero)   //if statement that creates an interact range for the player
         {
             lastMoveDir = moveDir;
@@ -142,19 +171,102 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
             SceneManager.LoadScene("StartingMenu");
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Escape)) //Toggles overlay
         {
             skillTreeUI.SetActive(!skillTreeUI.activeSelf);
         }
-        
+
         if (Input.GetKeyDown(KeyCode.P)) //Toggles overlay
         {
             shopUI.SetActive(!shopUI.activeSelf);
         }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (!_isInvetoryOpen)
+            {
+
+                    _isInvetoryOpen = true;
+                    SetItemImage();
+            }
+            else
+            {
+                _isInvetoryOpen = false;
+                SetItemImage();
+            }
+        }
+
+        if (_isInvetoryOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                if (_lastItemIndex == differentItems-1)
+                {
+                    _lastItemIndex = 0;
+                }
+                else{
+                    _lastItemIndex++;
+                }
+                SetItemImage();
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                if (_lastItemIndex == 0)
+                {
+                    _lastItemIndex = differentItems-1;
+                }
+                else{
+                    _lastItemIndex--;
+                }
+                SetItemImage();
+            }
+
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                string currentitem = itemList.ElementAt(_lastItemIndex);
+
+                if (currentitem.Equals("HealthPotion") && _canUseHealthPotion)
+                {
+                    StartCoroutine(HealthPotion());
+                }
+
+                else if (currentitem.Equals("SpeedPotion") && _canUseSpeedPotion)
+                {
+                    StartCoroutine(SpeedPotion());
+                }
+
+                else if (currentitem.Equals("StrengthPotion") && _canUseStrengthPotion)
+                {
+                    StartCoroutine(StrengthPotion());
+                }
+
+                else if (currentitem.Equals("ResistancePotion") && _canUseResistancePotion)
+                {
+                    StartCoroutine(ResistancePotion());
+                }
+                else
+                {
+                    goto setImage;
+                }
+                inventory[currentitem]--;
+                if (inventory[currentitem] == 0)
+                {
+                    inventory.Remove(currentitem);
+                    itemList.Remove(currentitem);
+                    differentItems--;
+                    if (_lastItemIndex > itemList.Count - 1)
+                    {
+                        _lastItemIndex = 0;
+                    }
+                }
+                setImage:
+                SetItemImage();
+            }
+        }
     }
 
-    public virtual void FixedUpdate()   //method for player movement and dash movement
+    public virtual void FixedUpdate() //method for player movement and dash movement
     {
         if (!disableMovement)
         {
@@ -174,37 +286,12 @@ public class Player : MonoBehaviour
             animator.SetFloat("Vertical", moveDir.y);
             animator.SetFloat("Magnitude", moveDir.magnitude);
 
-
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) && _canDash)
             {
-                if (_dashCoolCounter <= 0 && _dashCounter <= 0)
-                {
-                    _activeMoveSpeed = dashSpeed + _activeMoveSpeed;
-                    _dashCounter = dashLength;
-                    SetCannotTakeDamage();
-                }
+                StartCoroutine(Dash());
             }
-
-            if (_dashCounter > 0)
-            {
-                _dashCounter -= Time.fixedDeltaTime;
-
-                if (_dashCounter <= 0)
-                {
-                    _activeMoveSpeed = _speed;
-                    _dashCoolCounter = dashCooldown;
-                    SetCanTakeDamage();
-                }
-            }
-
-            if (_dashCoolCounter > 0)
-            {
-                _dashCoolCounter -= Time.fixedDeltaTime;
-            }
-
-            // Moving Character
             gameObject.GetComponent<Rigidbody2D>().velocity =
-                moveDir.normalized * _activeMoveSpeed * Time.fixedDeltaTime;
+                moveDir.normalized * _speed * Time.fixedDeltaTime;
         }
     }
 
@@ -250,12 +337,11 @@ public class Player : MonoBehaviour
     {
         return _activeMoveSpeed;
     }
-    
     public float GetSpeed()
     {
         return _speed;
     }
-    
+
     public float GetStrength()
     {
         return _strength;
@@ -342,9 +428,6 @@ public class Player : MonoBehaviour
     {
         _strength = strength;
     }
-    
-    
-    
     public void TakenDamage(int damage) //method used to calculate the player takes from an enemy
         {
             disableMovement = true;   //when the player gets hit there movement gets disabled for a short while since they take knockback
@@ -353,7 +436,7 @@ public class Player : MonoBehaviour
 
             if (_canTakeDamage)     //if the player doesn't have IFrames they can take damage
             {
-                   
+
                 _health -=  Mathf.RoundToInt(damage * _dmgTakenMultiplier); //subtract the damage from health
 
                 _canTakeDamage = false; //give player iframes
@@ -382,7 +465,7 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(UseInvisability());
         }
-        
+
         if (isInvisable)
         {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);
@@ -392,13 +475,67 @@ public class Player : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
     }
+
+    public IEnumerator HealthPotion()
+    {
+        _canUseHealthPotion = false;
+        for (int c = 0; c < 100; c++)
+        {
+            yield return new WaitForSecondsRealtime(0.6f);
+            if (_health != 100)
+            {
+                healthBar.SetHealth(_health);
+                _health++;
+            }
+        }
+
+        _canUseHealthPotion = true;
+    }
+
+    public IEnumerator SpeedPotion()
+    {
+        _speed = _speed * 2;
+        _canUseSpeedPotion = false;
+        yield return new WaitForSecondsRealtime(60f);
+        _speed = _speed / 2;
+        _canUseSpeedPotion = true;
+    }
+
+    public IEnumerator StrengthPotion() //repeatly changes the game objects color to simulate iframes
+    {
+        _strength = _strength + 50;
+        _canUseStrengthPotion = false;
+        yield return new WaitForSecondsRealtime(60f);
+        _strength = _strength - 50;
+        _canUseStrengthPotion = true;
+    }
+    public IEnumerator ResistancePotion() //repeatly changes the game objects color to simulate iframes
+    {
+        _dmgTakenMultiplier = _dmgTakenMultiplier / 2;
+        _canUseResistancePotion = false;
+        yield return new WaitForSecondsRealtime(60f);
+        _dmgTakenMultiplier = _dmgTakenMultiplier / 2;
+        _canUseResistancePotion = true;
+    }
+
     public void Regeneration()
     {
         if (_health != 100)
         {
             _health++;
+            healthBar.SetHealth(_health);
         }
         _canRegen = true;
+    }
+
+    public IEnumerator Dash()
+    {
+        _speed = _speed * 3f;
+        _canDash = false;
+        yield return new WaitForSecondsRealtime(0.1f);
+        _speed = _speed / 3f;
+        yield return new WaitForSecondsRealtime(1f);
+        _canDash = true;
     }
 
     private IEnumerator UseInvisability()
@@ -410,7 +547,7 @@ public class Player : MonoBehaviour
         // Make player invisible
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.4f);
         isInvisable = true;
-        
+
         // Forces all enemies to do undetected movement
         foreach (GameObject enemy in enemies)
         {
@@ -439,8 +576,53 @@ public class Player : MonoBehaviour
         _canBeInvisible = true;
     }
 
-    public GameObject GetShopUI()
+  public GameObject GetShopUI()
+  {
+      return shopUI;
+  }
+
+    private void SetItemImage()
     {
-        return shopUI;
+        if (_isInvetoryOpen)
+        {
+            if (itemList.Count != 0)
+            {
+                string firstItem = itemList.ElementAt(_lastItemIndex);
+                if (firstItem.Equals("HealthPotion"))
+                {
+                    GameObject.Find("ItemImage").GetComponent<RawImage>().texture = healthPotion;
+                    GameObject.Find("ItemAmount").GetComponent<Text>().text = "X " + inventory["HealthPotion"];
+                }
+                else if (firstItem.Equals("SpeedPotion"))
+                {
+                    GameObject.Find("ItemImage").GetComponent<RawImage>().texture = speedPotion;
+                    GameObject.Find("ItemAmount").GetComponent<Text>().text = "X " + inventory["SpeedPotion"];
+                }
+                else if (firstItem.Equals("StrengthPotion"))
+                {
+                    GameObject.Find("ItemImage").GetComponent<RawImage>().texture = strengthPotion;
+                    GameObject.Find("ItemAmount").GetComponent<Text>().text = "X " + inventory["StrengthPotion"];
+                }
+                else
+                {
+                    GameObject.Find("ItemImage").GetComponent<RawImage>().texture = resistancePotion;
+                    GameObject.Find("ItemAmount").GetComponent<Text>().text = "X " + inventory["ResistancePotion"];
+                }
+
+                GameObject.Find("ItemImage").GetComponent<RawImage>().color = new Color(1, 1, 1, 1);
+                GameObject.Find("ItemAmount").GetComponent<Text>().color = new Color(1, 1, 1, 1);
+            }
+            else
+            {
+                GameObject.Find("ItemImage").GetComponent<RawImage>().color = new Color(1, 1, 1, 0);
+                GameObject.Find("ItemAmount").GetComponent<Text>().color = new Color(1, 1, 1, 0);
+                _isInvetoryOpen = false;
+            }
+        }
+        else
+        {
+            GameObject.Find("ItemImage").GetComponent<RawImage>().color = new Color(1, 1, 1, 0);
+            GameObject.Find("ItemAmount").GetComponent<Text>().color = new Color(1, 1, 1, 0);
+        }
     }
 }
