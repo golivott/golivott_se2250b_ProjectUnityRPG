@@ -64,6 +64,9 @@ public class Interaction : MonoBehaviour //class used to manage interactions
                     new Color(113f / 255f, 170f / 255f, 52f / 255f);
                 GameObject.Find("LevelOneIcon").GetComponent<Image>().color = new Color(1, 1, 1, 0);
                 GameObject.Find("LevelTwoIcon").GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                GameObject.Find("Text").GetComponent<Text>().text = "I've been traveling a while, maybe I should check out that shop!";
+                GameObject.Find("Text").GetComponent<Text>().color = new Color(1, 1, 1, 1);
+                Invoke("RemoveText", 8f); 
                 SceneManager.LoadScene("Level2");
             }
             else
@@ -72,6 +75,15 @@ public class Interaction : MonoBehaviour //class used to manage interactions
                 GameObject.Find("Text").GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 Invoke("RemoveText", 3f);    
             }
+        }
+
+        // Level 2 Interactable
+        // When lever is interacted with
+        if (gameObject.CompareTag("Lever"))
+        {
+            GameObject.Find("Lever Off").GetComponent<SpriteRenderer>().color = new Color(1,1,1,0);
+            GameObject.Find("Lever On").GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
+            GameObject.Find("Bridge Baricade").SetActive(false);
         }
     }
 

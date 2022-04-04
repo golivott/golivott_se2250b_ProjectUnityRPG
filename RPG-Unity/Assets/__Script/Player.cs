@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
             interactPoint = moveDir * interactDistance + new Vector2(transform.position.x, transform.position.y);
         }
 
-        if (Input.GetKey(KeyCode.F))    //if the player clicks F, they can interact with objects that are interactable
+        if (Input.GetKeyDown(KeyCode.F))    //if the player clicks F, they can interact with objects that are interactable
         {
             Physics2D.queriesHitTriggers = true;
             Collider2D[] interactableObjects = Physics2D.OverlapCircleAll(interactPoint, interactRange, interactLayer);     //gets all colliders with layers that are interactable

@@ -189,7 +189,7 @@ public class PlayerTwo : Player
         _canExplosiveArrow = true;
         
         yield return new WaitForSecondsRealtime(ability1Delay - invisDuration);
-        
+
         _canInvisibility = true;
     }
 
