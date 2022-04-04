@@ -9883,8 +9883,8 @@ MonoBehaviour:
   dashSpeed: 700
   dashLength: 0.2
   dashCooldown: 1
-  unlockAbilityOne: 1
-  unlockAbilityTwo: 1
+  unlockAbilityOne: 0
+  unlockAbilityTwo: 0
   skillTreeUI: {fileID: 8517101557549236071}
   shopUI: {fileID: 7447145633665246373}
   attack1Speed: 750
