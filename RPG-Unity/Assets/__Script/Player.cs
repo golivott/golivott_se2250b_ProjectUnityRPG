@@ -576,10 +576,10 @@ public class Player : MonoBehaviour
         _canBeInvisible = true;
     }
 
-  public GameObject GetShopUI()
-  {
-      return shopUI;
-  }
+    public GameObject GetShopUI()
+    {
+        return shopUI;
+    }
 
     private void SetItemImage()
     {
