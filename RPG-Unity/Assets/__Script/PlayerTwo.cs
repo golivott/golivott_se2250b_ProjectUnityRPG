@@ -7,28 +7,20 @@ public class PlayerTwo : Player
 {
     // Properties for attack 1
     [Header("Attack 1")]
-    public float attack1Damage = 25f;
-    public float attack1Delay = 1f;
     public float attack1Speed = 750f;
     
     // Properties for attack 2
     [Header("Attack 2")]
-    public float attack2Damage = 25f;
-    public float attack2Delay = 2f;
     public float attack2Speed = 750f;
     
     // Invisibility
     [Header("Invisibility")]
     public float invisDuration = 3;
-    public float invisCooldown = 5;
-    
     private bool _canInvisibility = true;
     
     // Explosive Arrow
     [Header("Explosive Arrow")]
     public float initArrowSpeed = 750f;
-    public float explosiveCooldown = 5;
-    public float explosiveDamage = 200f;
     public GameObject explosionSprite;
 
     private bool _canExplosiveArrow = true;
@@ -41,7 +33,19 @@ public class PlayerTwo : Player
     [Header("Set Dynamically")] 
     public Vector2 attackPoint;
     public bool canAttack = true;
-    
+
+    public override void Start()
+    {
+        base.Start();
+        attack1Damage = 25f;
+        attack1Delay = 1f;
+        attack2Damage = 25f;
+        attack2Delay = 2f;
+        
+        ability1Delay = 5f;
+        ability2Damage = 200f;
+        ability2Delay = 5f;
+    }
     // Update is called once per frame
     public override void FixedUpdate()
     {
@@ -182,7 +186,7 @@ public class PlayerTwo : Player
         canAttack = true;
         _canExplosiveArrow = true;
         
-        yield return new WaitForSecondsRealtime(invisCooldown - invisDuration);
+        yield return new WaitForSecondsRealtime(ability1Delay - invisDuration);
         
         _canInvisibility = true;
     }
@@ -202,13 +206,13 @@ public class PlayerTwo : Player
         arrowSprite.GetComponent<ProjectileAttack>().SetDamage(0f);
 
         // Setting on death spawn the explosion
-        explosionSprite.GetComponent<ProjectileAttack>().damage = explosiveDamage;
+        explosionSprite.GetComponent<ProjectileAttack>().damage = ability2Delay;
         arrowSprite.GetComponent<ProjectileAttack>().SetSpawnOnDeath(explosionSprite);
         
         // Killing arrow if no collision within 1 second
         Destroy(arrowSprite, 1f);
 
-        yield return new WaitForSecondsRealtime(explosiveCooldown);
+        yield return new WaitForSecondsRealtime(ability2Delay);
 
         _canExplosiveArrow = true;
     }

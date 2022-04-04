@@ -18,6 +18,15 @@ public class Skeleton : Enemy   //A skeleton is similar to a generic enemy besid
         _throwBomb = true;
     }
 
+    public override void Update()
+    {
+        base.Update();
+        if (Shop.HasHelmet)
+        {
+            Radius = 5;
+        }
+    }
+
     public override void DetectedMovement()     //overrides detected movement, enemy still locks on but can throw bombs towards player
     {
         base.DetectedMovement();
