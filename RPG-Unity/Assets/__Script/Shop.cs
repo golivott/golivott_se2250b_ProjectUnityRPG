@@ -84,7 +84,7 @@ public class Shop : MonoBehaviour
         {
             if (_player.GetMoney() >= 500)
             {
-                _player.SetStrength(_player.GetStrength()* 1.25f);
+                _player.SetStrength(_player.GetStrength() + 12.5f);
                 _player.AddMoney(-500);
                 button.interactable = false;
             }
@@ -118,6 +118,18 @@ public class Shop : MonoBehaviour
         {
             if (_player.GetMoney() >= 75)
             {
+                if (!_player.GetComponent<Player>().inventory.ContainsKey("HealthPotion"))
+                {
+                    _player.GetComponent<Player>().itemList.Add("HealthPotion");
+                    _player.GetComponent<Player>().inventory.Add("HealthPotion", 1);
+                    _player.GetComponent<Player>().differentItems++;
+                }
+                else
+                {
+                    _player.GetComponent<Player>().inventory["HealthPotion"]++;
+                }
+                GameObject.Find("ItemAmount").GetComponent<Text>().text =
+                    "X " + _player.GetComponent<Player>().inventory["HealthPotion"];
                 _player.AddMoney(-75);
             }
         }
@@ -126,6 +138,16 @@ public class Shop : MonoBehaviour
         {
             if (_player.GetMoney() >= 75)
             {
+                if (!_player.GetComponent<Player>().inventory.ContainsKey("SpeedPotion"))
+                {
+                    _player.GetComponent<Player>().itemList.Add("SpeedPotion");
+                    _player.GetComponent<Player>().inventory.Add("SpeedPotion", 1);
+                    _player.GetComponent<Player>().differentItems++;
+                }
+                else
+                {
+                    _player.GetComponent<Player>().inventory["SpeedPotion"]++;
+                }
                 _player.AddMoney(-75);
             }
         }
@@ -134,6 +156,16 @@ public class Shop : MonoBehaviour
         {
             if (_player.GetMoney() >= 75)
             {
+                if (!_player.GetComponent<Player>().inventory.ContainsKey("StrengthPotion"))
+                {
+                    _player.GetComponent<Player>().itemList.Add("StrengthPotion");
+                    _player.GetComponent<Player>().inventory.Add("StrengthPotion", 1);
+                    _player.GetComponent<Player>().differentItems++;
+                }
+                else
+                {
+                    _player.GetComponent<Player>().inventory["StrengthPotion"]++;
+                }
                 _player.AddMoney(-75);
             }
         }
@@ -142,6 +174,16 @@ public class Shop : MonoBehaviour
         {
             if (_player.GetMoney() >= 75)
             {
+                if (!_player.GetComponent<Player>().inventory.ContainsKey("ResistancePotion"))
+                {
+                    _player.GetComponent<Player>().itemList.Add("ResistancePotion");
+                    _player.GetComponent<Player>().inventory.Add("ResistancePotion", 1);
+                    _player.GetComponent<Player>().differentItems++;
+                }
+                else
+                {
+                    _player.GetComponent<Player>().inventory["ResistancePotion"]++;
+                }
                 _player.AddMoney(-75);
             }
         }

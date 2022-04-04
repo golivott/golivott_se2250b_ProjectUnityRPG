@@ -14,6 +14,7 @@ TagManager:
   - Bomb
   - Map
   - Outside
+  - Item
   layers:
   - Default
   - TransparentFX
