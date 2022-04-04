@@ -5215,6 +5215,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265c04da777050043bf9b47aa49acab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attack1Damage: 50
+  attack1Delay: 0.5
+  attack2Damage: 25
+  attack2Delay: 1
+  ability1Damage: 25
+  ability1Delay: 1
+  ability2Damage: 25
+  ability2Delay: 1
   interactDistance: 1
   interactRange: 1
   interactLayer:
@@ -5237,17 +5245,9 @@ MonoBehaviour:
   shopUI: {fileID: 8603160899602641319}
   attackDist: 1
   attack1Range: 1
-  attack1Damage: 50
-  attack1Delay: 0.5
-  attack2Damage: 25
-  attack2Delay: 1
   attack2Speed: 600
-  swordSlashDamage: 50
-  swordSlashDelay: 5
   swordSlashSprite: {fileID: 4343842830354189182, guid: 2727cc55c729b044082803ab7e937aeb, type: 3}
   swordSpinRate: 20
-  fireStompDamage: 100
-  fireStompDelay: 3
   fireStompGrowth: 1.03
   fireStompSprite: {fileID: 6730847098272287020, guid: 7bb744c999c3bf4429a6e781aeda028a, type: 3}
   enemyLayers:

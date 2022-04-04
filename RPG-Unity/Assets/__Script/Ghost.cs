@@ -13,4 +13,13 @@ public class Ghost : Enemy  //A ghost is the same as a generic enemy besides it 
         Money = 5;
         EnemyName = "Ghost";
     }
+
+    public override void Update()
+    {
+        base.Update();
+        if (Shop.HasHelmet)
+        {
+            Radius = 2.5f;
+        }
+    }
 }

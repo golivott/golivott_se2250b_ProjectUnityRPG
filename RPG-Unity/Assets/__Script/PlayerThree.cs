@@ -10,20 +10,16 @@ public class PlayerThree : Player
     // Properties for attack 1
     [Header("Attack 1")]
     public float attack1Range = 2f;
-    public float attack1Damage = 50f;
-    public float attack1Delay = 1f;
+    
 
     // Properties for attack 2
     [Header("Attack 2")]
     public float attack2Range = 2f;
-    public float attack2Damage = 50f;
-    public float attack2Delay = 1f;
     public float attack2Knockback = 1f;
     
     // Rage Ability
     [Header("Rage")] 
     public float duration = 5f;
-    public float cooldown = 8f;
     public float maxStrengthBuff = 50f; // 50 strength is 100% damage increase
     public float maxResistanceDebuff = 0.5f; // multiplier is added to damage taken (0.5 here is 1.5*damage)
     
@@ -33,8 +29,6 @@ public class PlayerThree : Player
     [Header("Axe Throw")] 
     public float axeSpeed = 1f;
     public float axeSpin = 20f;
-    public float axeDamage = 1f;
-    public float axeCooldown = 1f;
     public GameObject axeSprite;
 
     private bool _canAxeThrow = true;
@@ -52,6 +46,15 @@ public class PlayerThree : Player
     public override void Start()
     {
         base.Start();
+        attack1Damage = 50f;
+        attack1Delay = 1f;
+        attack2Damage = 50f;
+        attack2Delay = 1f;
+        
+        ability1Delay = 8f;
+        ability2Damage = 100f;
+        ability2Delay = 3f;
+        
         // Enemys are triggers so need to be able to interact with them
         Physics2D.queriesHitTriggers = true;
     }
@@ -175,7 +178,7 @@ public class PlayerThree : Player
         SetSpeed(GetSpeed());
         
 
-        yield return new WaitForSecondsRealtime(cooldown - duration);
+        yield return new WaitForSecondsRealtime(ability1Delay - duration);
         _canRage = true;
     }
 
@@ -189,13 +192,13 @@ public class PlayerThree : Player
         axe.GetComponent<ProjectileAttack>().SetSpin(axeSpin);
 
         // Set Damage
-        axe.GetComponent<ProjectileAttack>().SetDamage(axeDamage);
+        axe.GetComponent<ProjectileAttack>().SetDamage(ability2Delay);
 
         // Destroy after 0.5 sec
         Destroy(axe, 1f);
 
         // Wait delay before allowing another attack
-        yield return new WaitForSecondsRealtime(axeCooldown);
+        yield return new WaitForSecondsRealtime(ability2Delay);
 
         _canAxeThrow = true;
     }

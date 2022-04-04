@@ -10,7 +10,7 @@ using Scene = UnityEditor.SearchService.Scene;
 public class Player : MonoBehaviour
 {
     //all appropriate attributes for a player
-    private float _health;
+    private int _health;
     private float _speed;
     private float _strength;
     private float _dmgTakenMultiplier;
@@ -23,6 +23,23 @@ public class Player : MonoBehaviour
     private bool _iFrames;
     private Interaction _interaction;
 
+    [Header("Attack 1")]
+    public float attack1Damage = 50f;
+    public float attack1Delay = 0.5f;
+
+    // Properties for attack 2
+    [Header("Attack 2")]
+    public float attack2Damage = 25f;
+    public float attack2Delay = 1f;
+    
+    [Header("Ability 1")]
+    public float ability1Damage = 25f;
+    public float ability1Delay = 1f;
+    
+    [Header("Ability 2")]
+    public float ability2Damage = 25f;
+    public float ability2Delay = 1f;
+    
     [Header("Interactions")]
     public float interactDistance = 1f;
     public float interactRange = 1f;
@@ -56,10 +73,14 @@ public class Player : MonoBehaviour
     private float _activeMoveSpeed;
     private float _dashCounter;
     private float _dashCoolCounter;
+
+    private bool _canRegen = true;
+    private bool _canBeInvisible = true;
+    
     public virtual void Start()     //assigns attributes a value for a generic player
     {
         _skillPoints = 0;
-        _health = 100f;
+        _health = 100;
         _speed = 350f;
         _strength = 1f;
         _dmgTakenMultiplier = 1f;
@@ -75,9 +96,19 @@ public class Player : MonoBehaviour
         expBar.SetMaxExperience(25);
         expBar.ResetExperience();
         levelTwoIcon.enabled = false;
+        attack1Damage = 50;
+        attack1Delay = 0.5f;
+        attack2Damage = 25;
+        attack2Delay = 1f;
     }
     public virtual void Update()
     {
+        if (Shop.HasRubyRing && _canRegen)
+        {
+            _canRegen = false;
+            Invoke(nameof(Regeneration), 2.5f);
+        }
+
         GameObject.Find("Health").GetComponent<Text>().text = "Health: " + _health;
         GameObject.Find("Level").GetComponent<Text>().text = "Player Level: " + _level;
         GameObject.Find("Experience").GetComponent<Text>().text = "Exp: " + _experience;
@@ -151,7 +182,7 @@ public class Player : MonoBehaviour
             {
                 if (_dashCoolCounter <= 0 && _dashCounter <= 0)
                 {
-                    _activeMoveSpeed = dashSpeed;
+                    _activeMoveSpeed = dashSpeed + _activeMoveSpeed;
                     _dashCounter = dashLength;
                     SetCannotTakeDamage();
                 }
@@ -213,10 +244,16 @@ public class Player : MonoBehaviour
     {
         return _health;
     }
-    public float GetSpeed()
+    public float GetActiveMoveSpeed()
     {
         return _activeMoveSpeed;
     }
+    
+    public float GetSpeed()
+    {
+        return _speed;
+    }
+    
     public float GetStrength()
     {
         return _strength;
@@ -241,8 +278,7 @@ public class Player : MonoBehaviour
     {
         return _skillPoints;
     }
-    
-    public void AddHealth(float health)
+    public void AddHealth(int health)
     {
         _health = _health + health;
     }
@@ -285,9 +321,24 @@ public class Player : MonoBehaviour
         _canTakeDamage = false;
     }
 
+    public void SetActiveMoveSpeed(float speed)
+    {
+        _activeMoveSpeed = speed;
+    }
+
     public void SetSpeed(float speed)
     {
         _speed = speed;
+    }
+
+    public void SetResistance(float resistance)
+    {
+        _dmgTakenMultiplier = resistance;
+    }
+
+    public void SetStrength(float strength)
+    {
+        _strength = strength;
     }
     
     
@@ -300,7 +351,8 @@ public class Player : MonoBehaviour
 
             if (_canTakeDamage)     //if the player doesn't have IFrames they can take damage
             {
-                _health -= damage * _dmgTakenMultiplier; //subtract the damage from health
+                   
+                _health -=  Mathf.RoundToInt(damage * _dmgTakenMultiplier); //subtract the damage from health
 
                 _canTakeDamage = false; //give player iframes
                 Invoke("SetCanTakeDamage", 2f); //After two seconds the player can take damage again
@@ -323,6 +375,47 @@ public class Player : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.1f);
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
+        
+        if (Shop.HasNecklace && (_health <= Mathf.RoundToInt(100 * 0.1f)) && _canBeInvisible)
+        {
+            StartCoroutine(UseInvisability());
+        }
+    }
+    public void Regeneration()
+    {
+        if (_health != 100)
+        {
+            _health++;
+        }
+        _canRegen = true;
+    }
 
+    private IEnumerator UseInvisability()
+    {
+        _canBeInvisible = false;
+        Invoke(nameof(SetCanBeInvisible), 180);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        // Make player invisible
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.4f);
+        // Forces all enemies to do undetected movement
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>().doUndetectedMove = true;
+        }
+
+        yield return new WaitForSecondsRealtime(30);
+
+        // Make player visible again
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+        // disables forcing of enemy undetected movement
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>().doUndetectedMove = false;
+        }
+    }
+    public void SetCanBeInvisible()
+    {
+        _canBeInvisible = true;
     }
 }

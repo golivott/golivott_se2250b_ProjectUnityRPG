@@ -9,27 +9,19 @@ public class PlayerOne : Player
     [Header("Attack 1")]
     public float attackDist = 1f;
     public float attack1Range = 1f;
-    public float attack1Damage = 50f;
-    public float attack1Delay = 0.5f;
-
+    
     // Properties for attack 2
     [Header("Attack 2")]
-    public float attack2Damage = 25f;
-    public float attack2Delay = 1f;
     public float attack2Speed = 1f;
     
     // Variables for Sword Slash ability
     [Header("Sword Slash")]
-    public float swordSlashDamage = 50f;
-    public float swordSlashDelay = 1;
     public GameObject swordSlashSprite;
     public float swordSpinRate = 1f;
     private bool _canSwordSlash = true;
 
     // Variable for fire stomp ability
     [Header("Fire Stomp")]
-    public float fireStompDamage = 100f;
-    public float fireStompDelay = 1f;
     public float fireStompGrowth = 1f;
     public GameObject fireStompSprite;
     private bool _canFireStomp = true;
@@ -48,6 +40,10 @@ public class PlayerOne : Player
         base.Start();
         // Enemys are triggers so need to be able to interact with them
         Physics2D.queriesHitTriggers = true;
+        ability1Damage = 50f;
+        ability1Delay = 3f;
+        ability2Damage = 25f;
+        ability2Delay = 3f;
     }
 
     public override void FixedUpdate()
@@ -147,13 +143,13 @@ public class PlayerOne : Player
         swordSlash.GetComponent<ProjectileAttack>().IsFollowPlayer();
 
         // Set Damage
-        swordSlash.GetComponent<ProjectileAttack>().SetDamage(swordSlashDamage);
+        swordSlash.GetComponent<ProjectileAttack>().SetDamage(ability1Damage);
         
         // Destroy after 0.5 sec
         Destroy(swordSlash, 0.5f);
 
         // Wait delay before allowing another attack
-        yield return new WaitForSecondsRealtime(swordSlashDelay);
+        yield return new WaitForSecondsRealtime(ability1Delay);
         _canSwordSlash = true;
     }
 
@@ -165,13 +161,13 @@ public class PlayerOne : Player
         fireStomp.GetComponent<ProjectileAttack>().SetGrowth(fireStompGrowth);
 
         // Set Damage
-        fireStomp.GetComponent<ProjectileAttack>().SetDamage(fireStompDamage);
+        fireStomp.GetComponent<ProjectileAttack>().SetDamage(ability2Damage);
 
         // Destroy after 0.5 sec
         Destroy(fireStomp, 1f);
 
         // Wait delay before allowing another attack
-        yield return new WaitForSecondsRealtime(fireStompDelay);
+        yield return new WaitForSecondsRealtime(ability2Delay);
 
         _canFireStomp = true;
     }
