@@ -15,6 +15,7 @@ TagManager:
   - Map
   - Outside
   - Lever
+  - Shop
   layers:
   - Default
   - TransparentFX

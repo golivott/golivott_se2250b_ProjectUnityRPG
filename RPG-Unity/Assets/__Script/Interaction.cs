@@ -14,15 +14,22 @@ public class Interaction : MonoBehaviour //class used to manage interactions
     public bool flippedLever;
     
     private Player _player;
+    private GameObject _shopUI;
 
     // Start is called before the first frame update
     void Start()
     {
         _player = GameObject.FindWithTag("Player").GetComponent<Player>(); //gets values from player script
+        _shopUI = _player.GetShopUI();
     }
 
     public void Interact(GameObject gameObject) //interact method that uses gameobject tags to decide what is being interacted with
     {
+        if (gameObject.CompareTag("Shop"))
+        {
+            _shopUI.SetActive(!_shopUI.activeSelf);
+        }
+        
         if (gameObject.CompareTag("Chest"))
         {
             hasKey = true;

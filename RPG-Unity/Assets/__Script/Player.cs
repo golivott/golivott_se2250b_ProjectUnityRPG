@@ -438,4 +438,9 @@ public class Player : MonoBehaviour
     {
         _canBeInvisible = true;
     }
+
+    public GameObject GetShopUI()
+    {
+        return shopUI;
+    }
 }
