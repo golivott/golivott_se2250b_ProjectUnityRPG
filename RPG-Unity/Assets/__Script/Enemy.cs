@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour  //Generic enemy class
     private int _money;
     private bool _moveEnemy;
     public bool doUndetectedMove = false;
+    
 
 
     // Start is called before the first frame update

@@ -102,14 +102,14 @@ public class Player : MonoBehaviour
 
     public virtual void Start()     //assigns attributes a value for a generic player
     {
-        _skillPoints = 10;
+        _skillPoints = 0;
         _health = 100;
         _speed = 350f;
         _strength = 1f;
         _dmgTakenMultiplier = 1f;
         _level = 1;
         _experience = 0;
-        _money = 5000;
+        _money = 0;
         _canTakeDamage = true;
         _interaction = gameObject.GetComponent<Interaction>();
         _activeMoveSpeed = _speed;
@@ -172,14 +172,17 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("StartingMenu");
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) //Toggles overlay
+        if (Input.GetKeyDown(KeyCode.Escape) && !shopUI.activeSelf ) //Toggles overlay
         {
             skillTreeUI.SetActive(!skillTreeUI.activeSelf);
-        }
-
-        if (Input.GetKeyDown(KeyCode.P)) //Toggles overlay
-        {
-            shopUI.SetActive(!shopUI.activeSelf);
+            if (skillTreeUI.activeSelf)
+            {
+                disableMovement = true;
+            }
+            else
+            {
+                disableMovement = false;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.I))
@@ -579,6 +582,11 @@ public class Player : MonoBehaviour
     public GameObject GetShopUI()
     {
         return shopUI;
+    }
+
+    public GameObject GetSkillTreeUI()
+    {
+        return skillTreeUI;
     }
 
     private void SetItemImage()

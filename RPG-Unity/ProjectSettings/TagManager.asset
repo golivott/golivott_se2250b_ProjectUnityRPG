@@ -16,6 +16,8 @@ TagManager:
   - Outside
   - Lever
   - Shop
+  - Item
+  - DevBox
   layers:
   - Default
   - TransparentFX

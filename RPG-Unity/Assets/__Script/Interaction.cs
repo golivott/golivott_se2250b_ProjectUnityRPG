@@ -25,9 +25,26 @@ public class Interaction : MonoBehaviour //class used to manage interactions
 
     public void Interact(GameObject gameObject) //interact method that uses gameobject tags to decide what is being interacted with
     {
-        if (gameObject.CompareTag("Shop"))
+        // Universal Interactions
+        // Open/Close shop window
+        if (gameObject.CompareTag("Shop") && !_player.GetSkillTreeUI().activeSelf)
         {
             _shopUI.SetActive(!_shopUI.activeSelf);
+            if (_shopUI.activeSelf)
+            {
+                _player.disableMovement = true;
+            }
+            else
+            {
+                _player.disableMovement = false;
+            }
+        }
+        
+        // DevBox
+        if (gameObject.CompareTag("DevBox"))
+        {
+            _player.AddMoney(1000);
+            _player.AddExperience(1000);
         }
         
         if (gameObject.CompareTag("Chest"))
