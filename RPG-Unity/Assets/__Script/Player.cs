@@ -335,12 +335,12 @@ public class Player : MonoBehaviour
             if (collision.gameObject.name.Equals("Grandpa(Clone)"))
             {
                 TakenDamage(50);
-                healthBar.SetHealth(_health);
+                healthBar.SetHealth(health);
             }
             else
             {
                 TakenDamage(10);
-                healthBar.SetHealth(_health);
+                healthBar.SetHealth(health);
             }
         }
 
@@ -349,7 +349,7 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.CompareTag("Explosion"))
         {
             TakenDamage(75);
-            healthBar.SetHealth(_health);
+            healthBar.SetHealth(health);
         }
 
         else if (collision.gameObject.CompareTag("Bomb"))   //if the player collides with a bomb they take 20 damage

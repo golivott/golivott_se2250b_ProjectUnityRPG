@@ -18,6 +18,8 @@ TagManager:
   - Shop
   - Item
   - DevBox
+  - Explosion
+  - LockPlayer
   layers:
   - Default
   - TransparentFX
