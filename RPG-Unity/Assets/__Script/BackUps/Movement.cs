@@ -1,27 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Movement : MonoBehaviour
 {
-    private float moveSpeed = 350; //default movespeed
+    private float _moveSpeed = 350; //default movespeed
     public Vector2 moveDir; //move direction
     public Animator animator; //animation object
     public bool disableMovement; //disables movement
-    public Player _player; //player object
+    [FormerlySerializedAs("_player")] public Player player; //player object
     
-    private float activeMoveSpeed; //the movespeed that gets used
+    private float _activeMoveSpeed; //the movespeed that gets used
     public float dashSpeed; //speed of dash 
 
     public float dashLength = 0.2f, dashCooldown = 1f; //0.2s is length of dash and 1s dash cooldown
 
-    private float dashCounter; //doesn't allow you to dash while a dash is already in process
-    private float dashCoolCounter; //dash cooldown
+    private float _dashCounter; //doesn't allow you to dash while a dash is already in process
+    private float _dashCoolCounter; //dash cooldown
 
     //sets movespeed to default speed and gets gameobject
     void Start(){
-        activeMoveSpeed = moveSpeed;
-        _player = gameObject.GetComponent<Player>();
+        _activeMoveSpeed = _moveSpeed;
+        player = gameObject.GetComponent<Player>();
     }
 
 
@@ -49,33 +50,33 @@ public class Movement : MonoBehaviour
             //Code for the dash
             if (Input.GetKey(KeyCode.Space))
             {
-                if (dashCoolCounter <= 0 && dashCounter <= 0) //checks cooldown and to see if a dash is already occuring, if not then does dash
+                if (_dashCoolCounter <= 0 && _dashCounter <= 0) //checks cooldown and to see if a dash is already occuring, if not then does dash
                 {
-                    activeMoveSpeed = dashSpeed;
-                    dashCounter = dashLength;
-                    _player.SetCannotTakeDamage(); //gives invulnerability
+                    _activeMoveSpeed = dashSpeed;
+                    _dashCounter = dashLength;
+                    player.SetCannotTakeDamage(); //gives invulnerability
                 }
             }
 
-            if (dashCounter > 0) //doesn't equal zero until a dash is done
+            if (_dashCounter > 0) //doesn't equal zero until a dash is done
             {
-                dashCounter -= Time.fixedDeltaTime;
+                _dashCounter -= Time.fixedDeltaTime;
 
-                if (dashCounter <= 0) //when dashCounter is zero, dash is over 
+                if (_dashCounter <= 0) //when dashCounter is zero, dash is over 
                 {
-                    activeMoveSpeed = moveSpeed;
-                    dashCoolCounter = dashCooldown;
-                    _player.SetCanTakeDamage(); //takes away invulnerability
+                    _activeMoveSpeed = _moveSpeed;
+                    _dashCoolCounter = dashCooldown;
+                    player.SetCanTakeDamage(); //takes away invulnerability
                 }
             }
 
-            if (dashCoolCounter > 0) //countdown for dash
+            if (_dashCoolCounter > 0) //countdown for dash
             {
-                dashCoolCounter -= Time.fixedDeltaTime;
+                _dashCoolCounter -= Time.fixedDeltaTime;
             }
 
             // Moving Character
-            gameObject.GetComponent<Rigidbody2D>().velocity = moveDir.normalized * activeMoveSpeed * Time.fixedDeltaTime; //allows the player to move
+            gameObject.GetComponent<Rigidbody2D>().velocity = moveDir.normalized * _activeMoveSpeed * Time.fixedDeltaTime; //allows the player to move
         }
     }
 }
