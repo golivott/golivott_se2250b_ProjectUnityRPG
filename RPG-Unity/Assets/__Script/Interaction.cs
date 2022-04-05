@@ -30,14 +30,7 @@ public class Interaction : MonoBehaviour //class used to manage interactions
         if (gameObject.CompareTag("Shop") && !_player.GetSkillTreeUI().activeSelf)
         {
             _shopUI.SetActive(!_shopUI.activeSelf);
-            if (_shopUI.activeSelf)
-            {
-                _player.disableMovement = true;
-            }
-            else
-            {
-                _player.disableMovement = false;
-            }
+            _player.disableMovement = !_player.disableMovement;
         }
         
         // DevBox

@@ -182,32 +182,26 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("StartingMenu");
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !shopUI.activeSelf && !pauseMenu.activeSelf) //Toggles overlay
+        if (Input.GetKeyDown(KeyCode.Escape)) //Toggles overlay
         {
-            skillTreeUI.SetActive(!skillTreeUI.activeSelf);
-            if (skillTreeUI.activeSelf)
+            if (!shopUI.activeSelf && !pauseMenu.activeSelf)
             {
-                disableMovement = true;
+                skillTreeUI.SetActive(!skillTreeUI.activeSelf);
+                disableMovement = !disableMovement;
             }
-            else
+
+            if (shopUI.activeSelf || pauseMenu.activeSelf)
             {
-                disableMovement = false;
+                shopUI.SetActive(false);
+                pauseMenu.SetActive(false);
+                disableMovement = !disableMovement;
             }
         }
-
-
 
         if (Input.GetKeyDown(KeyCode.LeftControl) && !shopUI.activeSelf && !skillTreeUI.activeSelf) //Toggles overlay
         {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
-            if (pauseMenu.activeSelf)
-            {
-                disableMovement = true;
-            }
-            else
-            {
-                disableMovement = false;
-            }
+            disableMovement = !disableMovement;
         }
 
         if (Input.GetKeyDown(KeyCode.I))
