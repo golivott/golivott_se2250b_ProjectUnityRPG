@@ -376,7 +376,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Our blacksmiths will sharpen that sword of yours allowing you to deal more
-    damage to your foes. Only works for your basic abilities! ($750)
+    damage to your foes. Only works for your basic attacks! ($750)
 --- !u!1 &622111429880640488
 GameObject:
   m_ObjectHideFlags: 0

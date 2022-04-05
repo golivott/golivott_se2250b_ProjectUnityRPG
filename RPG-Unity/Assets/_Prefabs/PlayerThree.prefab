@@ -675,8 +675,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Our blacksmiths will sharpen that sword of yours allowing you to deal more
-    damage to your foes. Only works for your basic abilities!
+  m_Text: Our blacksmiths will add some extra grit to those boxing gloves of yours,
+    allowing you to deal more damage to your foes. Only works for your basic attacks!
+    ($750)
 --- !u!1 &478775717358418726
 GameObject:
   m_ObjectHideFlags: 0
@@ -4007,7 +4008,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 7162f827f19d91c4cafe25d55653bfe4, type: 3}
+  m_Texture: {fileID: 2800000, guid: 2784ef8f42950644688e2b51ecf1e23f, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -12726,7 +12727,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Upgrade Sword
+  m_Text: Upgrade Fists
 --- !u!1 &8517297466855066751
 GameObject:
   m_ObjectHideFlags: 0

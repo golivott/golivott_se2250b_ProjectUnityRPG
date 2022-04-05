@@ -188,7 +188,7 @@ public class Shop : MonoBehaviour
             }
         }
         
-        if (_text.text.Equals("Upgrade Sword"))
+        if (_text.text.Equals("Upgrade Sword") || _text.text.Equals("Upgrade Bow") || _text.text.Equals("Upgrade Fists"))
         {
             if (_player.GetMoney() >= 750)
             {
