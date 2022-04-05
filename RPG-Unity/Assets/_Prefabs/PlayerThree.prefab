@@ -9961,7 +9961,7 @@ MonoBehaviour:
   cooldownTwo: 3
   abilityOne: 101
   abilityTwoImage: {fileID: 3565131486790242683}
-  cooldownThree: 5
+  cooldownThree: 13
   abilityTwo: 113
 --- !u!1 &6311839914330253927
 GameObject:

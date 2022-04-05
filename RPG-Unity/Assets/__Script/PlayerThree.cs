@@ -52,7 +52,7 @@ public class PlayerThree : Player
         attack2Delay = 1f;
 
         ability1Damage = maxStrengthBuff;
-        ability1Delay = 8f;
+        ability1Delay = 13f;
         ability2Damage = 100f;
         ability2Delay = 3f;
         

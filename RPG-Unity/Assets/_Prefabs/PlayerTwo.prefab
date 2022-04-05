@@ -12552,10 +12552,10 @@ MonoBehaviour:
   cooldownOne: 1.2
   Dash: 32
   abilityOneImage: {fileID: 3694468844612569286}
-  cooldownTwo: 3
+  cooldownTwo: 5
   abilityOne: 101
   abilityTwoImage: {fileID: 7661394007581617519}
-  cooldownThree: 5
+  cooldownThree: 8
   abilityTwo: 113
 --- !u!1 &8517101558110594305
 GameObject:
