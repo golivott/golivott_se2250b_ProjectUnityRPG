@@ -42,6 +42,7 @@ public class PlayerTwo : Player
         attack2Damage = 25f;
         attack2Delay = 2f;
         
+        ability1Damage = 25f;
         ability1Delay = 5f;
         ability2Damage = 200f;
         ability2Delay = 5f;
@@ -168,6 +169,7 @@ public class PlayerTwo : Player
         // Make player invisible
         GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.4f);
         isInvisable = true;
+        AddStrength(ability1Damage);
         // Forces all enemies to do undetected movement
         foreach (GameObject enemy in enemies)
         {
@@ -181,6 +183,7 @@ public class PlayerTwo : Player
         // Make player visible again
         GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         isInvisable = false;
+        AddStrength(-ability1Damage);
         // disables forcing of enemy undetected movement
         foreach (GameObject enemy in enemies)
         {

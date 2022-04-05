@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
 
     public virtual void Start()     //assigns attributes a value for a generic player
     {
-        _skillPoints = 0;
+        _skillPoints = 10;
         _health = 100;
         _speed = 350f;
         _strength = 1f;
