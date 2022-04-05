@@ -50,7 +50,8 @@ public class PlayerThree : Player
         attack1Delay = 1f;
         attack2Damage = 50f;
         attack2Delay = 1f;
-        
+
+        ability1Damage = maxStrengthBuff;
         ability1Delay = 8f;
         ability2Damage = 100f;
         ability2Delay = 3f;
@@ -156,7 +157,7 @@ public class PlayerThree : Player
         // Activate Rage
         // Calculate player properties
         GetComponent<SpriteRenderer>().color = new Color(1, 0.2f, 0.2f);
-        float strengthBuff = GetHealth() / 100f * maxStrengthBuff; // %health * max buff
+        float strengthBuff = GetHealth() / 100f * ability1Damage; // %health * max buff
         float resistanceDebuff = maxResistanceDebuff - GetHealth() / 100f * maxResistanceDebuff;// max debuff - %health * max debuff
         float speedBuff = GetSpeed();
         
