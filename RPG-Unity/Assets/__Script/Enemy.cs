@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour  //Generic enemy class
             KillEnemy();
         }
     }
-    public void UnDetectedMovement()    //passive movement consists of an enemy moving for one second in a direction of a randomly generated 2D vector
+    public virtual void UnDetectedMovement()    //passive movement consists of an enemy moving for one second in a direction of a randomly generated 2D vector
     {
         _moveEnemy = true;
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f,1f)) * _speed;

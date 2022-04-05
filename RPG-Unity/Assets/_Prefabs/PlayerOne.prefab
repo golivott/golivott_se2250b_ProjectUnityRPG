@@ -6384,6 +6384,7 @@ MonoBehaviour:
   resistancePotion: {fileID: 2800000, guid: f6dd3f9ceb4f0104284afb041bc272ff, type: 3}
   differentItems: 0
   itemList: []
+  grandpa: {fileID: 4323460002890103701, guid: 1a0597664553940479f218c9887aa908, type: 3}
   attackDist: 1
   attack1Range: 1
   attack2Speed: 600
