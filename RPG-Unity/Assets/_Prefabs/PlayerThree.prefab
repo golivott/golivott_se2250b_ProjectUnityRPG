@@ -1566,7 +1566,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6311839912667057719}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8581866642849806077
 MonoBehaviour:
@@ -3115,7 +3115,7 @@ RectTransform:
   - {fileID: 4166307721338560662}
   - {fileID: 823767717262022018}
   m_Father: {fileID: 6311839912667057719}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9889,8 +9889,8 @@ Transform:
   - {fileID: 6311839914157059304}
   - {fileID: 3197958531242494529}
   - {fileID: 4294280091219003318}
-  - {fileID: 8867762554353418147}
   - {fileID: 54333442332255294}
+  - {fileID: 8867762554353418147}
   m_Father: {fileID: 6311839913949756079}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10711,6 +10711,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6d36be3b50e464d85365106ec8e52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  speed: 0
+  strength: 0
+  dmgTakenMultiplier: 0
+  level: 0
+  experience: 0
+  money: 0
+  skillPoints: 0
   isInvisable: 0
   attack1Damage: 50
   attack1Delay: 1
@@ -11352,7 +11360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashImage: {fileID: 6311839913240013623}
   cooldownOne: 1.2
-  Dash: 32
+  dash: 0
   abilityOneImage: {fileID: 2889102197641053622}
   cooldownTwo: 3
   abilityOne: 101

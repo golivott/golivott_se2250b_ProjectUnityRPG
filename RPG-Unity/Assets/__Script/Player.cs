@@ -5,20 +5,21 @@ using System.Linq;
 using System.Security.Principal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Scene = UnityEditor.SearchService.Scene;
 
 public class Player : MonoBehaviour
 {
     //all appropriate attributes for a player
-    private int _health;
-    private float _speed;
-    private float _strength;
-    private float _dmgTakenMultiplier;
-    private int _level;
-    private int _experience;
-    private int _money;
-    private int _skillPoints;
+    public int health;
+    public float speed;
+    public float strength;
+    public float dmgTakenMultiplier;
+    public int level;
+    public int experience;
+    public int money;
+    public int skillPoints;
 
     private bool _canTakeDamage;
     private Interaction _interaction;
@@ -88,7 +89,7 @@ public class Player : MonoBehaviour
     private bool _canRegen = true;
     private bool _canBeInvisible = true;
 
-    public Dictionary<string, int> inventory;
+    public Dictionary<string, int> Inventory;
 
     public int differentItems;
     public List<string> itemList;
@@ -105,19 +106,19 @@ public class Player : MonoBehaviour
 
     public virtual void Start()     //assigns attributes a value for a generic player
     {
-        _skillPoints = 0;
-        _health = 100;
-        _speed = 350f;
-        _strength = 1f;
-        _dmgTakenMultiplier = 1f;
-        _level = 1;
-        _experience = 0;
-        _money = 0;
+        skillPoints = 0;
+        health = 100;
+        speed = 350f;
+        strength = 1f;
+        dmgTakenMultiplier = 1f;
+        level = 1;
+        experience = 0;
+        money = 0;
         _canTakeDamage = true;
         _interaction = gameObject.GetComponent<Interaction>();
-        _activeMoveSpeed = _speed;
+        _activeMoveSpeed = speed;
         skillTreeUI.SetActive(false);
-        healthBar.SetMaxHealth(_health);
+        healthBar.SetMaxHealth(health);
         expBar.SetMaxExperience(25);
         expBar.ResetExperience();
         levelTwoIcon.color = new Color(1,1,1,0);
@@ -125,7 +126,7 @@ public class Player : MonoBehaviour
         attack1Delay = 0.5f;
         attack2Damage = 25;
         attack2Delay = 1f;
-        inventory = new Dictionary<string, int>();
+        Inventory = new Dictionary<string, int>();
         itemList = new List<string>();
         _canDash = true;
         _canUseHealthPotion = true;
@@ -135,17 +136,17 @@ public class Player : MonoBehaviour
     }
     public virtual void Update()
     {
-        GameObject.Find("MoneyText").GetComponent<Text>().text ="Money: " + "$" + _money;
+        GameObject.Find("MoneyText").GetComponent<Text>().text ="Money: " + "$" + money;
         if (Shop.HasRubyRing && _canRegen)
         {
             _canRegen = false;
             Invoke(nameof(Regeneration), 2.5f);
         }
 
-        GameObject.Find("Health").GetComponent<Text>().text = "Health: " + _health;
-        GameObject.Find("Level").GetComponent<Text>().text = "Player Level: " + _level;
-        GameObject.Find("Experience").GetComponent<Text>().text = "Exp: " + _experience;
-        expBar.SetExperience(_experience);
+        GameObject.Find("Health").GetComponent<Text>().text = "Health: " + health;
+        GameObject.Find("Level").GetComponent<Text>().text = "Player Level: " + level;
+        GameObject.Find("Experience").GetComponent<Text>().text = "Exp: " + experience;
+        expBar.SetExperience(experience);
 
         if (moveDir != Vector2.zero)   //if statement that creates an interact range for the player
         {
@@ -162,15 +163,15 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (_experience >= 25 * _level)   //if the players XP reaches a value greater than or equal to 50 they level up and experience is reset to 0
+        if (experience >= 25 * level)   //if the players XP reaches a value greater than or equal to 50 they level up and experience is reset to 0
         {
-            _level++;
-            _experience = _experience - 25;
-            _skillPoints+=10;
-            expBar.SetMaxExperience(_level*25);
+            level++;
+            experience = experience - 25;
+            skillPoints+=10;
+            expBar.SetMaxExperience(level*25);
         }
 
-        if (_health <=  0)   //if the players health reaches 0, the game restarts to the current level the user is on
+        if (health <=  0)   //if the players health reaches 0, the game restarts to the current level the user is on
         {
             Destroy(gameObject);
             SceneManager.LoadScene("StartingMenu");
@@ -271,10 +272,10 @@ public class Player : MonoBehaviour
                 {
                     goto setImage;
                 }
-                inventory[currentitem]--;
-                if (inventory[currentitem] == 0)
+                Inventory[currentitem]--;
+                if (Inventory[currentitem] == 0)
                 {
-                    inventory.Remove(currentitem);
+                    Inventory.Remove(currentitem);
                     itemList.Remove(currentitem);
                     differentItems--;
                     if (_lastItemIndex > itemList.Count - 1)
@@ -313,7 +314,7 @@ public class Player : MonoBehaviour
                 StartCoroutine(Dash());
             }
             gameObject.GetComponent<Rigidbody2D>().velocity =
-                moveDir.normalized * _speed * Time.fixedDeltaTime;
+                moveDir.normalized * speed * Time.fixedDeltaTime;
         }
     }
 
@@ -327,13 +328,13 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))    //if the player collides with an enemy they take 10 damage
         {
             TakenDamage(10);
-            healthBar.SetHealth(_health);
+            healthBar.SetHealth(health);
         }
 
         else if (collision.gameObject.CompareTag("Bomb"))   //if the player collides with a bomb they take 20 damage
         {
             TakenDamage(20);
-            healthBar.SetHealth(_health);
+            healthBar.SetHealth(health);
         }
         else if (collision.gameObject.CompareTag("Attic"))  //if a player collides with the stairs they get teleported to the attic
         {
@@ -353,7 +354,7 @@ public class Player : MonoBehaviour
     //Getters and Adders for each attribute in the player class
     public float GetHealth()
     {
-        return _health;
+        return health;
     }
     public float GetActiveMoveSpeed()
     {
@@ -361,36 +362,36 @@ public class Player : MonoBehaviour
     }
     public float GetSpeed()
     {
-        return _speed;
+        return speed;
     }
 
     public float GetStrength()
     {
-        return _strength;
+        return strength;
     }
     public float GetResistance()
     {
-        return _dmgTakenMultiplier;
+        return dmgTakenMultiplier;
     }
     public int GetLevel()
     {
-        return _level;
+        return level;
     }
     public int GetExperience()
     {
-        return _experience;
+        return experience;
     }
     public int GetMoney()
     {
-        return _money;
+        return money;
     }
     public int GetSkillPoints()
     {
-        return _skillPoints;
+        return skillPoints;
     }
     public void AddHealth(int health)
     {
-        _health = _health + health;
+        this.health = this.health + health;
     }
     public void AddSpeed(float speed)
     {
@@ -398,27 +399,27 @@ public class Player : MonoBehaviour
     }
     public void AddStrength(float strength)
     {
-        _strength = _strength + strength;
+        this.strength = this.strength + strength;
     }
     public void AddDmgTakenMultiplier(float dmgTakenMultiplier)
     {
-        _dmgTakenMultiplier = _dmgTakenMultiplier + dmgTakenMultiplier;
+        this.dmgTakenMultiplier = this.dmgTakenMultiplier + dmgTakenMultiplier;
     }
     public void AddLevel(int level)
     {
-        _level = level + _level;
+        this.level = level + this.level;
     }
     public void AddExperience(int experience)
     {
-        _experience = _experience + experience;
+        this.experience = this.experience + experience;
     }
     public void AddMoney(int money)
     {
-        _money = _money + money;
+        this.money = this.money + money;
     }
     public void AddSkillPoints(int skillPoints)
     {
-        _skillPoints = _skillPoints + skillPoints;
+        this.skillPoints = this.skillPoints + skillPoints;
     }
 
     public void SetCanTakeDamage()  //method used for invincibilty frames
@@ -438,17 +439,17 @@ public class Player : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
-        _speed = speed;
+        this.speed = speed;
     }
 
     public void SetResistance(float resistance)
     {
-        _dmgTakenMultiplier = resistance;
+        dmgTakenMultiplier = resistance;
     }
 
     public void SetStrength(float strength)
     {
-        _strength = strength;
+        this.strength = strength;
     }
     public void TakenDamage(int damage) //method used to calculate the player takes from an enemy
         {
@@ -459,7 +460,7 @@ public class Player : MonoBehaviour
             if (_canTakeDamage)     //if the player doesn't have IFrames they can take damage
             {
 
-                _health -=  Mathf.RoundToInt(damage * _dmgTakenMultiplier); //subtract the damage from health
+                health -=  Mathf.RoundToInt(damage * dmgTakenMultiplier); //subtract the damage from health
 
                 _canTakeDamage = false; //give player iframes
                 Invoke("SetCanTakeDamage", 2f); //After two seconds the player can take damage again
@@ -483,7 +484,7 @@ public class Player : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
 
-        if (Shop.HasNecklace && (_health <= Mathf.RoundToInt(100 * 0.1f)) && _canBeInvisible)
+        if (Shop.HasNecklace && (health <= Mathf.RoundToInt(100 * 0.1f)) && _canBeInvisible)
         {
             StartCoroutine(UseInvisability());
         }
@@ -504,10 +505,10 @@ public class Player : MonoBehaviour
         for (int c = 0; c < 100; c++)
         {
             yield return new WaitForSecondsRealtime(0.6f);
-            if (_health != 100)
+            if (health != 100)
             {
-                healthBar.SetHealth(_health);
-                _health++;
+                healthBar.SetHealth(health);
+                health++;
             }
         }
 
@@ -516,46 +517,46 @@ public class Player : MonoBehaviour
 
     public IEnumerator SpeedPotion()
     {
-        _speed = _speed * 2;
+        speed = speed * 2;
         _canUseSpeedPotion = false;
         yield return new WaitForSecondsRealtime(60f);
-        _speed = _speed / 2;
+        speed = speed / 2;
         _canUseSpeedPotion = true;
     }
 
     public IEnumerator StrengthPotion() //repeatly changes the game objects color to simulate iframes
     {
-        _strength = _strength + 50;
+        strength = strength + 50;
         _canUseStrengthPotion = false;
         yield return new WaitForSecondsRealtime(60f);
-        _strength = _strength - 50;
+        strength = strength - 50;
         _canUseStrengthPotion = true;
     }
     public IEnumerator ResistancePotion() //repeatly changes the game objects color to simulate iframes
     {
-        _dmgTakenMultiplier = _dmgTakenMultiplier / 2;
+        dmgTakenMultiplier = dmgTakenMultiplier / 2;
         _canUseResistancePotion = false;
         yield return new WaitForSecondsRealtime(60f);
-        _dmgTakenMultiplier = _dmgTakenMultiplier / 2;
+        dmgTakenMultiplier = dmgTakenMultiplier / 2;
         _canUseResistancePotion = true;
     }
 
     public void Regeneration()
     {
-        if (_health != 100)
+        if (health != 100)
         {
-            _health++;
-            healthBar.SetHealth(_health);
+            health++;
+            healthBar.SetHealth(health);
         }
         _canRegen = true;
     }
 
     public IEnumerator Dash()
     {
-        _speed = _speed * 3f;
+        speed = speed * 3f;
         _canDash = false;
         yield return new WaitForSecondsRealtime(0.1f);
-        _speed = _speed / 3f;
+        speed = speed / 3f;
         yield return new WaitForSecondsRealtime(1f);
         _canDash = true;
     }
@@ -618,22 +619,22 @@ public class Player : MonoBehaviour
                 if (firstItem.Equals("HealthPotion"))
                 {
                     GameObject.Find("ItemImage").GetComponent<RawImage>().texture = healthPotion;
-                    GameObject.Find("ItemAmount").GetComponent<Text>().text = "X " + inventory["HealthPotion"];
+                    GameObject.Find("ItemAmount").GetComponent<Text>().text = "X " + Inventory["HealthPotion"];
                 }
                 else if (firstItem.Equals("SpeedPotion"))
                 {
                     GameObject.Find("ItemImage").GetComponent<RawImage>().texture = speedPotion;
-                    GameObject.Find("ItemAmount").GetComponent<Text>().text = "X " + inventory["SpeedPotion"];
+                    GameObject.Find("ItemAmount").GetComponent<Text>().text = "X " + Inventory["SpeedPotion"];
                 }
                 else if (firstItem.Equals("StrengthPotion"))
                 {
                     GameObject.Find("ItemImage").GetComponent<RawImage>().texture = strengthPotion;
-                    GameObject.Find("ItemAmount").GetComponent<Text>().text = "X " + inventory["StrengthPotion"];
+                    GameObject.Find("ItemAmount").GetComponent<Text>().text = "X " + Inventory["StrengthPotion"];
                 }
                 else
                 {
                     GameObject.Find("ItemImage").GetComponent<RawImage>().texture = resistancePotion;
-                    GameObject.Find("ItemAmount").GetComponent<Text>().text = "X " + inventory["ResistancePotion"];
+                    GameObject.Find("ItemAmount").GetComponent<Text>().text = "X " + Inventory["ResistancePotion"];
                 }
 
                 GameObject.Find("ItemImage").GetComponent<RawImage>().color = new Color(1, 1, 1, 1);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class AblitiesCD : MonoBehaviour
@@ -10,21 +11,21 @@ public class AblitiesCD : MonoBehaviour
     [Header("Dash")]
     public Image dashImage;
     public float cooldownOne = 1;
-    bool isCooldownOne = false;
-    public KeyCode Dash;
+    bool _isCooldownOne = false;
+    public KeyCode dash;
 
     //AbilityOne information
     [Header("AbilityOne")]
     public Image abilityOneImage;
     public float cooldownTwo = 3;
-    bool isCooldownTwo = false;
+    bool _isCooldownTwo = false;
     public KeyCode abilityOne;
     
     //AbilityTwo information
     [Header("AbilityTwo")]
     public Image abilityTwoImage;
     public float cooldownThree = 5;
-    bool isCooldownThree = false;
+    bool _isCooldownThree = false;
     public KeyCode abilityTwo;
 
 
@@ -47,32 +48,32 @@ public class AblitiesCD : MonoBehaviour
 
     //If space is pressed, puts ability on cooldown until cooldown is done (timer effect)
     void AbilityDash(){
-        if(Input.GetKey(Dash) && isCooldownOne == false){
-            isCooldownOne = true;
+        if(Input.GetKey(dash) && _isCooldownOne == false){
+            _isCooldownOne = true;
             dashImage.fillAmount = 1;
         }
 
-        if(isCooldownOne){
+        if(_isCooldownOne){
             dashImage.fillAmount-= 1 / cooldownOne * Time.deltaTime;
             if(dashImage.fillAmount <=0){
                 dashImage.fillAmount = 0;
-                isCooldownOne=false;
+                _isCooldownOne=false;
             }
         }
     }       
     
     //If E is pressed, puts ability on cooldown until cooldown is done (timer effect)
     void AbilityOne(){
-        if(Input.GetKey(abilityOne) && isCooldownTwo == false){
-            isCooldownTwo = true;
+        if(Input.GetKey(abilityOne) && _isCooldownTwo == false){
+            _isCooldownTwo = true;
             abilityOneImage.fillAmount = 1;
         }
 
-        if(isCooldownTwo){
+        if(_isCooldownTwo){
             abilityOneImage.fillAmount-= 1 / cooldownTwo * Time.deltaTime;
             if(abilityOneImage.fillAmount <=0){
                 abilityOneImage.fillAmount = 0;
-                isCooldownTwo=false;
+                _isCooldownTwo=false;
             }
         }
     }
@@ -80,16 +81,16 @@ public class AblitiesCD : MonoBehaviour
 
     //If Q, puts ability on cooldown until cooldown is done (timer effect)
     void AbilityTwo(){
-        if(Input.GetKey(abilityTwo) && isCooldownThree == false){
-            isCooldownThree = true;
+        if(Input.GetKey(abilityTwo) && _isCooldownThree == false){
+            _isCooldownThree = true;
             abilityTwoImage.fillAmount = 1;
         }
 
-        if(isCooldownThree){
+        if(_isCooldownThree){
             abilityTwoImage.fillAmount-= 1 / cooldownThree * Time.deltaTime;
             if(abilityTwoImage.fillAmount <=0){
                 abilityTwoImage.fillAmount = 0;
-                isCooldownThree=false;
+                _isCooldownThree=false;
             }
         }
     }
