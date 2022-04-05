@@ -9022,6 +9022,13 @@ MonoBehaviour:
   unlockAbilityTwo: 0
   skillTreeUI: {fileID: 6311839913645345293}
   shopUI: {fileID: 5107048934780155048}
+  healthPotion: {fileID: 0}
+  speedPotion: {fileID: 0}
+  strengthPotion: {fileID: 0}
+  resistancePotion: {fileID: 0}
+  differentItems: 0
+  itemList: []
+  grandpa: {fileID: 4323460002890103701, guid: 1a0597664553940479f218c9887aa908, type: 3}
   attackDist: 1
   attack1Range: 2
   attack2Range: 2

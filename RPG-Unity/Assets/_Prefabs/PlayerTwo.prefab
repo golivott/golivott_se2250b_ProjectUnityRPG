@@ -9887,6 +9887,13 @@ MonoBehaviour:
   unlockAbilityTwo: 0
   skillTreeUI: {fileID: 8517101557549236071}
   shopUI: {fileID: 7447145633665246373}
+  healthPotion: {fileID: 0}
+  speedPotion: {fileID: 0}
+  strengthPotion: {fileID: 0}
+  resistancePotion: {fileID: 0}
+  differentItems: 0
+  itemList: []
+  grandpa: {fileID: 4323460002890103701, guid: 1a0597664553940479f218c9887aa908, type: 3}
   attack1Speed: 750
   attack2Speed: 750
   invisDuration: 3

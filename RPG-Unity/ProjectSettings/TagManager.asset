@@ -16,6 +16,10 @@ TagManager:
   - Outside
   - Lever
   - Shop
+  - Item
+  - LockPlayer
+  - Boss
+  - Explosion
   layers:
   - Default
   - TransparentFX

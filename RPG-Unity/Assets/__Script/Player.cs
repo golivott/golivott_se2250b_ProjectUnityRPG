@@ -100,6 +100,11 @@ public class Player : MonoBehaviour
     private bool _canUseStrengthPotion;
     private bool _canUseResistancePotion;
 
+    private bool _enteredBossArena;
+
+    [Header("Boss Prefab")]
+    public GameObject grandpa;
+
     public virtual void Start()     //assigns attributes a value for a generic player
     {
         _skillPoints = 0;
@@ -304,7 +309,23 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))    //if the player collides with an enemy they take 10 damage
         {
-            TakenDamage(10);
+            if (collision.gameObject.name.Equals("Grandpa(Clone)"))
+            {
+                TakenDamage(50);
+                healthBar.SetHealth(_health);
+            }
+            else
+            {
+                TakenDamage(10);
+                healthBar.SetHealth(_health);
+            }
+        }
+
+        
+
+        else if (collision.gameObject.CompareTag("Explosion"))
+        {
+            TakenDamage(75);
             healthBar.SetHealth(_health);
         }
 
@@ -324,6 +345,13 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.CompareTag("UpStairs"))   //if the player collides with the basement stairs they get teleported to the mainfloor
         {
             gameObject.transform.position = new Vector3(-19, -5, 0);
+        }
+        
+        else if (collision.gameObject.CompareTag("LockPlayer") && !_enteredBossArena)
+        {
+            GameObject.Find("EnableBarricade").transform.GetChild(0).gameObject.SetActive(true);
+            _enteredBossArena = true;
+            Instantiate(grandpa, new Vector3(-60.5f,15.5f,0), Quaternion.identity);
         }
 
     }
