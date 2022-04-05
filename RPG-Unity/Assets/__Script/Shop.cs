@@ -10,11 +10,11 @@ public class Shop : MonoBehaviour
     private Player _player;
     private Text _text;
 
-    // Used by player class to enable certain functionality
     public static bool HasHelmet;
     public static bool HasRubyRing;
     public static bool HasNecklace;
     
+
     private void Start()    //upon start get the player component and text component
     {
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -118,18 +118,18 @@ public class Shop : MonoBehaviour
         {
             if (_player.GetMoney() >= 75)
             {
-                if (!_player.GetComponent<Player>().Inventory.ContainsKey("HealthPotion"))
+                if (!_player.GetComponent<Player>().inventory.ContainsKey("HealthPotion"))
                 {
                     _player.GetComponent<Player>().itemList.Add("HealthPotion");
-                    _player.GetComponent<Player>().Inventory.Add("HealthPotion", 1);
+                    _player.GetComponent<Player>().inventory.Add("HealthPotion", 1);
                     _player.GetComponent<Player>().differentItems++;
                 }
                 else
                 {
-                    _player.GetComponent<Player>().Inventory["HealthPotion"]++;
+                    _player.GetComponent<Player>().inventory["HealthPotion"]++;
                 }
                 GameObject.Find("ItemAmount").GetComponent<Text>().text =
-                    "X " + _player.GetComponent<Player>().Inventory["HealthPotion"];
+                    "X " + _player.GetComponent<Player>().inventory["HealthPotion"];
                 _player.AddMoney(-75);
             }
         }
@@ -138,15 +138,15 @@ public class Shop : MonoBehaviour
         {
             if (_player.GetMoney() >= 75)
             {
-                if (!_player.GetComponent<Player>().Inventory.ContainsKey("SpeedPotion"))
+                if (!_player.GetComponent<Player>().inventory.ContainsKey("SpeedPotion"))
                 {
                     _player.GetComponent<Player>().itemList.Add("SpeedPotion");
-                    _player.GetComponent<Player>().Inventory.Add("SpeedPotion", 1);
+                    _player.GetComponent<Player>().inventory.Add("SpeedPotion", 1);
                     _player.GetComponent<Player>().differentItems++;
                 }
                 else
                 {
-                    _player.GetComponent<Player>().Inventory["SpeedPotion"]++;
+                    _player.GetComponent<Player>().inventory["SpeedPotion"]++;
                 }
                 _player.AddMoney(-75);
             }
@@ -156,15 +156,15 @@ public class Shop : MonoBehaviour
         {
             if (_player.GetMoney() >= 75)
             {
-                if (!_player.GetComponent<Player>().Inventory.ContainsKey("StrengthPotion"))
+                if (!_player.GetComponent<Player>().inventory.ContainsKey("StrengthPotion"))
                 {
                     _player.GetComponent<Player>().itemList.Add("StrengthPotion");
-                    _player.GetComponent<Player>().Inventory.Add("StrengthPotion", 1);
+                    _player.GetComponent<Player>().inventory.Add("StrengthPotion", 1);
                     _player.GetComponent<Player>().differentItems++;
                 }
                 else
                 {
-                    _player.GetComponent<Player>().Inventory["StrengthPotion"]++;
+                    _player.GetComponent<Player>().inventory["StrengthPotion"]++;
                 }
                 _player.AddMoney(-75);
             }
@@ -174,15 +174,15 @@ public class Shop : MonoBehaviour
         {
             if (_player.GetMoney() >= 75)
             {
-                if (!_player.GetComponent<Player>().Inventory.ContainsKey("ResistancePotion"))
+                if (!_player.GetComponent<Player>().inventory.ContainsKey("ResistancePotion"))
                 {
                     _player.GetComponent<Player>().itemList.Add("ResistancePotion");
-                    _player.GetComponent<Player>().Inventory.Add("ResistancePotion", 1);
+                    _player.GetComponent<Player>().inventory.Add("ResistancePotion", 1);
                     _player.GetComponent<Player>().differentItems++;
                 }
                 else
                 {
-                    _player.GetComponent<Player>().Inventory["ResistancePotion"]++;
+                    _player.GetComponent<Player>().inventory["ResistancePotion"]++;
                 }
                 _player.AddMoney(-75);
             }

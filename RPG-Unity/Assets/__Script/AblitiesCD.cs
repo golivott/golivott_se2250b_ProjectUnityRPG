@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class AblitiesCD : MonoBehaviour
@@ -11,21 +10,21 @@ public class AblitiesCD : MonoBehaviour
     [Header("Dash")]
     public Image dashImage;
     public float cooldownOne = 1;
-    bool _isCooldownOne = false;
-    [FormerlySerializedAs("Dash")] public KeyCode dash;
+    bool isCooldownOne = false;
+    public KeyCode Dash;
 
     //Firestomp information
     [Header("FireStomp")]
     public Image fireStompImage;
     public float cooldownTwo = 3;
-    bool _isCooldownTwo = false;
-    [FormerlySerializedAs("FireStomp")] public KeyCode fireStomp;
+    bool isCooldownTwo = false;
+    public KeyCode FireStomp;
     
     //SwordSlash information
     [Header("SwordSlash")]
     public Image swordSlashImage;
     public float cooldownThree = 5;
-    bool _isCooldownThree = false;
+    bool isCooldownThree = false;
     public KeyCode swordSlash;
 
 
@@ -48,32 +47,32 @@ public class AblitiesCD : MonoBehaviour
 
     //If space is pressed, puts ability on cooldown until cooldown is done (timer effect)
     void AbilityDash(){
-        if(Input.GetKey(dash) && _isCooldownOne == false){
-            _isCooldownOne = true;
+        if(Input.GetKey(Dash) && isCooldownOne == false){
+            isCooldownOne = true;
             dashImage.fillAmount = 1;
         }
 
-        if(_isCooldownOne){
+        if(isCooldownOne){
             dashImage.fillAmount-= 1 / cooldownOne * Time.deltaTime;
             if(dashImage.fillAmount <=0){
                 dashImage.fillAmount = 0;
-                _isCooldownOne=false;
+                isCooldownOne=false;
             }
         }
     }       
     
     //If E is pressed, puts ability on cooldown until cooldown is done (timer effect)
     void AbilityFirestomp(){
-        if(Input.GetKey(fireStomp) && _isCooldownTwo == false){
-            _isCooldownTwo = true;
+        if(Input.GetKey(FireStomp) && isCooldownTwo == false){
+            isCooldownTwo = true;
             fireStompImage.fillAmount = 1;
         }
 
-        if(_isCooldownTwo){
+        if(isCooldownTwo){
             fireStompImage.fillAmount-= 1 / cooldownTwo * Time.deltaTime;
             if(fireStompImage.fillAmount <=0){
                 fireStompImage.fillAmount = 0;
-                _isCooldownTwo=false;
+                isCooldownTwo=false;
             }
         }
     }
@@ -81,16 +80,16 @@ public class AblitiesCD : MonoBehaviour
 
     //If Q, puts ability on cooldown until cooldown is done (timer effect)
     void AbilitySwordslash(){
-        if(Input.GetKey(swordSlash) && _isCooldownThree == false){
-            _isCooldownThree = true;
+        if(Input.GetKey(swordSlash) && isCooldownThree == false){
+            isCooldownThree = true;
             swordSlashImage.fillAmount = 1;
         }
 
-        if(_isCooldownThree){
+        if(isCooldownThree){
             swordSlashImage.fillAmount-= 1 / cooldownThree * Time.deltaTime;
             if(swordSlashImage.fillAmount <=0){
                 swordSlashImage.fillAmount = 0;
-                _isCooldownThree=false;
+                isCooldownThree=false;
             }
         }
     }

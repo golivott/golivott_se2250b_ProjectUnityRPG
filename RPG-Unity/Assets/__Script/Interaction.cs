@@ -44,6 +44,7 @@ public class Interaction : MonoBehaviour //class used to manage interactions
         if (gameObject.CompareTag("DevBox"))
         {
             _player.AddMoney(1000);
+            _player.AddExperience(1000);
         }
         
         if (gameObject.CompareTag("Chest"))
