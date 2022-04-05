@@ -72,6 +72,9 @@ public class Player : MonoBehaviour
     [Header("Shop UI")]
     public GameObject shopUI; //shop UI
 
+    [Header("Pause Menu")] 
+    public GameObject pauseMenu; //pause menu
+    
     [Header("Item Images")]
     public Texture healthPotion;
     public Texture speedPotion;
@@ -173,7 +176,7 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("StartingMenu");
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !shopUI.activeSelf ) //Toggles overlay
+        if (Input.GetKeyDown(KeyCode.Escape) && !shopUI.activeSelf && !pauseMenu.activeSelf) //Toggles overlay
         {
             skillTreeUI.SetActive(!skillTreeUI.activeSelf);
             if (skillTreeUI.activeSelf)
@@ -185,11 +188,13 @@ public class Player : MonoBehaviour
                 disableMovement = false;
             }
         }
+        
+        
 
-        if (Input.GetKeyDown(KeyCode.Escape) && shopUI.activeSelf ) //Toggles overlay
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !shopUI.activeSelf && !skillTreeUI.activeSelf) //Toggles overlay
         {
-            shopUI.SetActive(!shopUI.activeSelf);
-            if (shopUI.activeSelf)
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
+            if (pauseMenu.activeSelf)
             {
                 disableMovement = true;
             }
