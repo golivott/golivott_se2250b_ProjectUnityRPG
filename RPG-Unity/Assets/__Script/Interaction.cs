@@ -102,13 +102,12 @@ public class Interaction : MonoBehaviour //class used to manage interactions
 
         // Level 2 Interactable
         // When lever is interacted with
-        if (gameObject.CompareTag("Lever"))
+        if (gameObject.CompareTag("Lever") && !flippedLever)
         {
+            flippedLever = true;
             GameObject.Find("Lever Off").GetComponent<SpriteRenderer>().color = new Color(1,1,1,0);
             GameObject.Find("Lever On").GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
             GameObject.Find("Bridge Baricade").SetActive(false);
-            GameObject.Find("Lever On").SetActive(false);
-            GameObject.Find("Lever Off").SetActive(false);
         }
     }
 
