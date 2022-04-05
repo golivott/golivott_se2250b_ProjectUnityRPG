@@ -65,7 +65,7 @@ public class Interaction : MonoBehaviour //class used to manage interactions
             }
             else
             {
-                GameObject.Find("Text").GetComponent<Text>().text = "You need a key to open ths door";
+                GameObject.Find("Text").GetComponent<Text>().text = "You need a key to open this door";
                 GameObject.Find("Text").GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 Invoke("RemoveText", 3f);
             }
@@ -108,6 +108,8 @@ public class Interaction : MonoBehaviour //class used to manage interactions
             GameObject.Find("Lever Off").GetComponent<SpriteRenderer>().color = new Color(1,1,1,0);
             GameObject.Find("Lever On").GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
             GameObject.Find("Bridge Baricade").SetActive(false);
+            GameObject.Find("Lever On").SetActive(false);
+            GameObject.Find("Lever Off").SetActive(false);
         }
     }
 

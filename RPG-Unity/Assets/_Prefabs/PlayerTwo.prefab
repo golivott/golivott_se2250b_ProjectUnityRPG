@@ -237,9 +237,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'An old and magical necklace. This necklace offers an extra layer of protection
+  m_Text: An old and magical necklace. This necklace offers an extra layer of protection
     gifted from the Gods. When you are critical health the necklace offers 30 seconds
-    of invisibility allowing you to escape a dangerous situation. '
+    of invisibility allowing you to escape a dangerous situation. ($500)
 --- !u!1 &227897693773108438
 GameObject:
   m_ObjectHideFlags: 0
@@ -2997,7 +2997,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hover over button for item info!
+  m_Text: 'Hover over an item for item info!
+
+'
 --- !u!1 &2361321492630252359
 GameObject:
   m_ObjectHideFlags: 0
@@ -3746,7 +3748,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -382.80002, y: 243}
+  m_AnchoredPosition: {x: -468.2, y: 284.1}
   m_SizeDelta: {x: 17.403, y: 18.659}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &157117445792049027
@@ -4826,8 +4828,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'An old helmet. Small damage protection but your detection range decreases
-    making it easier to sneak by enemies. '
+  m_Text: An old helmet. Small damage protection but your detection range decreases
+    making it easier to sneak by enemies. ($100)
 --- !u!1 &4155185356031479600
 GameObject:
   m_ObjectHideFlags: 0
@@ -4979,7 +4981,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: A potion brewed by our finest wizards. When consumed you will have a quick
-    regeneration for one minute.
+    regeneration for one minute. ($75)
 --- !u!1 &4247856756465351502
 GameObject:
   m_ObjectHideFlags: 0
@@ -5059,7 +5061,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: An old chestplate. Absorbs a signficant amount of damage but makes you
-    slower.
+    slower. ($100)
 --- !u!1 &4276930212001354020
 GameObject:
   m_ObjectHideFlags: 0
@@ -5245,7 +5247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -415.9, y: 243.29}
+  m_AnchoredPosition: {x: -501, y: 284.5}
   m_SizeDelta: {x: 27.82, y: 28.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2442809057879144482
@@ -6722,7 +6724,7 @@ RectTransform:
   - {fileID: 8773962153352690229}
   - {fileID: 6698479838870344672}
   m_Father: {fileID: 8517101558060931458}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6955,7 +6957,7 @@ RectTransform:
   - {fileID: 8546861165226872527}
   - {fileID: 7679605605604454715}
   m_Father: {fileID: 8517101558060931458}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7040,8 +7042,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'These magical gloves make your reactions quicker then ever. All cooldowns
-    on your attacks are shortened. '
+  m_Text: These magical gloves make your reactions quicker then ever. All cooldowns
+    on your attacks are shortened. ($300)
 --- !u!1 &5174388193478796070
 GameObject:
   m_ObjectHideFlags: 0
@@ -7148,7 +7150,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -382.8, y: 243}
+  m_AnchoredPosition: {x: -468.2, y: 284.6}
   m_SizeDelta: {x: 27.95, y: 29.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1240304471273113925
@@ -7740,7 +7742,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: When worn, this magical ring will make you slightly stronger.
+  m_Text: When worn, this magical ring will make you slightly stronger. ($500)
 --- !u!1 &5495604056641550959
 GameObject:
   m_ObjectHideFlags: 0
@@ -7819,8 +7821,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'A potion brewed by our finest wizards. When consumed your body becomes
-    as solid as rock allowing you to take less damage for one minute. '
+  m_Text: A potion brewed by our finest wizards. When consumed your body becomes
+    as solid as rock allowing you to take less damage for one minute. ($75)
 --- !u!1 &5518420687218139246
 GameObject:
   m_ObjectHideFlags: 0
@@ -8106,7 +8108,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: A potion brewed by our finest wizards. When consumed you will have a strength
-    boost for one minute.
+    boost for one minute. ($75)
 --- !u!1 &5719637797281365335
 GameObject:
   m_ObjectHideFlags: 0
@@ -9712,7 +9714,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: An old peice of leggings. Absorbs a significant amount of damage but makes
-    you slower
+    you slower. ($100)
 --- !u!1 &7199149777678799830
 GameObject:
   m_ObjectHideFlags: 0
@@ -9747,7 +9749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -415.9, y: 243.079}
+  m_AnchoredPosition: {x: -500.7, y: 284.6}
   m_SizeDelta: {x: 17.525, y: 18.218}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7897076805404577221
@@ -9788,6 +9790,85 @@ MonoBehaviour:
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7275422534493113485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 726096577737747402}
+  - component: {fileID: 6050299019209750001}
+  - component: {fileID: 7387780687174069573}
+  m_Layer: 5
+  m_Name: MoneyText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &726096577737747402
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7275422534493113485}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.9998644, y: 0.9998644, z: 0.9998644}
+  m_Children: []
+  m_Father: {fileID: 8517101558060931458}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 458.7, y: 160.5}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6050299019209750001
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7275422534493113485}
+  m_CullTransparentMesh: 1
+--- !u!114 &7387780687174069573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7275422534493113485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 16
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 2
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Money: $0'
 --- !u!1 &7357306571733121391
 GameObject:
   m_ObjectHideFlags: 0
@@ -10198,7 +10279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -382.8, y: 243}
+  m_AnchoredPosition: {x: -468.2, y: 284.2}
   m_SizeDelta: {x: 17.403, y: 18.659}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5319654286216031697
@@ -10318,7 +10399,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: A set of magical boots. Offers small protection but its magic makes you
-    run faster.
+    run faster. ($100)
 --- !u!1 &7565738908820056721
 GameObject:
   m_ObjectHideFlags: 0
@@ -11250,7 +11331,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 378, y: 199}
+  m_AnchoredPosition: {x: 458.3, y: 238.8}
   m_SizeDelta: {x: 156.74, y: 29.13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8517101556870430753
@@ -11513,7 +11594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -449.1, y: 242.71}
+  m_AnchoredPosition: {x: -533.6, y: 284.6}
   m_SizeDelta: {x: 17.73, y: 19.379}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8517101557414551132
@@ -11667,7 +11748,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 378.94998, y: 238.30002}
+  m_AnchoredPosition: {x: 459.3, y: 281.2}
   m_SizeDelta: {x: 160.9, y: 25.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8517101557640889348
@@ -11953,9 +12034,6 @@ MonoBehaviour:
   attack1Speed: 750
   attack2Speed: 750
   invisDuration: 3
-  invisImage: {fileID: 7661394007581617519}
-  cooldownFour: 5
-  invisAbiliity: 113
   initArrowSpeed: 750
   explosionSprite: {fileID: 1085081284940261944, guid: 2aaa9fafdd24b164a8baf8c446dece21, type: 3}
   enemyLayers:
@@ -12227,7 +12305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -449.1, y: 243.07}
+  m_AnchoredPosition: {x: -533.9, y: 285.3}
   m_SizeDelta: {x: 28.47, y: 29.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8517101557934060808
@@ -12302,7 +12380,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 418, y: -210}
+  m_AnchoredPosition: {x: 505, y: -262}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8517101558058599367
@@ -12386,8 +12464,9 @@ RectTransform:
   - {fileID: 8517101558126103226}
   - {fileID: 9047838147818455070}
   - {fileID: 1692119694216300629}
-  - {fileID: 4221634259027838952}
   - {fileID: 1720884963707082355}
+  - {fileID: 4221634259027838952}
+  - {fileID: 726096577737747402}
   m_Father: {fileID: 8517101556916845405}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12472,12 +12551,12 @@ MonoBehaviour:
   dashImage: {fileID: 8517101557414551133}
   cooldownOne: 1.2
   Dash: 32
-  fireStompImage: {fileID: 7661394007581617519}
+  abilityOneImage: {fileID: 3694468844612569286}
   cooldownTwo: 3
-  FireStomp: 113
-  swordSlashImage: {fileID: 3694468844612569286}
+  abilityOne: 101
+  abilityTwoImage: {fileID: 7661394007581617519}
   cooldownThree: 5
-  swordSlash: 101
+  abilityTwo: 113
 --- !u!1 &8517101558110594305
 GameObject:
   m_ObjectHideFlags: 0
@@ -12587,7 +12666,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 418.00003, y: -209.99998}
+  m_AnchoredPosition: {x: 504, y: -261}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8517101558126103225
@@ -12741,7 +12820,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 378.95, y: 157.61}
+  m_AnchoredPosition: {x: 458.5, y: 199.7}
   m_SizeDelta: {x: 160.9, y: 25.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8517101558199304695
@@ -12820,7 +12899,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -449.1, y: 242.36}
+  m_AnchoredPosition: {x: -533.9, y: 285.2}
   m_SizeDelta: {x: 17.73, y: 18.669}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8517101558320480020
@@ -13049,7 +13128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -435.2, y: 237.3}
+  m_AnchoredPosition: {x: -520.2, y: 279.4}
   m_SizeDelta: {x: 153.53, y: 75.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8517101558689637395
@@ -13934,8 +14013,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'When worn, this magical ring grants you the ability to slowly regenerate
-    your health. '
+  m_Text: When worn, this magical ring grants you the ability to slowly regenerate
+    your health. ($500)
 --- !u!1 &9137796951389899992
 GameObject:
   m_ObjectHideFlags: 0
@@ -14045,7 +14124,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -415.9, y: 243.079}
+  m_AnchoredPosition: {x: -500.6, y: 283.9}
   m_SizeDelta: {x: 17.525, y: 18.218}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4289932007895240732

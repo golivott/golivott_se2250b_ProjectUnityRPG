@@ -132,6 +132,7 @@ public class Player : MonoBehaviour
     }
     public virtual void Update()
     {
+        GameObject.Find("MoneyText").GetComponent<Text>().text ="Money: " + "$" + _money;
         if (Shop.HasRubyRing && _canRegen)
         {
             _canRegen = false;
@@ -176,6 +177,19 @@ public class Player : MonoBehaviour
         {
             skillTreeUI.SetActive(!skillTreeUI.activeSelf);
             if (skillTreeUI.activeSelf)
+            {
+                disableMovement = true;
+            }
+            else
+            {
+                disableMovement = false;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && shopUI.activeSelf ) //Toggles overlay
+        {
+            shopUI.SetActive(!shopUI.activeSelf);
+            if (shopUI.activeSelf)
             {
                 disableMovement = true;
             }
