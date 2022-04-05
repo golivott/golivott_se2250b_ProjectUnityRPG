@@ -10,7 +10,7 @@ public class Ghost : Enemy  //A ghost is the same as a generic enemy besides it 
         Speed = 3f;
         Radius = 5f;
         Experience = 5;
-        Money = 5;
+        Money = 50;
         EnemyName = "Ghost";
     }
 

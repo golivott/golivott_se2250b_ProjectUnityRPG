@@ -13,35 +13,35 @@ public class AblitiesCD : MonoBehaviour
     bool isCooldownOne = false;
     public KeyCode Dash;
 
-    //Firestomp information
-    [Header("FireStomp")]
-    public Image fireStompImage;
+    //AbilityOne information
+    [Header("AbilityOne")]
+    public Image abilityOneImage;
     public float cooldownTwo = 3;
     bool isCooldownTwo = false;
-    public KeyCode FireStomp;
+    public KeyCode abilityOne;
     
-    //SwordSlash information
-    [Header("SwordSlash")]
-    public Image swordSlashImage;
+    //AbilityTwo information
+    [Header("AbilityTwo")]
+    public Image abilityTwoImage;
     public float cooldownThree = 5;
     bool isCooldownThree = false;
-    public KeyCode swordSlash;
+    public KeyCode abilityTwo;
 
 
     // Allows the abilities to have no grey zone (not on cooldown at start)
     void Start()
     {
         dashImage.fillAmount = 0;
-        fireStompImage.fillAmount = 0;
-        swordSlashImage.fillAmount = 0;
+        abilityOneImage.fillAmount = 0;
+        abilityTwoImage.fillAmount = 0;
     }
 
     // Update to continously check if abilities are activated
     void Update()
     {
         AbilityDash();
-        AbilityFirestomp();
-        AbilitySwordslash();
+        AbilityOne();
+        AbilityTwo();
     }
 
 
@@ -62,16 +62,16 @@ public class AblitiesCD : MonoBehaviour
     }       
     
     //If E is pressed, puts ability on cooldown until cooldown is done (timer effect)
-    void AbilityFirestomp(){
-        if(Input.GetKey(FireStomp) && isCooldownTwo == false){
+    void AbilityOne(){
+        if(Input.GetKey(abilityOne) && isCooldownTwo == false){
             isCooldownTwo = true;
-            fireStompImage.fillAmount = 1;
+            abilityOneImage.fillAmount = 1;
         }
 
         if(isCooldownTwo){
-            fireStompImage.fillAmount-= 1 / cooldownTwo * Time.deltaTime;
-            if(fireStompImage.fillAmount <=0){
-                fireStompImage.fillAmount = 0;
+            abilityOneImage.fillAmount-= 1 / cooldownTwo * Time.deltaTime;
+            if(abilityOneImage.fillAmount <=0){
+                abilityOneImage.fillAmount = 0;
                 isCooldownTwo=false;
             }
         }
@@ -79,18 +79,21 @@ public class AblitiesCD : MonoBehaviour
 
 
     //If Q, puts ability on cooldown until cooldown is done (timer effect)
-    void AbilitySwordslash(){
-        if(Input.GetKey(swordSlash) && isCooldownThree == false){
+    void AbilityTwo(){
+        if(Input.GetKey(abilityTwo) && isCooldownThree == false){
             isCooldownThree = true;
-            swordSlashImage.fillAmount = 1;
+            abilityTwoImage.fillAmount = 1;
         }
 
         if(isCooldownThree){
-            swordSlashImage.fillAmount-= 1 / cooldownThree * Time.deltaTime;
-            if(swordSlashImage.fillAmount <=0){
-                swordSlashImage.fillAmount = 0;
+            abilityTwoImage.fillAmount-= 1 / cooldownThree * Time.deltaTime;
+            if(abilityTwoImage.fillAmount <=0){
+                abilityTwoImage.fillAmount = 0;
                 isCooldownThree=false;
             }
         }
     }
+
+        
+    
 }

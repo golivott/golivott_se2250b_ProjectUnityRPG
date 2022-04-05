@@ -72,6 +72,9 @@ public class Player : MonoBehaviour
     [Header("Shop UI")]
     public GameObject shopUI; //shop UI
 
+    [Header("Pause Menu")] 
+    public GameObject pauseMenu; //pause menu
+    
     [Header("Item Images")]
     public Texture healthPotion;
     public Texture speedPotion;
@@ -132,6 +135,7 @@ public class Player : MonoBehaviour
     }
     public virtual void Update()
     {
+        GameObject.Find("MoneyText").GetComponent<Text>().text ="Money: " + "$" + _money;
         if (Shop.HasRubyRing && _canRegen)
         {
             _canRegen = false;
@@ -172,10 +176,25 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("StartingMenu");
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !shopUI.activeSelf ) //Toggles overlay
+        if (Input.GetKeyDown(KeyCode.Escape) && !shopUI.activeSelf && !pauseMenu.activeSelf) //Toggles overlay
         {
             skillTreeUI.SetActive(!skillTreeUI.activeSelf);
             if (skillTreeUI.activeSelf)
+            {
+                disableMovement = true;
+            }
+            else
+            {
+                disableMovement = false;
+            }
+        }
+        
+        
+
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !shopUI.activeSelf && !skillTreeUI.activeSelf) //Toggles overlay
+        {
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
+            if (pauseMenu.activeSelf)
             {
                 disableMovement = true;
             }

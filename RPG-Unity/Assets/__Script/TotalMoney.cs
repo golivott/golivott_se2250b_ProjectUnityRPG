@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TotalMoney : MonoBehaviour
 {
     private Text _totalMoney;
+
     
     private void Start()    //gets text component upon start
     {

@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour  //Generic enemy class
         _power = 10f;
         _experience = 10;
         _enemyName = "Default Enemy";
-        _money = 10;
+        _money = 100;
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
         _moveEnemy = true;
     }

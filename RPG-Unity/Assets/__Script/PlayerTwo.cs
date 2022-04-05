@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerTwo : Player
 {
@@ -24,6 +25,8 @@ public class PlayerTwo : Player
     public GameObject explosionSprite;
     
     private bool _canExplosiveArrow = true;
+
+
     
     
     public LayerMask enemyLayers;
@@ -43,10 +46,12 @@ public class PlayerTwo : Player
         attack2Delay = 2f;
         
         ability1Damage = 25f;
-        ability1Delay = 5f;
+        ability1Delay = 8f;
         ability2Damage = 200f;
         ability2Delay = 5f;
     }
+
+
     // Update is called once per frame
     public override void FixedUpdate()
     {
@@ -227,4 +232,8 @@ public class PlayerTwo : Player
 
         _canExplosiveArrow = true;
     }
+
+
+
 }
+    
