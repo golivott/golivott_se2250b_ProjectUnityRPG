@@ -3393,7 +3393,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980581606001521}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: onHoverButton
+          m_MethodName: OnHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3409,7 +3409,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980581606001521}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: offHoverButton
+          m_MethodName: OffHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4519,7 +4519,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980582017684034}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: onHoverButton
+          m_MethodName: OnHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4535,7 +4535,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980582017684034}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: offHoverButton
+          m_MethodName: OffHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4793,7 +4793,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980582059581835}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: onHoverButton
+          m_MethodName: OnHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4809,7 +4809,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980582059581835}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: offHoverButton
+          m_MethodName: OffHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -5603,7 +5603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashImage: {fileID: 3690980582874227233}
   cooldownOne: 1.2
-  Dash: 32
+  dash: 0
   abilityOneImage: {fileID: 3690980583561246769}
   cooldownTwo: 3
   abilityOne: 101
@@ -6348,6 +6348,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265c04da777050043bf9b47aa49acab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  speed: 0
+  strength: 0
+  dmgTakenMultiplier: 0
+  level: 0
+  experience: 0
+  money: 0
+  skillPoints: 0
   isInvisable: 0
   attack1Damage: 50
   attack1Delay: 0.5
@@ -6886,7 +6894,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980582774943435}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: onHoverButton
+          m_MethodName: OnHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6902,7 +6910,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980582774943435}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: offHoverButton
+          m_MethodName: OffHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7503,7 +7511,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980582971941820}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: onHoverButton
+          m_MethodName: OnHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7519,7 +7527,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980582971941820}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: offHoverButton
+          m_MethodName: OffHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7702,7 +7710,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980582973360987}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: onHoverButton
+          m_MethodName: OnHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7718,7 +7726,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980582973360987}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: offHoverButton
+          m_MethodName: OffHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8587,7 +8595,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980583190804099}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: onHoverButton
+          m_MethodName: OnHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8603,7 +8611,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980583190804099}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: offHoverButton
+          m_MethodName: OffHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8920,7 +8928,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980583217440113}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: onHoverButton
+          m_MethodName: OnHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8936,7 +8944,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980583217440113}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: offHoverButton
+          m_MethodName: OffHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -9119,7 +9127,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980583250379809}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: onHoverButton
+          m_MethodName: OnHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -9135,7 +9143,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980583250379809}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: offHoverButton
+          m_MethodName: OffHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -9988,7 +9996,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980583511673921}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: onHoverButton
+          m_MethodName: OnHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -10004,7 +10012,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3690980583511673921}
           m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-          m_MethodName: offHoverButton
+          m_MethodName: OffHoverButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
