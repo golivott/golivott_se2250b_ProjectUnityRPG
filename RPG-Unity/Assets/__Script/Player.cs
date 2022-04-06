@@ -21,11 +21,13 @@ public class Player : MonoBehaviour
     public int money;
     public int skillPoints;
 
-    private bool _canTakeDamage;
-    private Interaction _interaction;
+    private bool _canTakeDamage;    //used to determine when the player can or can't take damage
+    
+    private Interaction _interaction;   //uses for player interactions
 
-    public bool isInvisable = false;
+    public bool isInvisable = false;    //used to assist with one item in the shop
 
+    // Properties for attack 1
     [Header("Attack 1")]
     public float attack1Damage = 50f;
     public float attack1Delay = 0.5f;
@@ -35,25 +37,30 @@ public class Player : MonoBehaviour
     public float attack2Damage = 25f;
     public float attack2Delay = 1f;
 
+    // Properties for ability 1
     [Header("Ability 1")]
     public float ability1Damage = 25f;
     public float ability1Delay = 1f;
 
+    // Properties for ability 2
     [Header("Ability 2")]
     public float ability2Damage = 25f;
     public float ability2Delay = 1f;
 
+    // Interaction Properties
     [Header("Interactions")]
     public float interactDistance = 1f;
     public float interactRange = 1f;
     public LayerMask interactLayer;
     public Vector2 interactPoint;
 
+    //UI Properties
     [Header("UI")]
     public UIHealthBar healthBar;
     public ExperienceBar expBar;
     public Image levelTwoIcon;
 
+    //Movement Properties
     [Header("Movement Settings")]
     public Vector2 lastMoveDir;
     public Vector2 moveDir;
@@ -63,10 +70,11 @@ public class Player : MonoBehaviour
     public float dashLength = 0.2f;
     public float dashCooldown = 1f;
 
+    //Ability managment propeties
     [Header("Manage Abilities")]
     public bool unlockAbilityOne = false;
     public bool unlockAbilityTwo = false;
-
+    
     [Header("SkillTree UI")]
     public GameObject skillTreeUI; //Skilltree UI
 
@@ -76,36 +84,37 @@ public class Player : MonoBehaviour
     [Header("Pause Menu")]
     public GameObject pauseMenu; //pause menu
 
-    [Header("Item Images")]
+    //Assigning images
+    [Header("Item Images")] 
     public Texture healthPotion;
     public Texture speedPotion;
     public Texture strengthPotion;
     public Texture resistancePotion;
 
+    //used in dash calculations
     private float _activeMoveSpeed;
-    private float _dashCounter;
-    private float _dashCoolCounter;
+    private bool _canDash;
 
+    //used to manage items
     private bool _canRegen = true;
     private bool _canBeInvisible = true;
 
+    //Inventory managment
     public Dictionary<string, int> Inventory;
-
     public int differentItems;
     public List<string> itemList;
-
     private bool _isInvetoryOpen;
     private int _lastItemIndex;
-
-    private bool _canDash;
-
+    
+    //Used to determine when you can or can't use a potion
     private bool _canUseHealthPotion;
     private bool _canUseSpeedPotion;
     private bool _canUseStrengthPotion;
     private bool _canUseResistancePotion;
 
+    //used to tell the code if the player enter the boss arena
     private bool _enteredBossArena;
-
+    
     [Header("Boss Prefab")]
     public GameObject grandpa;
 
@@ -141,16 +150,20 @@ public class Player : MonoBehaviour
     }
     public virtual void Update()
     {
-        GameObject.Find("MoneyText").GetComponent<Text>().text ="Money: " + "$" + money;
-        if (Shop.HasRubyRing && _canRegen)
+        GameObject.Find("MoneyText").GetComponent<Text>().text ="Money: " + "$" + money;    //constantly displays the correct money the player has
+        
+        if (Shop.HasRubyRing && _canRegen)  //if the player has the ruby ring from the shop and the cool down has passed they can regenerate health
         {
             _canRegen = false;
             Invoke(nameof(Regeneration), 2.5f);
         }
 
+        //Constantly updates the HUD
         GameObject.Find("Health").GetComponent<Text>().text = "Health: " + health;
         GameObject.Find("Level").GetComponent<Text>().text = "Player Level: " + level;
         GameObject.Find("Experience").GetComponent<Text>().text = "Exp: " + experience;
+        
+        //updates the experience bar
         expBar.SetExperience(experience);
 
         if (moveDir != Vector2.zero)   //if statement that creates an interact range for the player
@@ -210,22 +223,22 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))    //opens or closes inventory
         {
-            if (!_isInvetoryOpen)
+            if (!_isInvetoryOpen)   //if the inventory isn't open, open the inventory upon clicking I
             {
 
                     _isInvetoryOpen = true;
                     SetItemImage();
             }
-            else
+            else //if the inventory is already open, close it upon clicking I
             {
                 _isInvetoryOpen = false;
                 SetItemImage();
             }
         }
 
-        if (_isInvetoryOpen)
+        if (_isInvetoryOpen)    //if the inventory is open, give the player the ability to cycle through items in there inventory
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
@@ -250,7 +263,7 @@ public class Player : MonoBehaviour
                 SetItemImage();
             }
 
-            if (Input.GetKeyDown(KeyCode.V))
+            if (Input.GetKeyDown(KeyCode.V))    //if the user presses V while the inventory is opened, use the item they have selected
             {
                 string currentitem = itemList.ElementAt(_lastItemIndex);
 
@@ -323,7 +336,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnCollisionStay2D(Collision2D collision)
+    public void OnCollisionStay2D(Collision2D collision)    //used to keep the player taking damage if the enemy beats the player in a corner
     {
         OnTriggerStay2D(collision.collider);
     }
@@ -332,7 +345,7 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))    //if the player collides with an enemy they take 10 damage
         {
-            if (collision.gameObject.name.Equals("Grandpa(Clone)"))
+            if (collision.gameObject.name.Equals("Grandpa(Clone)")) //if the enemy object name is Grandpa(aka boss) the player takes 50 damage rather than 10
             {
                 TakenDamage(50);
                 healthBar.SetHealth(health);
@@ -344,9 +357,7 @@ public class Player : MonoBehaviour
             }
         }
 
-
-
-        else if (collision.gameObject.CompareTag("Explosion"))
+        else if (collision.gameObject.CompareTag("Explosion"))  //if the player is hit by an explosion they take 75 damage-
         {
             TakenDamage(75);
             healthBar.SetHealth(health);
@@ -370,7 +381,7 @@ public class Player : MonoBehaviour
             gameObject.transform.position = new Vector3(-19, -5, 0);
         }
 
-        else if (collision.gameObject.CompareTag("LockPlayer") && !_enteredBossArena)
+        else if (collision.gameObject.CompareTag("LockPlayer") && !_enteredBossArena)   //if the player hits the boss trigger zone, they are locked in and the boss spawns in the center
         {
             GameObject.Find("EnableBarricade").transform.GetChild(0).gameObject.SetActive(true);
             _enteredBossArena = true;
@@ -512,22 +523,22 @@ public class Player : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
 
-        if (Shop.HasNecklace && (health <= Mathf.RoundToInt(100 * 0.1f)) && _canBeInvisible)
+        if (Shop.HasNecklace && (health <= Mathf.RoundToInt(100 * 0.1f)) && _canBeInvisible)    //if the player has the necklace and are at 10% health they are granted with 30 seconds of invisibility
         {
             StartCoroutine(UseInvisability());
         }
 
-        if (isInvisable)
+        if (isInvisable)    //if the player is invisible there sprite renderer  is changed to simulate them being invisible
         {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);
         }
-        else
+        else //if the player is no longer invisiblity the sprite renderer is changed back to normal
         {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
     }
 
-    public IEnumerator HealthPotion()
+    public IEnumerator HealthPotion()   //if the player used the health potion, they can't use another health potion for 60 seconds, potion grants 60 seconds of regeneration and will regenerate 100 health
     {
         _canUseHealthPotion = false;
         for (int c = 0; c < 100; c++)
@@ -543,7 +554,7 @@ public class Player : MonoBehaviour
         _canUseHealthPotion = true;
     }
 
-    public IEnumerator SpeedPotion()
+    public IEnumerator SpeedPotion()    //if the player used the speed potion, another speed potion can't be used for another 70 seconds, there speed is multiplied by 2
     {
         speed = speed * 2;
         _canUseSpeedPotion = false;
@@ -552,7 +563,7 @@ public class Player : MonoBehaviour
         _canUseSpeedPotion = true;
     }
 
-    public IEnumerator StrengthPotion() //repeatly changes the game objects color to simulate iframes
+    public IEnumerator StrengthPotion() //if the player used a strength potion, another strength potion can't be used for 60 seconds and there strength is doubled (every 50 strength is a 100% damage increase)
     {
         strength = strength + 50;
         _canUseStrengthPotion = false;
@@ -560,7 +571,7 @@ public class Player : MonoBehaviour
         strength = strength - 50;
         _canUseStrengthPotion = true;
     }
-    public IEnumerator ResistancePotion() //repeatly changes the game objects color to simulate iframes
+    public IEnumerator ResistancePotion() //if the player used a resistance potion, another resistance potion can't be used for 60 seconds and they take half the damage
     {
         dmgTakenMultiplier = dmgTakenMultiplier / 2;
         _canUseResistancePotion = false;
@@ -569,7 +580,7 @@ public class Player : MonoBehaviour
         _canUseResistancePotion = true;
     }
 
-    public void Regeneration()
+    public void Regeneration()  //regeneration method not to be confused with potion, this regeneration method is used if the player has the ruby ring equipped
     {
         if (health != 100)
         {
@@ -579,7 +590,7 @@ public class Player : MonoBehaviour
         _canRegen = true;
     }
 
-    public IEnumerator Dash()
+    public IEnumerator Dash()   //simple method that allows player to dash, speed is tripled for 0.1 seconds
     {
         speed = speed * 3f;
         _canDash = false;
@@ -589,7 +600,7 @@ public class Player : MonoBehaviour
         _canDash = true;
     }
 
-    private IEnumerator UseInvisability()
+    private IEnumerator UseInvisability()   //makes the player invisible to enemies meaning enemies will not lock onto player but can still damage player upon collision
     {
         _canBeInvisible = false;
         Invoke(nameof(SetCanBeInvisible), 180);
@@ -637,13 +648,16 @@ public class Player : MonoBehaviour
         return skillTreeUI;
     }
 
-    private void SetItemImage()
+    private void SetItemImage() //method used in the inventory, displays the image of the item the player has selected
     {
         if (_isInvetoryOpen)
         {
-            if (itemList.Count != 0)
+            if (itemList.Count != 0)    //assuming the player has an item an image needs to be shown
             {
-                string firstItem = itemList.ElementAt(_lastItemIndex);
+                string firstItem = itemList.ElementAt(_lastItemIndex);  //displays the items in order the player got them
+                
+                //depending what item they have display correct image
+                
                 if (firstItem.Equals("HealthPotion"))
                 {
                     GameObject.Find("ItemImage").GetComponent<RawImage>().texture = healthPotion;
@@ -665,11 +679,13 @@ public class Player : MonoBehaviour
                     GameObject.Find("ItemAmount").GetComponent<Text>().text = "X " + Inventory["ResistancePotion"];
                 }
 
+                //make the picture visible
                 GameObject.Find("ItemImage").GetComponent<RawImage>().color = new Color(1, 1, 1, 1);
                 GameObject.Find("ItemAmount").GetComponent<Text>().color = new Color(1, 1, 1, 1);
             }
             else
             {
+                //if the player has no items then close the inventory and make the image invisible
                 GameObject.Find("ItemImage").GetComponent<RawImage>().color = new Color(1, 1, 1, 0);
                 GameObject.Find("ItemAmount").GetComponent<Text>().color = new Color(1, 1, 1, 0);
                 _isInvetoryOpen = false;
@@ -677,6 +693,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            //if the inventory is closed make the image and text invisible
             GameObject.Find("ItemImage").GetComponent<RawImage>().color = new Color(1, 1, 1, 0);
             GameObject.Find("ItemAmount").GetComponent<Text>().color = new Color(1, 1, 1, 0);
         }

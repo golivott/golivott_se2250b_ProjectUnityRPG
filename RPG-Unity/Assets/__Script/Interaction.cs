@@ -9,9 +9,12 @@ public class Interaction : MonoBehaviour //class used to manage interactions
     [Header("Level 1 Interactions")]
     public bool hasKey;
     public bool hasMap;
+    public bool openedChest;
 
     [Header("Level 2 Interactions")] 
     public bool flippedLever;
+    public bool openedMoneyChest;
+    public bool openedItemChest;
     
     private Player _player;
     private GameObject _shopUI;
@@ -39,22 +42,82 @@ public class Interaction : MonoBehaviour //class used to manage interactions
                 _player.disableMovement = false;
             }
         }
-        
-        // DevBox
-        if (gameObject.CompareTag("DevBox"))
-        {
-            _player.AddMoney(1000);
-        }
-        
-        if (gameObject.CompareTag("Chest"))
+
+        //if the player interacts with a chest they are given a key which lets them advance to the basement, a message is shown
+        if (gameObject.CompareTag("Chest") && !openedChest)
         {
             hasKey = true;
+            openedChest = true;
             GameObject.Find("Text").GetComponent<Text>().text = "You found a key! Maybe it opens a door...";
             GameObject.Find("Text").GetComponent<Text>().color = new Color(1, 1, 1, 1);
             Invoke("RemoveText", 3f);
 
         }
 
+        //if the player interacts with the item chest, they get 4 potions
+        if (gameObject.CompareTag("ItemChest") && !openedItemChest)
+        {
+            openedItemChest = true;
+            GameObject.Find("Text").GetComponent<Text>().text = "You found 4 potions, use them wisely...";
+            GameObject.Find("Text").GetComponent<Text>().color = new Color(1, 1, 1, 1);
+            
+            if (!_player.GetComponent<Player>().Inventory.ContainsKey("HealthPotion"))
+            {
+                _player.GetComponent<Player>().itemList.Add("HealthPotion");
+                _player.GetComponent<Player>().Inventory.Add("HealthPotion", 1);
+                _player.GetComponent<Player>().differentItems++;
+            }
+            else
+            {
+                _player.GetComponent<Player>().Inventory["HealthPotion"]++;
+            }
+            
+            if (!_player.GetComponent<Player>().Inventory.ContainsKey("SpeedPotion"))
+            {
+                _player.GetComponent<Player>().itemList.Add("SpeedPotion");
+                _player.GetComponent<Player>().Inventory.Add("SpeedPotion", 1);
+                _player.GetComponent<Player>().differentItems++;
+            }
+            else
+            {
+                _player.GetComponent<Player>().Inventory["SpeedPotion"]++;
+            }
+            
+            if (!_player.GetComponent<Player>().Inventory.ContainsKey("StrengthPotion"))
+            {
+                _player.GetComponent<Player>().itemList.Add("StrengthPotion");
+                _player.GetComponent<Player>().Inventory.Add("StrengthPotion", 1);
+                _player.GetComponent<Player>().differentItems++;
+            }
+            else
+            {
+                _player.GetComponent<Player>().Inventory["StrengthPotion"]++;
+            }
+            
+            if (!_player.GetComponent<Player>().Inventory.ContainsKey("ResistancePotion"))
+            {
+                _player.GetComponent<Player>().itemList.Add("ResistancePotion");
+                _player.GetComponent<Player>().Inventory.Add("ResistancePotion", 1);
+                _player.GetComponent<Player>().differentItems++;
+            }
+            else
+            {
+                _player.GetComponent<Player>().Inventory["ResistancePotion"]++;
+            }
+            Invoke("RemoveText", 3f);
+        }
+
+        //if the player interacts with the moneychest, they get $5000
+        if (gameObject.CompareTag("MoneyChest") && !openedMoneyChest)
+        {
+            openedMoneyChest = true;
+            GameObject.Find("Text").GetComponent<Text>().text = "You found $5000, use it at the shop!";
+            GameObject.Find("Text").GetComponent<Text>().color = new Color(1, 1, 1, 1);
+            Invoke("RemoveText", 3f);
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddMoney(5000);
+        }
+
+        //if the player interacts with the basement door and has the key they are moved downstairs, if they dont they are prompted to find a key 
         if (gameObject.CompareTag("BasementDoor"))
         {
             if (hasKey)
@@ -70,6 +133,7 @@ public class Interaction : MonoBehaviour //class used to manage interactions
             }
         }
 
+        //if the player finds the map a message is shown and they can advance to level 2
         if (gameObject.CompareTag("Map"))
         {
             hasMap = true;
@@ -78,6 +142,7 @@ public class Interaction : MonoBehaviour //class used to manage interactions
             Invoke("RemoveText", 3f);
         }
 
+        //if the player has the map, they can move to level 2, if they don't they are prompted to find the map
         if (gameObject.CompareTag("Outside"))
         {
             if (hasMap)
