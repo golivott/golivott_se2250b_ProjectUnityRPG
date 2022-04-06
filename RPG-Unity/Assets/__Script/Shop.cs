@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
+    //used to control the shop
     public Button button;
     private Player _player;
     private Text _text;
 
+    //these items have special functionalities that are needed in other scripts
     public static bool HasHelmet;
     public static bool HasRubyRing;
     public static bool HasNecklace;
@@ -25,6 +27,7 @@ public class Shop : MonoBehaviour
     {
         
         //Some items can be bought multiple times (potions) other items are a one time buy
+        //Item Descriptions can be read by running the game and opening the shop
         
         if (_text.text.Equals("Helmet"))
         {
