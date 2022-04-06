@@ -550,10 +550,10 @@ public class Player : MonoBehaviour
 
     public IEnumerator SpeedPotion()    //if the player used the speed potion, another speed potion can't be used for another 70 seconds, there speed is multiplied by 2
     {
-        speed = speed * 2;
+        speed = speed * 1.5f;
         _canUseSpeedPotion = false;
         yield return new WaitForSecondsRealtime(60f);
-        speed = speed / 2;
+        speed = speed / 1.5f;
         _canUseSpeedPotion = true;
     }
 

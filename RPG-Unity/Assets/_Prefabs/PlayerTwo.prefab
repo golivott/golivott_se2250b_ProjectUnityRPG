@@ -3974,7 +3974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b80fbcedcdc262a40bcf65380ea4e5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillPointsCount: {fileID: 0}
 --- !u!114 &3093411178373028973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13464,7 +13463,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasKey: 0
   hasMap: 0
+  openedChest: 0
   flippedLever: 0
+  openedMoneyChest: 0
+  openedItemChest: 0
 --- !u!114 &299959349767337952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14040,8 +14042,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashImage: {fileID: 8517101557414551133}
-  cooldownOne: 1.2
-  dash: 0
+  cooldownOne: 1.1
+  dash: 32
   abilityOneImage: {fileID: 3694468844612569286}
   cooldownTwo: 5
   abilityOne: 101

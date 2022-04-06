@@ -23,7 +23,7 @@ public class Boss : Enemy
     void Start()
     {
         //bosses stats
-        Health = 5000f;
+        Health = 800f;
         Speed = 4f;
         Radius = 100f;
         Power = 25f;
@@ -64,6 +64,7 @@ public class Boss : Enemy
             GameObject.Find("Text").GetComponent<Text>().color = new Color(1, 1, 1, 1);
             Invoke("RemoveText", 3f);
             KillEnemy();
+            GameObject.Find("EnableBarricade").transform.GetChild(0).gameObject.SetActive(false);
         }
     }
     public void SummonMinions()     //method that spawns skeletons in the boss arena
